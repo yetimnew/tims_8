@@ -15,15 +15,15 @@ class CreateTruckModelsTable extends Migration
     {
         Schema::create('truck_models', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('company')->nullable();
+            $table->string('production_date')->nullable();
+            $table->text('comment')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('truck_models');
