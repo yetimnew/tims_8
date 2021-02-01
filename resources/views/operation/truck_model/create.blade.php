@@ -1,43 +1,46 @@
 @extends( 'master.app' )
-
 @section( 'title', 'TIMS | Model Registration' )
 @section( 'content' )
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('dasboard')}}">Home</a>
-    </li>
-    <li class="breadcrumb-item ">Trucks</li>
-    <li class="breadcrumb-item active">Trucks Model</li>
-</ol>
 
-<div class="col-md-12">
+<header class="page-header mb-4">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item "><a href="#">Truks</a>
+            </li>
+            <li class="breadcrumb-item active">Truks Model</li>
+        </ol>
+    </div>
+
+  </header>
+
+<div class="container">
     <div class="card text-left">
         <div class="card-header">
             <div class="d-flex">
                 <h2>Truck Model Registration</h2>
                 <div class="ml-auto">
-                    <a href="{{route('vehecletype')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
+                    <a href="{{route('truck_model.index')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
                             aria-hidden="true"> Back</i> </a>
                 </div>
             </div>
         </div>
 
         <div class="card-body">
-            <form method="post" action="{{route('vehecletype.store')}}" class="form-horizontal" id="truck_form">
+            <form method="post" action="{{route('truck_model.store')}}" class="form-horizontal" id="truck_form">
                 @csrf
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
 
                         <div class="form-group required pb-0">
-                            <label class="control-label">Type/Model Name</label>
+                            <label class="control-label"  for="name">Type/Model Name</label>
                             <div class="input-group">
                                 <span class="input-group-addon"></span>
                                 <input type="text" name="name" id="name"
-                                    class=" form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                    onfocusout="validateName()">
+                                    class=" form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{old('name')}}"  onfocusout="validateName()">
 
-                                @if ($errors->has('pdate'))
+                                @if ($errors->has('name'))
                                 <span class=" invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('pdate') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                                 @endif
                                 <span class="invalid-feedback" role="alert"></span>
@@ -47,30 +50,29 @@
                         </div>
 
                         <div class="form-group pb-0">
-                            <label class="control-label">Company</label>
+                            <label class="control-label" for="company">Company</label>
                             <div class="input-group"> <span class="input-group-addon"></span>
-                                <input name="company" type="text" class="form-control" id="company">
+                                <input name="company" type="text" class="form-control" id="company"  value="{{old('company')}}">
                             </div>
 
                         </div>
 
                         <div class="form-group ">
-                            <label class="control-label">Production Date</label>
+                            <label class="control-label" for="production_date">Production Date</label>
                             <div class="input-group">
-                                <input name="pdate" type="text"
-                                    class="form-control {{ $errors->has('pdate') ? ' is-invalid' : '' }}" id="pdate"
-                                    onfocusout="validateDdate()">
+                                <input name="production_date" type="text"
+                                    class="form-control {{ $errors->has('production_date') ? ' is-invalid' : '' }}" id="production_date"
+                                     value="{{ old('production_date')}}" onfocusout="validateDdate()">
                                 <div class="input-group-append">
                                     <button type="button" id="toggle" class="input-group-text">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                     </button>
                                 </div>
-                                @if($errors->has('pdate'))
+                                @if($errors->has('production_date'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('pdate') }}</strong>
+                                    <strong>{{ $errors->first('production_date') }}</strong>
                                 </span>
                                 @endif
-                                <span class="invalid-feedback" role="alert"></span>
                             </div>
                         </div>
 
@@ -86,8 +88,7 @@
                         <!--                                          the right side begins here-->
                     </div>
 
-                </div>
-        </div>
+
         <div class="card-footer">
         </div>
 
@@ -99,14 +100,14 @@
 @section('javascript')
 <script>
     jQuery.datetimepicker.setDateFormatter('moment');
-			 $("#pdate").datetimepicker({
+			 $("#production_date").datetimepicker({
 			timepicker:false,
 			datepicker:true,
 			format: "YYYY-MM-DD"
 
 		});
 		$('#toggle').on('click', function(){
-			$("#pdate").datetimepicker('toggle');
+			$("#production_date").datetimepicker('toggle');
 		})
 
 </script>

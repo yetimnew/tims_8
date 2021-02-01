@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Operation\ProfileController;
-// use App\Http\Controllers\Operation\TruckModelController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -13,7 +12,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/profile',                  [ProfileController::class,'index'])->name('profile');
     Route::post('/profile',                  [ProfileController::class,'update'])->name('profile.update');
-    Route::resource('truck_model', 'App\Http\Controllers\Operation\TruckModelController');
+    Route::resource('truck_model', 'App\Http\Controllers\Operation\TruckModelController')->except('show');
+    Route::get('truck/{truck}/activate', 'App\Http\Controllers\Operation\TruckController@activate')->name('truck.activate');
+    Route::get('truck/{truck}/deactivate', 'App\Http\Controllers\Operation\TruckController@deactivate')->name('truck.deactivate');
+    Route::resource('truck', 'App\Http\Controllers\Operation\TruckController');
 
 });
 
