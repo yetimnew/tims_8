@@ -8,13 +8,14 @@ use App\Http\Requests\TruckUpdateRequest;
 use App\Models\Operation\Truck;
 use App\Models\Operation\TruckModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class TruckController extends Controller
 {
     public function index()
     {
-        $trucks = Truck::active()->orderBy('updated_at', 'DESC')->get();
+        $trucks = Truck::with(['truckmodel'])->active()->orderBy('updated_at', 'DESC')->get();
         return view('operation.truck.index')->with('trucks', $trucks);
     }
 
@@ -33,6 +34,7 @@ class TruckController extends Controller
 
     public function store(TruckCreateRequest $request)
     {
+        // dd($request->all());
         Truck::create($request->all());
         Session::flash('success', 'Truck  registered successfully');
         return redirect()->route('truck.index');
@@ -53,13 +55,18 @@ class TruckController extends Controller
 
     public function update(TruckUpdateRequest $request,Truck $truck)
     {
+        dd($request->all());
         $truck->update($request->all());
         Session::flash('success', 'Truck updated successfully');
-        return redirect()->route('truck.index');
+        return redirect()->route('truck.show', $truck->id);
     }
 
-    public function destroy($id)
+    public function destroy(Truck $truck)
     {
+        $truck->delete();
+        Session::flash('success', 'vehecle  deleted successfully');
+        return redirect()->route('truck.index');
+
         $truck = Truck::findOrFail($id);
         $plate =  $truck->plate;
         $td = DriverTuck::where('plate', '=', $plate)

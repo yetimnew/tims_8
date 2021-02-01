@@ -25,7 +25,7 @@ class TruckCreateRequest extends FormRequest
     {
         return [
             'plate' => 'required|unique:trucks,plate|max:20',
-            'truck_models_id' => 'required',
+            'truck_model_id' => 'required',
             'chassis_number' =>  'nullable|unique:trucks,chassis_number|max:80',
             'engine_number' =>  'nullable|unique:trucks,engine_number|max:80',
             'tyre_size' =>  'nullable|integer',

@@ -16,6 +16,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('truck/{truck}/activate', 'App\Http\Controllers\Operation\TruckController@activate')->name('truck.activate');
     Route::get('truck/{truck}/deactivate', 'App\Http\Controllers\Operation\TruckController@deactivate')->name('truck.deactivate');
     Route::resource('truck', 'App\Http\Controllers\Operation\TruckController');
+    Route::get('driver/{driver}/activate', 'App\Http\Controllers\Operation\DriverController@activate')->name('driver.activate');
+    Route::get('driver/{driver}/deactivate', 'App\Http\Controllers\Operation\DriverController@deactivate')->name('driver.deactivate');
+    Route::resource('driver', 'App\Http\Controllers\Operation\DriverController');
 
 });
 

@@ -25,7 +25,7 @@ class TruckUpdateRequest extends FormRequest
     {
         return [
             'plate' => "required|unique:trucks,plate,{$this->truck->id}",
-            'truck_models_id' => 'required',
+            'truck_model_id' => 'required',
             'chassis_number' =>  "nullable|unique:trucks,chassis_number, {$this->truck->id}",
             'engine_number' =>  "nullable|unique:trucks,engine_number, {$this->truck->id}",
             'tyre_size' =>  'nullable|integer',

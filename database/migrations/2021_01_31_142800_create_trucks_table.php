@@ -16,7 +16,7 @@ class CreateTrucksTable extends Migration
         Schema::create('trucks', function (Blueprint $table) {
             $table->id();
             $table->string('plate')->unique()->index();
-            $table->foreignId('truck_models_id')->unsigned()->onDelete('restrict')->index();
+            $table->foreignId('truck_model_id')->constrained()->index();
             $table->string('chassis_number')->nullable();
             $table->string('engine_number')->nullable();
             $table->integer('tyre_size')->nullable();

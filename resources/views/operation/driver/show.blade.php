@@ -1,5 +1,5 @@
 @extends( 'master.app' )
-@section( 'title', 'TIMS | Truck Show Plate ' . $truck->plate )
+@section( 'title', 'TIMS | driver Show Plate ' . $driver->driverid )
 
 @section('content')
 
@@ -8,21 +8,21 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
             </li>
-            <li class="breadcrumb-item"><a href="#">Trucks</a></li>
+            <li class="breadcrumb-item"><a href="#">drivers</a></li>
             <li class="breadcrumb-item active">Show</li>
         </ol>
     </div>
   </header>
 
 
-{{-- {{dd($truck)}} --}}
+{{-- {{dd($driver)}} --}}
 <div class="container">
     <div class="card text-left">
         <div class="card-header">
             <div class="d-flex align-items-center">
-                <h2>Truck Plate No <span class="text-violet">{{$truck->plate}} </span> </h2>
+                <h2>driver Plate No <span class="text-violet">{{$driver->driverid}} </span> </h2>
                 <div class="ml-auto">
-                    <a href="{{route('truck.index')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
+                    <a href="{{route('driver.index')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
                             aria-hidden="true"> Back</i> </a>
                 </div>
             </div>
@@ -31,39 +31,39 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Plate Number</label>
+                        <label class="col-form-label col-lg-4">ID Number</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->plate}}</h4>
+                            <h4 class="col-form-label ">{{$driver->driverid}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Vehecle Type</label>
+                        <label class="col-form-label col-lg-4">Full Name</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->truckmodel->name}}</h4>
+                            <h4 class="col-form-label ">{{$driver->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Chassis Number</label>
+                        <label class="col-form-label col-lg-4">Sex</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->chassis_number}}</h4>
+                            <h4 class="col-form-label ">{{$driver->sex}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Engine Number</label>
+                        <label class="col-form-label col-lg-4">Birth Date</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->engine_number}}</h4>
+                            <h4 class="col-form-label ">{{$driver->birth_date}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Tyre Size</label>
+                        <label class="col-form-label col-lg-4">Zone</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->tyre_size}}</h4>
+                            <h4 class="col-form-label ">{{$driver->zone}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4"> Service In KM</label>
+                        <label class="col-form-label col-lg-4"> Worda</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->service_Interval_km}}</h4>
+                            <h4 class="col-form-label ">{{$driver->woreda}}</h4>
                         </div>
                     </div>
 
@@ -72,29 +72,29 @@
                 <div class="col-lg-6 col-md-6 col-sm-12">
 
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Purchase Price</label>
+                        <label class="col-form-label col-lg-4">Kebele</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->purchase_price}}</h4>
+                            <h4 class="col-form-label ">{{$driver->kebele}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4">Poduction Date</label>
+                        <label class="col-form-label col-lg-4">House Number</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->production_date}}</h4>
+                            <h4 class="col-form-label ">{{$driver->house_number}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4"> Servie Start Date</label>
+                        <label class="col-form-label col-lg-4"> Mobile Number</label>
 
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->service_start_date}}</h4>
+                            <h4 class="col-form-label ">{{$driver->mobile}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4"> Stauts</label>
 
                         <div class="col-lg-8">
-                            @if ($truck->status == 1)
+                            @if ($driver->status == 1)
                             <h4 class="col-form-label ">Active </h4>
                             @else
                             <h4 class="col-form-label ">Deactivated </h4>
@@ -107,40 +107,40 @@
                         <label class="col-form-label col-lg-4"> Created In</label>
 
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->created_at}}</h4>
+                            <h4 class="col-form-label ">{{$driver->created_at}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4"> Updated at</label>
 
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$truck->updated_at}}</h4>
+                            <h4 class="col-form-label ">{{$driver->updated_at}}</h4>
                         </div>
                     </div>
 
                 </div>
-                {{-- @can('truck edit') --}}
+                {{-- @can('driver edit') --}}
                 <div class='m-1 p-1'>
-                    <a href="{{route('truck.edit', $truck->id)}}" class="btn btn-info btn-sm"><i
+                    <a href="{{route('driver.edit', $driver->id)}}" class="btn btn-info btn-sm"><i
                             class="fa fa-edit"> </i>Edit </a>
                 </div>
                 {{-- @endcan --}}
-                {{-- @can('truck delete') --}}
+                {{-- @can('driver delete') --}}
                 <div class='m-1 p-1'>
-                    <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$truck->id}})"
+                    <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$driver->id}})"
                         data-target="#DeleteModal" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a>
                 </div>
                 {{-- @endcan --}}
- {{-- @can('truck deactivate') --}}
-                @if ($truck->status == 1)
-                    <form action="{{route('truck.deactivate', $truck->id)}}" id="deactivate-form-{{$truck->id}}"
+ {{-- @can('driver deactivate') --}}
+                @if ($driver->status == 1)
+                    <form action="{{route('driver.deactivate', $driver->id)}}" id="deactivate-form-{{$driver->id}}"
                         style="display: none">
                         @csrf
                         {{-- @method('DELETE') --}}
                     </form>
                     <button class="btn btn-sm btn-outline-info" type="submit" onclick="if(confirm('Are you sure to deactivate this? if your answer is yes you don\'t insert any data by this dirive. ')){
 								event.preventDefault();
-								document.getElementById('deactivate-form-{{$truck->id}}').submit();
+								document.getElementById('deactivate-form-{{$driver->id}}').submit();
 									}else{
 										event.preventDefault();
 									}"> Deactivate
@@ -148,14 +148,14 @@
                     </button>
                           @else
 
-                          <form action="{{route('truck.activate', $truck->id)}}" id="activate-form-{{$truck->id}}"
+                          <form action="{{route('driver.activate', $driver->id)}}" id="activate-form-{{$driver->id}}"
                             style="display: none">
                             @csrf
                             {{-- @method('DELETE') --}}
                         </form>
                         <button class="btn btn-sm btn-outline-info " type="submit" onclick="if(confirm('Are you sure to activate this? if your answer is yes you don\'t insert any data by this dirive. ')){
                                     event.preventDefault();
-                                    document.getElementById('activate-form-{{$truck->id}}').submit();
+                                    document.getElementById('activate-form-{{$driver->id}}').submit();
                                         }else{
                                             event.preventDefault();
                                         }"> Activate
@@ -189,7 +189,7 @@
                     @csrf
                     @method('DELETE')
                     <p class="text-center">Are You Sure Want To Delete ? Plate Number <span class="font-weight-bold">
-                            {{$truck->plate}}</span> </p>
+                            {{$driver->plate}}</span> </p>
                 </div>
                 <div class="modal-footer">
                     <center>
@@ -209,7 +209,7 @@
     function deleteData(id)
      {
          var id = id;
-         var url = '{{ route("truck.destroy", ":id") }}';
+         var url = '{{ route("driver.destroy", ":id") }}';
          url = url.replace(':id', id);
          $("#deleteForm").attr('action', url);
      }

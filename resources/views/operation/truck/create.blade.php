@@ -14,7 +14,7 @@
   </header>
 
 
-    {{-- @include('master.error') --}}
+    @include('master.error')
     <div class="container">
     <div class="card">
         <div class="card-header">

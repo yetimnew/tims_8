@@ -14,7 +14,7 @@
         "alpinejs": "^2.7.3",
         "autoprefixer": "^10.1.0",
         "axios": "^0.21",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^4.4.1",
         "jquery": "^3.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",

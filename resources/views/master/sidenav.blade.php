@@ -25,7 +25,10 @@
               <a href="{{ route('truck_model.index')}}"> <i class="icon-grid"></i>Truck Model </a>
             </li>
             <li>
-              <a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a>
+              <a href="{{ route('truck.index')}}"> <i class="icon-grid"></i>Truck </a>
+            </li>
+            <li>
+              <a href="{{ route('driver.index')}}"> <i class="fa fa-bar-chart"></i>Driver </a>
             </li>
             <li>
               <a href="forms.html"> <i class="icon-padnote"></i>Forms </a>

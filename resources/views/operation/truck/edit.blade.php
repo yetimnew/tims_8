@@ -32,8 +32,7 @@
         </div>
 
         <div class="card-body">
-            <form method="post" action="{{route('truck.update',$truck->id)}}" class="form-horizontal"
-                id="truck_form">
+            <form  action="{{route('truck.update',$truck->id)}}" class="form-horizontal" id="truck_form" method="POST">
                 @method('PATCH')
                 @csrf
                 @include('operation.truck.form')

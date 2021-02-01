@@ -11,7 +11,7 @@ class Truck extends Model
 
     public $fillable = [
         'plate',
-        'truck_models_id',
+        'truck_model_id',
         'chassis_number',
         'engine_number',
         'tyre_size',
@@ -24,6 +24,10 @@ class Truck extends Model
     public function scopeActive($query)
     {
         return $query->where('status', 1);
+    }
+    public function truckmodel()
+    {
+        return $this->belongsTo(TruckModel::class,'truck_model_id');
     }
 
 }

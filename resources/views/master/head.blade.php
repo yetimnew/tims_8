@@ -11,11 +11,11 @@
     <title>@yield('title','TIMS')</title>
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}"/>
 
 
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.default.css')}}">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{asset('/css/custom.css')}}">

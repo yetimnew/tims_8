@@ -55,7 +55,7 @@
                             <td class='p-1'>{{++$no }}</td>
                             <td class='p-1'>{{$truck->plate}}</td>
 
-                            <td class='p-1'>{{$truck->truck_models_id}}</td>
+                            <td class='p-1'>{{$truck->truckmodel->name}}</td>
 
                             <td class='p-1'>{{$truck->tyre_size}}</td>
                             <td class='p-1'>{{ number_format($truck->service_Interval_km , 2)}}</td>

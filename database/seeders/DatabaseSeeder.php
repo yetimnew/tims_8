@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,13 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'name'=>'Yetimesht Tadesse',
-            'email'=>'yetimnew@gmail.com',
-            'mobile'=>'0929102926',
-            'password'=>bcrypt('password'),
-            'is_active'=> '1',
-            'is_admin'=>'1',
-        ]);
-    }
+
+        $this->call(UserTableSeeder::class);
+        // $this->call(PermissionTableSeeder::class);
+        // $this->call(RoleTableSeeder::class);
+
+}
 }

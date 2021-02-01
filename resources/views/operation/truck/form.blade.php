@@ -16,18 +16,18 @@
         </div>
 
         <div class="form-group required pb-0 ">
-            <label class="control-label" for="truck_models_id">Truck Model</label>
-            <select name="truck_models_id" id="truck_models_id" class="form-control {{ $errors->has('truck_models_id') ? ' is-invalid' : '' }}"
+            <label class="control-label" for="truck_model_id">Truck Model</label>
+            <select name="truck_model_id" id="truck_model_id" class="form-control {{ $errors->has('truck_model_id') ? ' is-invalid' : '' }}"
                 onfocusout="validateVehecle()">
                 <option class="dropup" value=""> Select One</option>
                 @foreach ($truck_models as $truck_model)
                 <option class="dropup" value="{{$truck_model->id}}"
-                    {{$truck_model->id == $truck->truck_model_id ? 'selected' : '' }}>{{$truck_model->name}}</option>
+                    {{$truck_model->id == $truck->truck_model_id  ? 'selected' : '' }}>{{$truck_model->name}}</option>
                 @endforeach
             </select>
-            @if ($errors->has('truck_models_id'))
+            @if ($errors->has('truck_model_id'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('truck_models_id') }}</strong>
+                <strong>{{ $errors->first('truck_model_id') }}</strong>
             </span>
             @endif
         </div>
