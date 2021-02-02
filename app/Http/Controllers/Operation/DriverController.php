@@ -49,33 +49,38 @@ class DriverController extends Controller
         return redirect()->route('driver.show', $driver->id);
     }
 
-
     public function destroy(Driver $driver)
     {
         $driver->delete();
         Session::flash('success', $driver->name . ' deleted successfully');
         return redirect()->route('driver.index');
 
-        $driver = Driver::findOrFail($id);
-        $driver_id =  $driver->driverid;
-        $td = DriverTuck::where('driverid', '=', $driver_id)->first();
-        // dd($td->plate);
-        if ($td) {
-            Session::flash('error', 'Not deleted ! ' . $driver->name . ' is attached to Plate ' . $td->plate);
-            return redirect()->back();
-        } else {
-            $driver->status = 0;
-            $driver->save();
-            Session::flash('success', $driver->name . ' deleted successfuly');
-            return redirect()->back();
-        }
+        // $driver = Driver::findOrFail($id);
+        // $driver_id =  $driver->driverid;
+        // $td = DriverTuck::where('driverid', '=', $driver_id)->first();
+        // // dd($td->plate);
+        // if ($td) {
+        //     Session::flash('error', 'Not deleted ! ' . $driver->name . ' is attached to Plate ' . $td->plate);
+        //     return redirect()->back();
+        // } else {
+        //     $driver->status = 0;
+        //     $driver->save();
+        //     Session::flash('success', $driver->name . ' deleted successfuly');
+        //     return redirect()->back();
+        // }
     }
-    public function deactivate($id)
+    public function deactivate(Driver $driver)
     {
-        $driver = Driver::findOrFail($id);
         $driver->status = 0;
         $driver->save();
-        Session::flash('success', $driver->name . ' Deactivate successfuly');
+        Session::flash('success', $driver->name . ' Deactivate successfully');
+        return redirect()->back();
+    }
+    public function activate(Driver $driver)
+    {
+        $driver->status = 1;
+        $driver->save();
+        Session::flash('success', $driver->name . ' Activated successfully');
         return redirect()->back();
     }
 }

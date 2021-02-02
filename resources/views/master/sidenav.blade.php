@@ -31,7 +31,10 @@
               <a href="{{ route('driver.index')}}"> <i class="fa fa-bar-chart"></i>Driver </a>
             </li>
             <li>
-              <a href="forms.html"> <i class="icon-padnote"></i>Forms </a>
+              <a href="{{ route('region.index')}}"> <i class="icon-padnote"></i>Region </a>
+            </li>
+            <li>
+              <a href="{{ route('zone.index')}}"> <i class="icon-padnote"></i>Zone </a>
             </li>
             <li>
               <a

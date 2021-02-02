@@ -15,7 +15,7 @@ class TruckController extends Controller
 {
     public function index()
     {
-        $trucks = Truck::with(['truckmodel'])->active()->orderBy('updated_at', 'DESC')->get();
+        $trucks = Truck::with(['truckmodel'])->active()->latest()->get();
         return view('operation.truck.index')->with('trucks', $trucks);
     }
 
@@ -34,7 +34,6 @@ class TruckController extends Controller
 
     public function store(TruckCreateRequest $request)
     {
-        // dd($request->all());
         Truck::create($request->all());
         Session::flash('success', 'Truck  registered successfully');
         return redirect()->route('truck.index');
@@ -67,22 +66,22 @@ class TruckController extends Controller
         Session::flash('success', 'vehecle  deleted successfully');
         return redirect()->route('truck.index');
 
-        $truck = Truck::findOrFail($id);
-        $plate =  $truck->plate;
-        $td = DriverTuck::where('plate', '=', $plate)
-            ->where('status', '=', 1)
-            ->where('is_attached', '=', 1)
-            ->first();
-        if ($td) {
-            $driver = Driver::where('driverid', '=', $td->driverid)->first();
-            Session::flash('error', 'Not deleted ! ' . $plate . ' is attached to driver ' . $driver->name);
-            return redirect()->back();
-        } else {
-            $truck->status = 0;
-            $truck->save();
-            Session::flash('success', 'vehecle  deleted successfuly');
-            return redirect()->route('truck');
-        }
+        // $truck = Truck::findOrFail($id);
+        // $plate =  $truck->plate;
+        // $td = DriverTuck::where('plate', '=', $plate)
+        //     ->where('status', '=', 1)
+        //     ->where('is_attached', '=', 1)
+        //     ->first();
+        // if ($td) {
+        //     $driver = Driver::where('driverid', '=', $td->driverid)->first();
+        //     Session::flash('error', 'Not deleted ! ' . $plate . ' is attached to driver ' . $driver->name);
+        //     return redirect()->back();
+        // } else {
+        //     $truck->status = 0;
+        //     $truck->save();
+        //     Session::flash('success', 'vehecle  deleted successfuly');
+        //     return redirect()->route('truck');
+        // }
     }
     public function deactivate(Truck $truck)
     {

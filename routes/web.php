@@ -19,6 +19,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('driver/{driver}/activate', 'App\Http\Controllers\Operation\DriverController@activate')->name('driver.activate');
     Route::get('driver/{driver}/deactivate', 'App\Http\Controllers\Operation\DriverController@deactivate')->name('driver.deactivate');
     Route::resource('driver', 'App\Http\Controllers\Operation\DriverController');
+    Route::resource('region', 'App\Http\Controllers\Operation\RegionController');
+    Route::resource('zone', 'App\Http\Controllers\Operation\ZoneController');
+    Route::resource('woreda', 'App\Http\Controllers\Operation\WoredaController');
+    Route::resource('place', 'App\Http\Controllers\Operation\PlaceController');
 
 });
 
