@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Operation;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OperationCreatedRequst;
+use App\Http\Requests\OperationUpdatedRequest;
 use App\Models\Operation\Customer;
 use App\Models\Operation\Operation;
 use App\Models\Operation\Place;
@@ -123,11 +124,11 @@ class OperationController extends Controller
             ->with('operation', $operation);
     }
 
-    public function edit($id)
+    public function edit(Operation $operation)
     {
 
-        $operation = Operation::findorfail($id);
-
+        // $operation = Operation::findorfail($id);
+        $places = Place::all();
         $regions = Region::all();
         $customers = Customer::all();
         if ($regions->count() == 0) {
@@ -145,44 +146,38 @@ class OperationController extends Controller
         return view('operation.operation.edit')
             ->with('operation', $operation)
             ->with('regions', $regions)
-            ->with('customers', $customers);
+            ->with('customers', $customers)
+            ->with('places', $places);
     }
 
-    public function update(Request $request, $id)
+    public function update(OperationUpdatedRequest $request , Operation $operation)
     {
 
-        $this->validate($request, [
-            'oid' => 'required',
-            'customer' => 'required',
-            'sdate' => 'required',
-            'region' => 'required',
-            'volume' => 'required',
-            'ctype' => 'required',
-            'tone' => 'required',
-            'tariff' => 'required',
-
-        ]);
-
-        $operation = Operation::findOrFail($id);
-        $operation->operationid = $request->oid;
-        $operation->customer_id = $request->customer;
-        $operation->startdate = $request->sdate;
-        $operation->region_id = $request->region;
+        $operation->operationid = $request->operationid;
+        $operation->customer_id = $request->customer_id;
+        $operation->start_date = $request->start_date;
+        $operation->place_id = $request->place_id;
         $operation->volume = $request->volume;
-        $operation->cargotype = $request->ctype;
-        $operation->km = $request->tone;
+        $operation->cargo_type = $request->cargo_type;
+        $operation->tone = $request->tone;
         $operation->tariff = $request->tariff;
-        $operation->user_id = Auth::user()->id;
+        $operation->updated_by = Auth::user()->id;
         $operation->save();
-        alert()->success('SuccessAlert', 'operation updated successfuly.');
+        Session::flash('success', 'Operation updated successfully.');
+        // alert()->success('SuccessAlert', 'operation updated successfully.');
         // Session::flash('success', 'operation updated successfuly' );
-        return redirect()->route('operation');
+        return redirect()->route('operation.show' ,$operation->id );
     }
 
 
-    public function destroy($id)
+    public function destroy(Operation $operation)
     {
-        $operation = Operation::findOrFail($id);
+        // dd( $id);
+        // $operation = Operation::findOrFail($id);
+        $operation->delete();
+        Session::flash('success', 'Operation deleted successfully');
+        return redirect()->route('operation.index');
+
         $performance = Performance::where('operation_id', '=', $operation->id)->first();
         if (isset($performance)) {
             Session::flash('error', 'NOT DELETED ! There are records by this operation id');
@@ -193,39 +188,36 @@ class OperationController extends Controller
             return redirect()->route('operation');
         }
     }
-    public function close($id)
+    public function close(Operation $operation)
     {
-        $operation = Operation::findOrFail($id);
         return view('operation.operation.close')->with('operation', $operation);
     }
 
-    public function open($id)
+    public function open(Operation $operation)
     {
-        $operation = Operation::findOrFail($id);
-        $operation->closed = 1;
-        $operation->enddate = Null;
+        $operation->is_closed = 0;
+        $operation->end_date = Null;
         $operation->save();
-        alert()->success('SuccessAlert', 'Operation Opend successfuly.');
-        // Session::flash('success', 'Operation Opend successfuly' );
+        Session::flash('success', 'Operation Opened successfully');
+        // return redirect()->route('operation');
         return redirect()->back();
     }
     public function update2(Request $request, $id)
     {
         // dd($request->all());
         $this->validate($request, [
-            'edate' => 'required',
+            'end_date' => 'required',
             'remark' => '',
         ]);
 
         $operation = Operation::findOrFail($id);
 
-        $operation->enddate = $request->edate;
+        $operation->end_date = $request->end_date;
         $operation->remark = $request->remark;
-        $operation->closed = 0;
+        $operation->is_closed = 1;
         $operation->save();
-        alert()->success('SuccessAlert', 'Operation Updated successfuly.');
-        // Session::flash('success', 'operation updated successfuly' );
-        return redirect()->route('operation');
+        Session::flash('success', 'Operation Updated successfuly');
+        return redirect()->route('operation.index');
     }
 }
 

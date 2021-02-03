@@ -24,6 +24,14 @@ class UserTableSeeder extends Seeder
             'is_active'=> '1',
             'is_admin'=>'1',
         ]);
+        $user = User::create([
+            'name'=>'Other User',
+            'email'=>'yetim@gmail.com',
+            'mobile'=>'0911000000',
+            'password'=>bcrypt('password'),
+            'is_active'=> '1',
+            'is_admin'=>'1',
+        ]);
     //     $user->assignRole('admin');
     //     $permissions = Permission::all();
 

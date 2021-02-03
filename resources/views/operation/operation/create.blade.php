@@ -13,7 +13,7 @@
       </header>
 
 <div class="container">
-	{{-- @include('master.error')  --}}
+	{{-- @include('master.error') --}}
 	{{-- @include('master.success') --}}
 	<div class="card text-left">
 		<div class="card-header">
@@ -32,7 +32,8 @@
 					</div>
 
 				</div>
-		</div>
+        </div>
+        {{-- {{dd($errors)}} --}}
 		<div class="card-footer">
 			the footer
 		</div>

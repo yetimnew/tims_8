@@ -1,7 +1,6 @@
 @extends( 'master.app' )
-@section( 'title', 'TIMS | Operation Edit' )
+@section( 'title', 'TIMS | Edit Operation Id ' . $operation->operationid )
 @section( 'content' )
-
 <header class="page-header mb-4">
     <div class="container-fluid">
         <ol class="breadcrumb">
@@ -12,8 +11,6 @@
           </ol>
     </div>
   </header>
-
-
 
 <div class="container">
     <div class="card text-left">
@@ -45,7 +42,7 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Start Date</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$operation->startdate}} </h4>
+                            <h4 class="col-form-label ">{{$operation->start_date}} </h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -74,7 +71,7 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Ton KM</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{number_format($operation->km,2)}}</h4>
+                            <h4 class="col-form-label ">{{number_format($operation->tone,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -86,27 +83,25 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Status</label>
                         <div class="col-lg-8">
-                            @if ($operation->closed)
-                            <h4 class="col-form-label "> <span class="badge badge-primary">Active</span> </h4>
-                            @else
+                            @if ($operation->is_closed)
                             <h4 class="col-form-label "> <span class="badge badge-warning">Closed</span> </h4>
-
+                            @else
+                            <h4 class="col-form-label "> <span class="badge badge-primary">Active</span> </h4>
                             @endif
                         </div>
                     </div>
-                    @if (!$operation->closed)
+                    @if ($operation->is_closed)
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">End Date</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$operation->enddate}} </h4>
-
+                            <h4 class="col-form-label ">{{$operation->end_date}} </h4>
                         </div>
                     </div>
                     @endif
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Expected Revenu</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{ number_format(($operation->km * $operation->tariff ),2) }}
+                            <h4 class="col-form-label ">{{ number_format(($operation->tone * $operation->tariff ),2) }}
                             </h4>
                         </div>
                     </div>
@@ -267,14 +262,9 @@
                 </div>
                 {{-- @endcan
                 @can('operation close') --}}
-                @if ($operation->closed )
-                <div class='ml-1 p-1'>
-                    <a href="javascript:;" data-toggle="modal" onclick="closeData({{$operation->id}})"
-                        data-target="#CloseModal" class="btn btn-info"><i class="fa fa-window-close"></i> Close</a>
-                </div>
-                @else
-                <div class='ml-1 p-1'>
+                @if ($operation->is_closed )
 
+                <div class='ml-1 p-1'>
                     <form action="{{route('operation.open', $operation->id)}}"
                         id="delete-form-{{$operation->id}}" style="display: none">
                         @csrf
@@ -289,7 +279,11 @@
                     </button>
 
                 </div>
-
+                @else
+                <div class='ml-1 p-1'>
+                    <a href="javascript:;" data-toggle="modal" onclick="closeData({{$operation->id}})"
+                        data-target="#CloseModal" class="btn btn-info"><i class="fa fa-window-close"></i> Close</a>
+                </div>
                 @endif
                 {{-- @endcan --}}
             </div>
@@ -317,13 +311,13 @@
                     @csrf
                     @method('DELETE')
                     <p class="text-center">Are You Sure Want To Delete ? Operation Id <span class="font-weight-bold">
-                            {{$operation->operationid}}</span> </p>
+                            {{ $operation->operationid}}</span> </p>
                 </div>
                 <div class="modal-footer">
                     <center>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
                         <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
-                            onclick="formSubmit()">Yes, Delete</button>
+                            onclick="formSubmit1()">Yes, Delete</button>
                     </center>
                 </div>
             </div>
@@ -369,10 +363,11 @@
          var id = id;
          var url = '{{ route("operation.destroy", ":id") }}';
          url = url.replace(':id', id);
+        //  console.log(url);
          $("#deleteForm").attr('action', url);
      }
 
-     function formSubmit()
+     function formSubmit1()
      {
          $("#deleteForm").submit();
      }

@@ -21,8 +21,12 @@
                 onfocusout="validateVehecle()">
                 <option class="dropup" value=""> Select One</option>
                 @foreach ($truck_models as $truck_model)
-                <option class="dropup" value="{{$truck_model->id}}"
-                    {{$truck_model->id == $truck->truck_model_id  ? 'selected' : '' }}>{{$truck_model->name}}</option>
+                @if (old('truck_model_id') )
+                <option class="dropup"  value="{{$truck_model->id}}" {{old('truck_model_id') == $truck_model->id ? 'selected' : ''}}> {{$truck_model->name}} </option>
+              @else
+                <option value={{$truck_model->id}}  {{$truck_model->id == $truck->truck_model_id ? 'selected' : ''}}>{{ $truck_model->name }}</option>
+              @endif
+
                 @endforeach
             </select>
             @if ($errors->has('truck_model_id'))

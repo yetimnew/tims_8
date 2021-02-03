@@ -1,21 +1,26 @@
 @extends( 'master.app' )
 @section( 'title', 'TIMS | Operation close ' )
 @section( 'content' )
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="{{route('dasboard')}}">Home</a>
-		</li>
-		<li class="breadcrumb-item ">Operations</li>
-		<li class="breadcrumb-item active">Operation</li>
-		<li class="breadcrumb-item active">Close Operation</li>
-	</ol>
+
+    <header class="page-header mb-4">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
+                </li>
+                <li class="breadcrumb-item ">Operations</li>
+                <li class="breadcrumb-item active">Operation</li>
+                <li class="breadcrumb-item active">Close Operation</li>
+            </ol>
+        </div>
+      </header>
 <div class="col-md-12">
 	@include('master.error') {{-- @include('master.success') --}}
 	<div class="row col-12">
 			<div class="col-10">
 			</div>
 			<div class="col-2">
-				<a href="{{route('operation')}}" class="btn btn-primary">Back</a>
-		
+				<a href="{{route('operation.index')}}" class="btn btn-primary">Back</a>
+
 			</div>
 		</div>
 	<div class="card text-left">
@@ -23,11 +28,10 @@
 			<h2>Closing Operation</h2>
 		</div>
 		<div class="card-body">
-			<form method="post" action="{{route('operation.update2',['id'=>$operation->id])}}" class="form-horizontal" id="operation_reg_form">
-				@csrf
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group mb-0 ">
+			<form method="post" action="{{route('operation.update2',$operation->id)}}" class="form-horizontal" id="operation_reg_form">
+                @csrf
+                @method('PATCH')
+								<div class="form-group mb-0 ">
 							<label class="control-label">Operation Id</label>
 
 							<div class="input-group"> <span class="input-group-addon"></span>
@@ -38,40 +42,34 @@
 							<label class="control-label">Starting Date</label>
 
 							<div class="input-group">
-                                <input type="datetime" id="sdate" name="sdate" class="form-control" required value="{{$operation->startdate}}" disabled>
+                                <input type="datetime" id="start_date" name="start_date" class="form-control" required value="{{$operation->start_date}}" disabled>
                              </div>
 							<small class="form-text text-danger" id="error_sdate"></small>
 						</div>
-				
-			
+
+
 						<div class="form-group required">
                                 <label class="control-label"> End Date</label>
-    
+
                                 <div class="input-group"> <span class="input-group-addon"></span>
-                                    <input name="edate" type="date" class="form-control" id="edate">
+                                    <input name="end_date" type="date" class="form-control" id="end_date">
                                 </div>
                             </div>
                             <div class="form-group "  >
                                     <label class="control-label" for="remark">Remark</label>
-                                   
-                                        <textarea name="remark" rows="5" class="form-control {{ $errors->has('remark') ? ' is-invalid' : '' }}" id="remark"> </textarea> 
+
+                                        <textarea name="remark" rows="5" class="form-control {{ $errors->has('remark') ? ' is-invalid' : '' }}" id="remark"> </textarea>
                             </div>
-                       
+
                             <div class="form-group required">
                                     <button type="submit" class="btn btn-primary" name="save" onClick="manageData">Save</button>
                                 </div>
+                            </form>
 					</div>
 
 
 				</div>
 		</div>
-		<div class="card-footer">
-			the footer
-		</div>
-
-		</form>
-	</div>
-</div>
 
 @endsection
 
@@ -91,8 +89,8 @@
 
 		operation_reg_form.addEventListener( 'submit', function ( event ) {
 			event.preventDefault();
-			if ( validatePlate() 
-				
+			if ( validatePlate()
+
 			) {
 				operation_reg_form.submit();
 			} else {
@@ -108,11 +106,11 @@
 				return true;
 			}
 		}
-		
+
 
 
 // basic
-	
+
 		function checkIfEmpty( field ) {
 			if ( isEmpty( field.value.trim() ) ) {
 				setInvalid( field, `${field.name} must not be empty` )

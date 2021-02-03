@@ -26,7 +26,7 @@ class CreateOperationsTable extends Migration
             $table->double('tone',12,4)->nullable();
             $table->double('tariff',12,4);
             $table->boolean('status')->default(1);
-            $table->boolean('is_closed')->default(1);
+            $table->boolean('is_closed')->default(0);
             $table->date('end_date')->nullable();;
             $table->text('remark')->nullable();
             $table->unsignedBigInteger('created_by');

@@ -5,10 +5,13 @@ namespace App\Models\Operation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Operation extends Model
 {
     use HasFactory;
+    use LogsActivity;
+
     protected $fillable = [
         'operationid',
          'customer_id',
@@ -25,19 +28,37 @@ class Operation extends Model
          'created_by',
          'updated_by',
     ];
+    protected static $logAttributes = [
+     'operationid',
+    'customer_id',
+    'start_date',
+    'place_id',
+    'volume',
+    'cargo_type',
+    'tone',
+    'tariff',
+    'status',
+    'is_closed',
+    'end_date',
+    'remark'];
     protected $dates = ['start_date', 'end_date', 'deleted_at'];
 
     public function scopeActive($query)
     {
         return $query->where("status", "=", 1);
     }
-    public function scopeClosed($query)
+    public function scopeIsClosed($query)
     {
-        return $query->where("closed", 0);
+        if( $query->where("is_closed", 0)){
+            return true;
+        }else{
+            return false;
+        }
+
     }
     public function scopeOpen($query)
     {
-        return $query->where("closed", "=", 1);
+        return $query->where("is_closed", "=", 1);
     }
 
     public function customer()

@@ -65,9 +65,9 @@
                             @else
                             <td class='m-1 p-1'>Commercial</td>
                             @endif
-                            <td class='m-1 p-1 text-right'>{{number_format($operation->km,0)}}</td>
+                            <td class='m-1 p-1 text-right'>{{number_format($operation->tone,0)}}</td>
                             <td class='m-1 p-1 text-right'>{{$operation->tariff}}</td>
-                            @if ($operation->closed == 0)
+                            @if ($operation->is_closed)
                             <td class='m-1 p-1'><span class="badge badge-danger">closed
                                     {{$operation->end_date}}</span></td>
                             @else

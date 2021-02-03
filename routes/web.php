@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('customer', 'App\Http\Controllers\Operation\CustomerController');
     Route::get('/operation/close/{operation}',     'App\Http\Controllers\Operation\OperationController@close')->name('operation.close');
     Route::get('/operation/open/{operation}',      'App\Http\Controllers\Operation\OperationController@open')->name('operation.open');
+    Route::PATCH('/operation/update2/{operation}',   'App\Http\Controllers\Operation\OperationController@update2')->name('operation.update2');
     Route::resource('operation', 'App\Http\Controllers\Operation\OperationController');
 
 });

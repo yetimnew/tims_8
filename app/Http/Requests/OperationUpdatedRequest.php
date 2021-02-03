@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OperationCreatedRequst extends FormRequest
+class OperationUpdatedRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class OperationCreatedRequst extends FormRequest
     public function rules()
     {
         return [
-            'operationid' => 'required|unique:operations,operationid',
+            'operationid' => "required|unique:operations,operationid,{$this->operation->id}",
             'customer_id' => 'required',
             'start_date' => 'required',
             'place_id' => 'required',
@@ -32,6 +32,6 @@ class OperationCreatedRequst extends FormRequest
             'cargo_type' => 'required',
             'tone' => 'required|regex:/^\d{1,13}(\.\d{1,4})?$/',
             'tariff' => 'required|regex:/^\d{1,13}(\.\d{1,4})?$/',
-                ];
+        ];
     }
 }

@@ -203,7 +203,7 @@
                     aria-haspopup="true"
                     aria-expanded="false"
                     class="nav-link language dropdown-toggle"
-                    ><img src="img/flags/16/GB.png" alt="English" /><span
+                    ><img src=" {{ asset ('img/flags/16/GB.png') }}" alt="English" /><span
                       class="d-none d-sm-inline-block"
                       >English</span
                     ></a
@@ -212,7 +212,7 @@
                     <li>
                       <a rel="nofollow" href="#" class="dropdown-item">
                         <img
-                          src="img/flags/16/DE.png"
+                          src="{{ asset ('img/flags/16/DE.png')}}"
                           alt="English"
                           class="mr-2"
                         />German</a
@@ -221,7 +221,7 @@
                     <li>
                       <a rel="nofollow" href="#" class="dropdown-item">
                         <img
-                          src="img/flags/16/FR.png"
+                          src="{{ asset ('img/flags/16/FR.png' )}}"
                           alt="English"
                           class="mr-2"
                         />French

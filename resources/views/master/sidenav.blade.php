@@ -6,7 +6,7 @@
           <div class="sidebar-header d-flex align-items-center">
             <div class="avatar">
               <img
-                src="img/avatar-1.jpg"
+                src="{{ asset ('img/avatar-1.jpg')}}"
                 alt="..."
                 class="img-fluid rounded-circle"
               />
@@ -31,16 +31,15 @@
               <a href="{{ route('driver.index')}}"> <i class="fa fa-bar-chart"></i>Driver </a>
             </li>
             <li>
-              <a href="{{ route('region.index')}}"> <i class="icon-padnote"></i>Region </a>
+
+            </li>
+
+
+            <li>
+              <a href="{{ route('customer.index')}}"> <i class="icon-padnote"></i>Customer </a>
             </li>
             <li>
-              <a href="{{ route('zone.index')}}"> <i class="icon-padnote"></i>Zone </a>
-            </li>
-            <li>
-              <a href="{{ route('woreda.index')}}"> <i class="icon-padnote"></i>Woreda </a>
-            </li>
-            <li>
-              <a href="{{ route('place.index')}}"> <i class="icon-padnote"></i>Place </a>
+
             </li>
             <li>
               <a
@@ -48,12 +47,20 @@
                 aria-expanded="false"
                 data-toggle="collapse"
               >
-                <i class="icon-interface-windows"></i>Example dropdown
+                <i class="icon-interface-windows"></i>Operations
               </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled">
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
+                <li>  <a href="{{ route('operation.index')}}"> <i class="icon-padnote"></i>Operation </a></li>
+                <li> <a href="{{ route('region.index')}}"> <i class="icon-padnote"></i>Region </a></li>
+                <li>
+                    <a href="{{ route('zone.index')}}"> <i class="icon-padnote"></i>Zone </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('woreda.index')}}"> <i class="icon-padnote"></i>Woreda </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('place.index')}}"> <i class="icon-padnote"></i>Place </a>
+                  </li>
               </ul>
             </li>
             <li>

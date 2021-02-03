@@ -26,8 +26,11 @@
                     <option class="dropup" value="" selected> Select One</option>
 
                     @foreach ($customers as $customer)
-                    <option class="dropup" value="{{$customer->id}}"
-                        {{$customer->id == $operation->customer_id ? 'selected' : '' }}> {{$customer->name}} </option>
+                        @if (old('customer_id') )
+                          <option class="dropup"  value="{{$customer->id}}" {{old('customer_id') == $customer->id ? 'selected' : ''}}> {{$customer->name}} </option>
+                        @else
+                          <option value={{$customer->id}}  {{$customer->id == $operation->customer_id ? 'selected' : ''}}>{{ $customer->name }}</option>
+                        @endif
                     @endforeach
 
                 </select>
@@ -65,9 +68,11 @@
                     onfocusout="validateplace_id()">
                     <option class="dropup" value="" selected> Select One</option>
                     @foreach ($places as $place)
-                    <option class="dropup" value="{{$place->id}}"
-                        {{ $place->id == $operation->place_id ? 'selected' : '' }}> {{$place->name}}
-                    </option>
+                        @if (old('place_id') )
+                        <option class="dropup"  value="{{$place->id}}" {{old('place_id') == $place->id ? 'selected' : ''}}> {{$place->name}} </option>
+                        @else
+                        <option value={{$place->id}}  {{$place->id == $operation->place_id ? 'selected' : ''}}>{{ $place->name }}</option>
+                        @endif
                     @endforeach
 
                 </select>
@@ -115,18 +120,17 @@
         </div>
 
         <div class="form-group required">
-            <label class="control-label" for="">Tone KM</label>
+            <label class="control-label" for="tone">Tone KM</label>
             <div class="input-group">
-                <input name="tone" type="number" class="form-control" id="tone"
+                <input  type="number" name="tone"  id="tone"
                     class="form-control {{ $errors->has('tone') ? ' is-invalid' : '' }}"
-                    value="{{ old('tone') ?? $operation->km }}" onfocusout="validateTone()">
+                    value="{{ old('tone') ?? $operation->tone }}" onfocusout="validateTone()">
                 @if ($errors->has('tone'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('tone') }}</strong>
                 </span>
                 @endif
-                <span class="invalid-feedback" role="alert"></span>
-            </div>
+                </div>
         </div>
         <div class="form-group required">
             <label class="control-label"> Triff per Ton KM</label>
@@ -139,9 +143,9 @@
                     <strong>{{ $errors->first('tariff') }}</strong>
                 </span>
                 @endif
-                <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
+
         @section( 'javascript' )
         <script>
             jQuery.datetimepicker.setDateFormatter('moment');
