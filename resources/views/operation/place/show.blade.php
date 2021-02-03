@@ -1,5 +1,5 @@
 @extends( 'master.app' )
-@section( 'title', 'TIMS | Place ' )
+@section( 'title', 'TIMS | Show Place ' . $place->name)
  @section('content')
 
 <header class="page-header mb-4">
@@ -12,7 +12,7 @@
     </div>
   </header>
 
-<div class="row col-md-12">
+<div class="container">
     <div class="card col-md-12">
         <div class="card-header">
             <div class="d-flex align-items-center">
@@ -68,15 +68,10 @@
                         </div>
                     </div> --}}
 
-
-
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
-
-
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4"> Created In</label>
-
                         <div class="col-lg-8">
                             <h4 class="col-form-label ">{{$place->created_at}} ||
                                 {{$place->created_at->diffForHumans()}}</h4>
@@ -94,7 +89,7 @@
                 </div>
                 {{-- @can('operation_place edit') --}}
                 <div class='m-1 p-1'>
-                    <a href="{{route('place.edit',['id'=> $place->id])}}" class="btn btn-info btn-xs"><i
+                    <a href="{{route('place.edit',$place->id)}}" class="btn btn-info btn-xs"><i
                             class="fa fa-edit"> </i>Edit </a>
                 </div>
                 {{-- @endcan
@@ -119,7 +114,7 @@
                     </td>
 
                 </div>
-                @endcan
+                {{-- @endcan --}}
 
             </div>
         </div>

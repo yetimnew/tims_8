@@ -23,6 +23,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('zone', 'App\Http\Controllers\Operation\ZoneController');
     Route::resource('woreda', 'App\Http\Controllers\Operation\WoredaController');
     Route::resource('place', 'App\Http\Controllers\Operation\PlaceController');
+    Route::resource('customer', 'App\Http\Controllers\Operation\CustomerController');
+    Route::get('/operation/close/{operation}',     'App\Http\Controllers\Operation\OperationController@close')->name('operation.close');
+    Route::get('/operation/open/{operation}',      'App\Http\Controllers\Operation\OperationController@open')->name('operation.open');
+    Route::resource('operation', 'App\Http\Controllers\Operation\OperationController');
 
 });
 

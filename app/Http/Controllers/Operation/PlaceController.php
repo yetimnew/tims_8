@@ -50,9 +50,9 @@ class PlaceController extends Controller
         $regions = Region::all();
         $zones = Zone::all();
         $woredas = Woreda::orderBy('name')->get();
-        if ($regions->count() == 0) {
-            Session::flash('info', 'You must have some Region  before attempting to create Truck');
-            return redirect()->route('region.index');
+        if ( $woredas->count() == 0) {
+            Session::flash('info', 'You must have some Woreda  before attempting to create Truck');
+            return redirect()->route('woreda.index');
         }
 
         return view('operation.place.create')
@@ -103,52 +103,48 @@ class PlaceController extends Controller
             ->with('woredas', $woredas);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Place $place)
     {
-        $place = Place::findOrFail($id);
         $this->validate($request, [
-            'woreda' => 'required',
-            'name' => 'required|unique:places,name,' . $place->id
-
+            'woreda_id' => 'required',
+            'name' => 'required|unique:places,name,' . $place->id,
+            'comment'=>''
         ]);
-
-
-        $place->name = $request->name;
-        $place->woreda_id = $request->woreda;
-        $place->comment = $request->comment;
-
-        $place->save();
-        Session::flash('success', 'place updated successfuly');
-        return redirect()->route('place');
+        $place->update($request->all());
+        Session::flash('success', 'place updated successfully');
+        return redirect()->route('place.index');
     }
 
-    public function destroy($id)
+    public function destroy( Place $place)
     {
-        $place = Place::findOrFail($id);
-        $distance = Distance::where('origin_id', '=', $place->id)
-            ->orwhere('destination_id', '=', $place->id)
-            ->get();
-        if ($distance->count() > 0) {
-            Session::flash('error', 'UNABLE TO DELETE!!  Distance is registerd by this place');
-            return redirect()->back();
-        } else {
-            $performance = Performance::where('orgion_id', '=', $place->id)
-                ->orwhere('destination_id', '=', $place->id)
-                ->count();
+        $place->delete();
+        Session::flash('success', 'Place Deleted successfully!!');
+        return redirect()->route('place.index');
 
-            $osperformance = Outsource_performance::where('orgion_id', '=', $place->id)
-                ->orwhere('destination_id', '=', $place->id)
-                ->count();
-            // dd($performance);
-            if ($performance +  $osperformance <= 0) {
-                $place->delete();
-                Session::flash('success', 'Place Deleted successfully!!');
-                return redirect()->route('place');
-            } else {
-                Session::flash('error', 'UNABLE TO DELETE!!  Performance is registerd by this place');
-                return redirect()->back();
-            }
-        }
+        // $distance = Distance::where('origin_id', '=', $place->id)
+        //     ->orwhere('destination_id', '=', $place->id)
+        //     ->get();
+        // if ($distance->count() > 0) {
+        //     Session::flash('error', 'UNABLE TO DELETE!!  Distance is registerd by this place');
+        //     return redirect()->back();
+        // } else {
+        //     $performance = Performance::where('orgion_id', '=', $place->id)
+        //         ->orwhere('destination_id', '=', $place->id)
+        //         ->count();
+
+        //     $osperformance = Outsource_performance::where('orgion_id', '=', $place->id)
+        //         ->orwhere('destination_id', '=', $place->id)
+        //         ->count();
+        //     // dd($performance);
+        //     if ($performance +  $osperformance <= 0) {
+        //         $place->delete();
+        //         Session::flash('success', 'Place Deleted successfully!!');
+        //         return redirect()->route('place');
+        //     } else {
+        //         Session::flash('error', 'UNABLE TO DELETE!!  Performance is registerd by this place');
+        //         return redirect()->back();
+        //     }
+        // }
     }
     public function allPlaces()
     {

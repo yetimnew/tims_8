@@ -37,6 +37,12 @@
               <a href="{{ route('zone.index')}}"> <i class="icon-padnote"></i>Zone </a>
             </li>
             <li>
+              <a href="{{ route('woreda.index')}}"> <i class="icon-padnote"></i>Woreda </a>
+            </li>
+            <li>
+              <a href="{{ route('place.index')}}"> <i class="icon-padnote"></i>Place </a>
+            </li>
+            <li>
               <a
                 href="#exampledropdownDropdown"
                 aria-expanded="false"

@@ -17,10 +17,8 @@
         </span>
         @endif
     </div>
-
-
     <div class="form-group mb-0 required">
-        <label class="control-label">Destination Name</label>
+        <label class="control-label">Place Name</label>
 
         <div class="input-group">
             <input name="name" type="text" id="name"

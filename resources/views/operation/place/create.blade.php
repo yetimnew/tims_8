@@ -12,7 +12,6 @@
     </div>
   </header>
 
-
 <div class="col-md-12">
 	<div class="card text-left">
 		<div class="card-header">
@@ -25,22 +24,14 @@
 			</div>
 		</div>
 
-
 		<div class="card-body">
 			<form method="post" action="{{route('place.store')}}" class="form-horizontal" id="place_reg">
 				@csrf
 				@include('operation.place.form')
 				<div class="form-group required">
 					<button type="submit" class="btn btn-primary" name="save">Save</button>
-
-
 				</div>
-
+            </form>
 		</div>
-
-
 	</div>
-	</form>
-</div>
-
 @endsection
