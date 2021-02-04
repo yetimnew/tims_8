@@ -30,4 +30,9 @@ class Truck extends Model
         return $this->belongsTo(TruckModel::class,'truck_model_id');
     }
 
+    public function drivers()
+    {
+        return $this->belongsToMany(Driver::class)->withPivot(['date_received','date_detach', 'reason','is_attached','status' ]);
+    }
+
 }

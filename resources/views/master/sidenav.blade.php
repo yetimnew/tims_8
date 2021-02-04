@@ -31,10 +31,8 @@
               <a href="{{ route('driver.index')}}"> <i class="fa fa-bar-chart"></i>Driver </a>
             </li>
             <li>
-
-            </li>
-
-
+                <a href="{{ route('driver_truck.index')}}"> <i class="icon-padnote"></i>Driver Truck </a>
+              </li>
             <li>
               <a href="{{ route('customer.index')}}"> <i class="icon-padnote"></i>Customer </a>
             </li>
@@ -61,6 +59,7 @@
                   <li>
                     <a href="{{ route('place.index')}}"> <i class="icon-padnote"></i>Place </a>
                   </li>
+
               </ul>
             </li>
             <li>

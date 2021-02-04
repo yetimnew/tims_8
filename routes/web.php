@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/operation/open/{operation}',      'App\Http\Controllers\Operation\OperationController@open')->name('operation.open');
     Route::PATCH('/operation/update2/{operation}',   'App\Http\Controllers\Operation\OperationController@update2')->name('operation.update2');
     Route::resource('operation', 'App\Http\Controllers\Operation\OperationController');
+    Route::get('/driver_truck/detach/{id}',  'App\Http\Controllers\Operation\DriverTruckController@detach')->name('driver_truck.detach');
+    Route::resource('driver_truck', 'App\Http\Controllers\Operation\DriverTruckController');
 
 });
 

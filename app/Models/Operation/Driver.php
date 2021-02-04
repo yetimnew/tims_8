@@ -21,4 +21,8 @@ class Driver extends Model
         'mobile',
         'hired_date'
     ];
+    public function trucks()
+    {
+        return $this->belongsToMany(Truck::class);
+    }
 }

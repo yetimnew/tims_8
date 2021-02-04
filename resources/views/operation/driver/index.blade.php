@@ -39,7 +39,7 @@
 							<th class="m-1 b-1"> Name</th>
 							<th class="m-1 b-1"> birthdate</th>
 					        <th class="m-1 b-1">Telephone</th>
-							<th class="m-1 b-1">HireDate</th>
+
 							{{-- @can('driver edit') --}}
 							<th class="m-1 b-1" width="3%">Details</th>
 							{{-- @endcan
@@ -64,6 +64,8 @@
 							<td class='p-1 text-center'>{{$driver->birth_date}}</td>
                             <td class='p-1 text-center'>{{$driver->mobile}}</td>
 							<td class='p-1 text-center'>{{$driver->hired_date}}</td>
+
+                           </td>
 							{{-- @can('driver edit') --}}
 							<td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="Edit"><a
 									href="{{route('driver.show', $driver->id)}}"><i class="fa fa-edit"></i></a>

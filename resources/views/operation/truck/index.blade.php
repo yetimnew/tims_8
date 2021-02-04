@@ -61,6 +61,7 @@
                             <td class='p-1'>{{ number_format($truck->service_Interval_km , 2)}}</td>
                             <td class='p-1'>{{$truck->production_date}}</td>
                             <td class='p-1'>{{$truck->service_start_date}}</td>
+
                             {{-- @can('truck edit') --}}
                             <td class='m-1 p-1 text-center'><a href="{{route('truck.show', $truck->id)}}"><i
                                         class="fa fa-edit"> </i></a>
