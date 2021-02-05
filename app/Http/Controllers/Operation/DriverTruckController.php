@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Operation;
 use App\Http\Controllers\Controller;
 use App\Models\Operation\Driver;
 use App\Models\Operation\DriverTruck;
+use App\Models\Operation\Performance;
 use App\Models\Operation\Truck;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -90,6 +92,9 @@ class DriverTruckController extends Controller
                 $dt->date_received = $request->recieve_date;
                 $dt->status = 1;
                 $dt->is_attached = 1;
+                $dt->created_by = Auth::user()->id;
+                $dt->updated_by = Auth::user()->id;
+
                 $dt->save();
                 Session::flash('success', 'Truck and Driver Assigned successfully');
                 return redirect()->route('driver_truck.index');
@@ -111,6 +116,8 @@ class DriverTruckController extends Controller
                     $dt->date_received = $request->recieve_date;
                     $dt->status = 1;
                     $dt->is_attached = 1;
+                    $dt->created_by = Auth::user()->id;
+                    $dt->updated_by = Auth::user()->id;
                     $dt->save();
                     Session::flash('success', 'Truck and Driver Assigned successfully');
                     return redirect()->route('driver_truck.index');
@@ -122,6 +129,8 @@ class DriverTruckController extends Controller
                 $dt->date_received = $request->recieve_date;
                 $dt->status = 1;
                 $dt->is_attached = 1;
+                $dt->created_by = Auth::user()->id;
+                $dt->updated_by = Auth::user()->id;
                 $dt->save();
                 Session::flash('success', 'Truck and Driver Assigned successfully');
                 return redirect()->route('driver_truck.index');
@@ -176,6 +185,7 @@ class DriverTruckController extends Controller
             ->first();
             // dd( $dts );
         $trucks = $this->ready_trucks();
+        // dd( $dts);
         $drivers =  $this->ready_drivers();
         return view('operation.driver_truck.edit')
             ->with('dts', $dts)
@@ -185,35 +195,27 @@ class DriverTruckController extends Controller
 
     public function update(Request $request, $id)
     {
-
+// dd($request->all());
         $this->validate($request, [
-            'plate' => 'required',
-            'dname' => 'required',
-            'rdate' => 'required|date',
-            'ddate' => 'nullable|date|after:rdate',
+            'truck_id' => 'required',
+            'driver_id' => 'required',
+            'recieve_date' => 'required|date',
+            'date_detach' => 'nullable|date|after:rdate',
+            'comment' => 'nullable',
         ]);
-
-        $plate = $request->input('plate');
-        $expolde_value =   explode('|', $plate);
-        $truck_id = $expolde_value[0];
-        $plateex = $expolde_value[1];
-        $driver = $request->input('dname');
-        $expolde_name =   explode('|', $driver);
-        $driver_id = $expolde_name[0];
-        $driverid = $expolde_name[1];
-
-
 
         // $truck_driver = DriverTruck::findOrFail($id);
 
         $dt = DriverTruck::findorFail($id);
-        $dt->truck_id =  $truck_id;
-        $dt->plate =  $plateex;
-        $dt->driver_id = $driver_id;
-        $dt->driverid = $driverid;
-        $dt->date_recived = $request->rdate;
-        if ($request->has('ddate')) {
-            $dt->date_detach = $request->ddate;
+        $dt->truck_id =  $request->truck_id;
+        $dt->driver_id = $request->driver_id;
+        $dt->date_received = $request->recieve_date;
+        $dt->status = 1;
+        $dt->is_attached = 1;
+        $dt->updated_by = Auth::user()->id;
+        $dt->save();
+        if ($request->has('date_detach')) {
+            $dt->date_detach = $request->date_detach;
             $dt->reason = $request->comment;
             $dt->status = 1;
             $dt->is_attached = 0;
@@ -224,14 +226,18 @@ class DriverTruckController extends Controller
             $dt->is_attached = 1;
         }
         $dt->save();
-        Session::flash('success', 'Truck and Driver Updated successfuly');
-        return redirect()->route('drivertruck');
+        Session::flash('success', 'Truck and Driver Updated successfully');
+        return redirect()->route('driver_truck.show',$dt->id );
     }
 
 
     public function destroy($id)
     {
+
         $dt = DriverTruck::findorFail($id);
+        $dt->delete();
+        Session::flash('success', 'Vehecle and Driver deleted successfully');
+        return redirect()->route('driver_truck.index');
         $performance =  Performance::where('driver_truck_id', '=', $dt->id)->first();
         if (isset($performance)) {
             Session::flash('error', 'There are records by this driver ');
@@ -239,51 +245,46 @@ class DriverTruckController extends Controller
         } else {
 
             $dt->delete();
-            Session::flash('success', 'Vehecle and Driver deleted successfuly');
+            Session::flash('success', 'Vehecle and Driver deleted successfully');
             return redirect()->route('drivertruck');
         }
     }
     public function detach($id)
     {
         $dts = DB::table('driver_truck')
-            ->select('driver_truck.*', 'drivers.name as NAME')
+            ->select('driver_truck.*', 'drivers.name as NAME','trucks.plate as plate')
             ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
+            ->join('trucks', 'trucks.id', '=', 'driver_truck.truck_id')
             ->where('driver_truck.id', '=', $id)
             ->first();
         // dd( $dts);
-        return view('operation.drivertruck.detach')->with('dts', $dts);
+        return view('operation.driver_truck.detach')->with('dts', $dts);
     }
 
     public function update_dt(Request $request, $id)
     {
         // dd($request->all());
         $this->validate($request, [
-            'rdate' => 'required',
-            'ddate' => 'required|date|after:rdate'
+            'truck_id' => 'required',
+            'truck_id' => 'required',
+            'recieve_date' => 'required|date',
+            'date_detach' => 'required|date|after:recieve_date',
+            'comment' => '',
         ]);
-
-        $plate = $request->input('plate');
-        $expolde_value =   explode('|', $plate);
-        $truck_id = $expolde_value[0];
-        $plateex = $expolde_value[1];
-        $driver = $request->input('dname');
-        $expolde_name =   explode('|', $driver);
-        $driver_id = $expolde_name[0];
-        $driverid = $expolde_name[1];
-
         $dt = DriverTruck::findOrFail($id);
 
-        $dt->driver_id = $driver_id;
-        $dt->truck_id =  $truck_id;
-        $dt->driverid = $driverid;
-        $dt->plate =  $plateex;
-        $dt->date_recived = $request->rdate;
-        $dt->date_detach = $request->ddate;
+        $dt->truck_id =  $request->truck_id;
+        $dt->driver_id = $request->driver_id;
+        $dt->date_received = $request->recieve_date;
+        $dt->date_detach = $request->date_detach;
         $dt->reason = $request->comment;
+        $dt->status = 1;
         $dt->is_attached = 0;
+        $dt->updated_by = Auth::user()->id;
+
         $dt->save();
-        Session::flash('success', 'Truck and Driver Detached successfuly');
-        return redirect()->route('drivertruck');
+        Session::flash('success', 'Truck and Driver Detached successfully');
+        return redirect()->route('driver_truck.show',$dt->id );
     }
 
     public function ready_trucks()

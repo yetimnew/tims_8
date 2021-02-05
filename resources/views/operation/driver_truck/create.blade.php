@@ -50,7 +50,6 @@
 								<strong>{{ $errors->first('truck_id') }}</strong>
 							</span>
 							@endif
-							<span class="invalid-feedback" role="alert"></span>
 						</div>
 
 						<div class="form-group required">
@@ -68,9 +67,7 @@
 								<strong>{{ $errors->first('driver_id') }}</strong>
 							</span>
 							@endif
-							<span class="invalid-feedback" role="alert"></span>
 						</div>
-
 
 						<div class="form-group required">
 							<label class="control-label">Date Recived</label>

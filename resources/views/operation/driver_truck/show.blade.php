@@ -48,16 +48,40 @@
                     </div>
                 </div>
                 <div class="form-group row m-0">
+                    <label class="col-form-label col-lg-4">Status</label>
+                    <div class="col-lg-8">
+                        @if ($drivertruck->is_attached == 1)
+                        <td class='m-1 p-1'><span class="badge badge-primary">Attached</span></td>
+                        @else
+                        <td class='m-1 p-1'><span class="badge badge-danger">Detached</span><span class="pull-right">
+                            </span> </td>
+                        @endif
+                      </div>
+                </div>
+                <div class="form-group row m-0">
                     <label class="col-form-label col-lg-4">Date Recived</label>
                     <div class="col-lg-8">
-                        <h4 class="col-form-label ">{{$drivertruck->date_received}} || {{ $drivertruck->date_received ? $drivertruck->date_received->diffForHumans() : ''}}</h4>
+                        <h4 class="col-form-label ">{{$drivertruck->date_received}} -  {{ $drivertruck->date_received ? $drivertruck->date_received->diffForHumans() : ''}}</h4>
                     </div>
                 </div>
+                <div class="form-group row m-0">
+                    <label class="col-form-label col-lg-4">Created By</label>
+                    <div class="col-lg-8">
+                        <h4 class="col-form-label ">{{$drivertruck->user->name}}</h4>
+                    </div>
+                </div>
+                <div class="form-group row m-0">
+                    <label class="col-form-label col-lg-4">Last Updated  By</label>
+                    <div class="col-lg-8">
+                        <h4 class="col-form-label ">{{$drivertruck->updatedby->name}}</h4>
+                    </div>
+                </div>
+
                 @if ($drivertruck->is_attached == 0)
                 <div class="form-group row m-0">
                     <label class="col-form-label col-lg-4">Date Detached</label>
                     <div class="col-lg-8">
-                        <h4 class="col-form-label ">{{$drivertruck->date_detach}}</h4>
+                        <h4 class="col-form-label ">{{$drivertruck->date_detach}} - {{ $drivertruck->date_detach ? $drivertruck->date_detach->diffForHumans() : ''}}</h4>
                     </div>
                 </div>
                 <div class="form-group row m-0">
@@ -181,7 +205,7 @@
                     @csrf
                     @method('GET')
                     <p class="text-center">Are You Sure To detach ?<br> <span class="font-weight-bold">
-                            {{$driver->name}} </span> from plate <span class="font-weight-bold"> {{$drivertruck->plate}} </span>
+                            {{$driver->name}} </span> from plate <span class="font-weight-bold"> {{$truck->plate}} </span>
                     </p>
                 </div>
                 <div class="modal-footer">

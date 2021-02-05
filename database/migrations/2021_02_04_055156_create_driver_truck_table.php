@@ -22,6 +22,8 @@ class CreateDriverTruckTable extends Migration
             $table->text('reason')->nullable();
             $table->boolean('is_attached')->default(1);
             $table->boolean('status')->default(0);
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

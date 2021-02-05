@@ -2,6 +2,7 @@
 
 namespace App\Models\Operation;
 
+use App\Models\User;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
@@ -38,6 +39,14 @@ class DriverTruck extends Pivot
     public function drivers()
     {
         return $this->belongsToMany('App\Driver');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'created_by');
+    }
+    public function updatedby()
+    {
+        return $this->belongsTo(User::class,'updated_by');
     }
 
     public function getDateDifferenceAttribute()

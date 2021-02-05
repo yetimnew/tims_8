@@ -2,12 +2,16 @@
 @section( 'title', 'TIMS | Driver Truck Edit ' )
 
 @section( 'content' )
-<ol class="breadcrumb">
-	<li class="breadcrumb-item"><a href="{{route('dasboard')}}">Home</a>
-	</li>
-	<li class="breadcrumb-item active">Driver And Truck Edit</li>
-</ol>
-<div class="col-md-12">
+<header class="page-header mb-4">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Driver And Truck Edit</li>
+        </ol>
+    </div>
+  </header>
+
 	{{-- @include('master.error') --}}
 	{{-- @include('master.success') --}}
 	<div class="card text-left">
@@ -21,7 +25,7 @@
 			<div class="d-flex align-items-center">
 				<h2>Driver Truck Dettach</h2>
 				<div class="ml-auto">
-					<a href="{{route('drivertruck')}}" class="btn btn-outline-primary">
+					<a href="{{route('driver_truck.index')}}" class="btn btn-outline-primary">
 						<i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
 
 
@@ -30,58 +34,61 @@
 		</div>
 
 		<div class="card-body">
-			<form method="post" action="{{route('drivertruck.update_dt',['id'=>$dts->id])}}" class="form-horizontal"
+			<form method="post" action="{{route('driver_truck.update_dt',$dts->id)}}" class="form-horizontal"
 				id="driver_truck_create">
 				@csrf
-				<div class="row">
-					<div class="col-md-6">
-
-						<div class="form-group ">
-							<label class="control-label">Plate Number</label>
-							<select name="plate" class="form-control select" id="plate" readonly>
-								<option class="dropup" value="{{$dts->truck_id}}|{{$dts->plate}}" selected>
+					<div class="form-group ">
+							<label class="control-label" for="truck_id">Plate Number</label>
+							<select name="truck_id" class="form-control select" id="truck_id" readonly>
+								<option class="dropup" value="{{$dts->truck_id}}" selected>
 									{{$dts->plate}} </option>
-							</select>
+                            </select>
 
-							<small class="form-text text-danger" id="error_region"></small>
+                            @if ($errors->has('truck_id'))
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $errors->first('truck_id') }}</strong>
+							</span>
+							@endif
 						</div>
 						<div class="form-group ">
-							<label class="control-label">Driver Name</label>
+							<label class="control-label" for="driver_id">Driver Name</label>
 
-							<select name="dname" class="form-control select" id="dname" readonly>
-								<option class="dropup" value="{{$dts->driver_id}}|{{$dts->driverid}}" selected>
+							<select name="driver_id" class="form-control select" id="dname" readonly>
+								<option class="dropup" value="{{$dts->driver_id}}" selected>
 									{{$dts->NAME}} </option>
-
 							</select>
-
-							<small class="form-text text-danger" id="error_region"></small>
+                            @if ($errors->has('driver_id'))
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $errors->first('driver_id') }}</strong>
+							</span>
+							@endif
 						</div>
 
 						<div class="form-group ">
-							<label class="control-label">Recived Date</label>
+							<label class="control-label" for="recieve_date">Recived Date</label>
 
 							<div class="input-group"> <span class="input-group-addon"></span>
-								<input name="rdate" type="date" class="form-control" id="rdate"
-									value="{{$dts->date_recived }}" readonly>
+								<input name="recieve_date" type="date" class="form-control" id="recieve_date"
+									value="{{$dts->date_received }}" readonly>
 							</div>
 
 						</div>
 
 
 						<div class="form-group required">
-							<label class="control-label">Dettach Date</label>
+							<label class="control-label" for="date_detach">Dettach Date</label>
 							<div class="input-group">
-								<input name="ddate" type="text"
-									class="form-control {{ $errors->has('ddate') ? ' is-invalid' : '' }}" id="ddate"
-									value="{{ old('ddate' ) }}" onfocusout="validateDdate()" required>
+								<input name="date_detach" type="text"
+									class="form-control {{ $errors->has('date_detach') ? ' is-invalid' : '' }}" id="date_detach"
+									value="{{ old('date_detach' ) }}" onfocusout="validatedate_detach()" required>
 								<div class="input-group-append">
 									<button type="button" id="toggle" class="input-group-text">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</button>
 								</div>
-								@if($errors->has('ddate'))
+								@if($errors->has('date_detach'))
 								<span class="invalid-feedback" role="alert">
-									<strong>{{ $errors->first('ddate') }}</strong>
+									<strong>{{ $errors->first('date_detach') }}</strong>
 								</span>
 								@endif
 								<span class="invalid-feedback" role="alert"></span>
@@ -102,25 +109,16 @@
 
 						</div>
 
+                    </form>
 					</div>
-
-
 				</div>
-		</div>
-		<div class="card-footer">
-			the footer
-		</div>
-
-		</form>
-	</div>
-</div>
 
 @endsection
 
 @section( 'javascript' )
 <script type="text/javascript">
 	jQuery.datetimepicker.setDateFormatter('moment');
-		  $("#ddate").datetimepicker({
+		  $("#date_detach").datetimepicker({
 		timepicker:false,
 		datepicker:true,
 		format: "Y-M-D"

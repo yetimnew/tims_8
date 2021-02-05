@@ -29,7 +29,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::PATCH('/operation/update2/{operation}',   'App\Http\Controllers\Operation\OperationController@update2')->name('operation.update2');
     Route::resource('operation', 'App\Http\Controllers\Operation\OperationController');
     Route::get('/driver_truck/detach/{id}',  'App\Http\Controllers\Operation\DriverTruckController@detach')->name('driver_truck.detach');
+    Route::post('/driver_truck/update_dt/{id}',   'App\Http\Controllers\Operation\DriverTruckController@update_dt')->name('driver_truck.update_dt');
     Route::resource('driver_truck', 'App\Http\Controllers\Operation\DriverTruckController');
+    Route::resource('performance', 'App\Http\Controllers\Operation\PerformanceController');
+    Route::resource('distance', 'App\Http\Controllers\Operation\DistanceController');
 
 });
 
