@@ -9,29 +9,27 @@ use Illuminate\Database\Eloquent\Model;
 class Distance extends Model
 {
     protected $table = "distances";
+    protected $primaryKey='id';
     use HasFactory;
 
     protected $guarded = [];
 
     public function user()
     {
-        return $this->belongsTo(User::class,'created_by');
+        return $this->belongsTo(User::class,'created_by','id');
     }
     public function updatedby()
     {
         return $this->belongsTo(User::class,'updated_by');
     }
 
-    public function origins()
+    public function origin()
     {
-        return $this->hasMany(Place::class,'id');
+        return $this->belongsTo(Place::class,'origin_id');
     }
-    // public function origions()
-    // {
-    //     return $this->belongsToMany('App\Place');
-    // }
-    public function destinations()
+
+    public function destination()
     {
-        return $this->hasMany(Place::class);
+        return $this->belongsTo(Place::class,'destination_id');
     }
 }

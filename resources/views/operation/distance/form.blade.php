@@ -53,7 +53,7 @@
             <label class="control-label">Distance In KM</label>
 
             <div class="input-group">
-                <input name="km" type="text" id="km"
+                <input name="km" type="number" step="1" pattern="\d+"  id="km"
                     class="form-control select {{ $errors->has('km') ? ' is-invalid' : '' }}"
                     value="{{old('km') ?? $distance->km}}" onfocusout="validateZone()">
                 @if ($errors->has('km'))

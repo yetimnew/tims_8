@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/driver_truck/detach/{id}',  'App\Http\Controllers\Operation\DriverTruckController@detach')->name('driver_truck.detach');
     Route::post('/driver_truck/update_dt/{id}',   'App\Http\Controllers\Operation\DriverTruckController@update_dt')->name('driver_truck.update_dt');
     Route::resource('driver_truck', 'App\Http\Controllers\Operation\DriverTruckController');
+    Route::get('ajaxRequest', 'App\Http\Controllers\Operation\PerformanceController@ajaxRequest')->name('performace.distance');
+    Route::post('ajaxRequest', 'App\Http\Controllers\Operation\PerformanceController@ajaxRequestPost')->name('performace.distance');
     Route::resource('performance', 'App\Http\Controllers\Operation\PerformanceController');
     Route::resource('distance', 'App\Http\Controllers\Operation\DistanceController');
 

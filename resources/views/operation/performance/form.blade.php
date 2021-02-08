@@ -20,8 +20,7 @@
                         <strong>{{ $errors->first('trip') }}</strong>
                     </span>
                     @endif
-                    <span class="invalid-feedback" role="alert"></span>
-                </div>
+                  </div>
             </div>
             <div class="col-md-6 m-0">
                 <div class="form-group required">
@@ -45,7 +44,6 @@
                     <span class="invalid-feedback" role="alert"></span>
                 </div>
             </div>
-
         </div>
 
         <div class="form-group required">
@@ -178,8 +176,6 @@
         </div>
 
 
-
-
         <div class="form-group required">
             <div class="input-group">
 
@@ -202,6 +198,7 @@
                 <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
+
         <div class="form-group required">
             <label class="control-label">Distance without cargo</label>
             <div class="input-group">
@@ -216,6 +213,7 @@
                 <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
+
         <div class="form-group required">
             <label class="control-label">Tone KM </label>
             <div class="input-group">
@@ -229,7 +227,7 @@
                 <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
-        <button type="button" id="calculateTonkm" class="btn btn-outline-dark btn-sm">calculate</button>
+          <button type="button" id="calculateTonkm" class="btn btn-outline-dark btn-sm">calculate</button>
     </div>
 
     <div class="col-md-6">
@@ -369,9 +367,6 @@
             $('#toggle2').on('click', function(){
                 $("#r_date").datetimepicker('toggle');
             })
-
-
-
         </script>
         <script>
             const chinet = document.getElementById( 'chinet' );

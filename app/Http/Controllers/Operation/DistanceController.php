@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Operation;
 
 use App\Http\Controllers\Controller;
 use App\Models\Operation\Distance;
+use App\Models\Operation\Performance;
 use App\Models\Operation\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,22 +42,6 @@ class DistanceController extends Controller
     }
     public function show(Distance $distance)
     {
-        dd( $distance->origins());
-        //  $dd = Distance::findOrFail($id);
-        // $distances =  DB::select("SELECT
-        // distances.id, places.name as orgion,
-        //  zones.name as zones,
-        //  woredas.name as woreda,
-        //   OperationPlace_1.name as destination ,
-        //    distances.km as distance
-        // FROM places AS OperationPlace_1
-        // RIGHT JOIN (distances LEFT JOIN places ON distances.origin_id=places.id)
-        //  ON OperationPlace_1.id = distances.destination_id
-        // LEFT JOIN woredas ON OperationPlace_1.woreda_id=woredas.id
-        // LEFT JOIN zones ON woredas.zone_id=zones.id
-        //   where distances.id = $dd->id ");
-        // $distancesss =  collect($distances);
-        // $distance = $distancesss->first();
         return view('operation.distance.show')
             ->with('distance', $distance);
     }
@@ -64,7 +49,6 @@ class DistanceController extends Controller
 
     public function store(Request $request, Distance $distance)
     {
-// dd($request->all());
         $this->validate($request, [
             'origin_id' => 'required',
             'destination_id' => 'required|different:origin_id',
@@ -92,35 +76,34 @@ class DistanceController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Distance $distance)
     {
         // dd();
-        $distance = Distance::findOrFail($id);
-        $distances = Distance::all();
+        // $distance = Distance::findOrFail($id);
+        // $distances = Distance::all();
         $places = Place::orderBy('name')->get();
         return view('operation.distance.edit')
-            ->with('distance', $distance)
-            ->with('places', $places)
-            ->with('distances', $distances);
+                   ->with('distance', $distance)
+                   ->with('places', $places);
     }
 
     public function update(Request $request, $id)
     {
         // dd($request->all());
         $this->validate($request, [
-            'origin' => 'required',
-            'destination' => 'required|different:origin',
+            'origin_id' => 'required',
+            'destination_id' => 'required|different:origin_id',
             'km' => 'required',
         ]);
 
         $distance = Distance::findOrFail($id);
-        $distance->origin_id = $request->origin;
-        $distance->destination_id = $request->destination;
+        $distance->origin_id = $request->origin_id;
+        $distance->destination_id = $request->destination_id;
         $distance->km = $request->km;
-
+        $distance->updated_by = Auth::user()->id;
         $distance->save();
-        Session::flash('success',  ' Distance Updated successfuly');
-        return redirect()->route('distance');
+        Session::flash('success',  ' Distance Updated successfully');
+        return redirect()->route('distance.index');
     }
 
     public function destroy($id)
@@ -134,7 +117,7 @@ class DistanceController extends Controller
             return redirect()->back();
         } else {
             $distance->delete();
-            Session::flash('info', 'The distance b/n ' . $distance->origin_name . ' and ' . $distance->destination_name . ' deleted successfuly');
+            Session::flash('info', 'The distance b/n ' . $distance->origin_name . ' and ' . $distance->destination_name . ' deleted successfully');
             return redirect()->route('distance');
         }
     }
@@ -142,7 +125,6 @@ class DistanceController extends Controller
     {
         $distances =  Distance::where('status', 1)->orderBy('destination_name')
             ->get();
-
         return DataTables::of($distances)->addColumn('action', function () {
             '<a onclick="showData(. $distances->id.)" class="btn btn-sm"> show </a>' . '' . '<a onclick="showData(. $distances->id.)" class="btn btn-sm"> show </a>';
         })->make(true);

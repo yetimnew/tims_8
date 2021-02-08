@@ -21,13 +21,14 @@ class CreateDistancesTable extends Migration
             $table->unsignedBigInteger('destination_id')->index();
             $table->foreign('destination_id')->references('id')->on('places')->onDelete('restrict');
 
-            $table->bigInteger('km');
+            $table->double('km',10,2);
             $table->tinyInteger('status');
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('restrict');
-            $table->unsignedBigInteger('updated_by');
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('restrict');
-            $table->timestamps();
+            // $table->unsignedBigInteger('created_by');
+            $table->foreignId('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('updated_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            // $table->foreignId('updated_by')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+                    $table->timestamps();
         });
     }
 

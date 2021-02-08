@@ -28,8 +28,10 @@
 
         </div>
         <div class="card-body">
-            <form method="post" action="{{route('distance.update',['id'=>$distance->id])}}" class="form-horizontal" id="distance_reg" novalidate>
+            @include('master.error')
+            <form method="post" action="{{route('distance.update',$distance->id)}}" class="form-horizontal" id="distance_reg" novalidate>
                 @csrf
+                @method('PATCH')
                 @include('operation.distance.form')
 
                 <div class="form-group d-flex  required">
@@ -40,13 +42,12 @@
                     </div>
 
                 </div>
+            </form>
         </div>
 
-        <div class="card-footer">
 
-        </div>
-        </form>
     </div>
+</div>
 </div>
 
 @endsection

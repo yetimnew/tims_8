@@ -20,7 +20,7 @@
         <div class="card-header">
             <div class="d-flex align-items-center">
 {{-- {{dd($distance)}} --}}
-                <h2>Details of Distance Frome <span class="text-info">{{$distance->orgion}}</span> To <span class="text-info"> {{$distance->destination}} </span></h2>
+                <h2>Details of Distance Froms <span class="text-info">{{$distance->origin->name}}</span> To <span class="text-info"> {{$distance->destination->name}} </span></h2>
                 <div class="ml-auto">
                     <a href="{{route('distance.index')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
                             aria-hidden="true"> Back</i> </a>
@@ -28,43 +28,40 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Origion Name</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$distance->orgion}}</h4>
+                            <h4 class="col-form-label ">{{$distance->origin->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Destination zone</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$distance->zones}}</h4>
+                            <h4 class="col-form-label ">{{$distance->destination->woreda->zone->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Destination woreda</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$distance->woreda}}</h4>
+                            <h4 class="col-form-label ">{{$distance->destination->woreda->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Destination Place</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$distance->destination}}</h4>
+                            <h4 class="col-form-label ">{{$distance->destination->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Distance KM</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$distance->distance}}</h4>
+                            <h4 class="col-form-label ">{{$distance->km}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Created By</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$distance->user()}}</h4>
+                            <h4 class="col-form-label ">{{$distance->user->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -75,7 +72,6 @@
                     </div>
 
 
-                </div>
 
                 {{-- @can('operation_place edit') --}}
                 <div class='m-1 p-1'>
@@ -85,8 +81,6 @@
                 {{-- @endcan
                 @can('operation_place delete') --}}
                 <div class='m-1 p-1'>
-
-
                     <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="Delete">
 
                         <form action="{{route('distance.destroy', $distance->id)}}" id="delete-form-{{$distance->id}}"
@@ -109,7 +103,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 @endsection
 @section('javascript')
