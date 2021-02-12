@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Session;
 
 class DriverTruckController extends Controller
 {
-    public function index()
+    public function index(DriverTruck $driver_truck)
     {
+    //     $dt = $driver_truck->first();
+    //    dd($dt->driver->name);
 
         $driver_truck = DB::table('driver_truck')
             ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
@@ -25,6 +27,7 @@ class DriverTruckController extends Controller
             ->where('driver_truck.status', '=', 1)
             ->orderBy('driver_truck.updated_at', 'DESC')
             ->get();
+
 
         return view('operation.driver_truck.index')->with('driver_truck', $driver_truck);
     }

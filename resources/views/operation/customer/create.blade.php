@@ -28,7 +28,7 @@
 
         </div>
 
-        <div class="card-body m-2">
+        <div class="card-body">
             <form method="post" action="{{route('customer.store')}}" class="form-horizontal" id="customer_reg">
                 @csrf
                 @include('operation.customer.form')

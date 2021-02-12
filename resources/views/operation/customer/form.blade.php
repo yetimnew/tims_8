@@ -10,8 +10,7 @@
                         <span class="invalid-feedback" role="alert"></span>
                     </div>
 
-
-            <div class="form-group row">
+            <div class="form-group">
                 <label for="address">Address</label>
 
                      <input name="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}"
@@ -25,7 +24,7 @@
                     </div>
 
 
-            <div class="form-group row">
+            <div class="form-group">
                 <label for="office_number"> Office No</label>
 
                      <input name="office_number" type="text" class="form-control {{ $errors->has('office_number') ? ' is-invalid' : '' }}" id="office_number"
@@ -39,7 +38,7 @@
                     </div>
 
 
-            <div class="form-group row">
+            <div class="form-group">
                 <label for="mobile"> Mobile No</label>
 
                      <input name="mobile" type="text" class="form-control {{ $errors->has('mobile') ? ' is-invalid' : '' }}" id="mobile" value="{{ old('mobile') ?? $customer->mobile}}" onfocusout="validateMobile()">
@@ -52,7 +51,7 @@
                     </div>
 
 
-            <div class="form-group row">
+            <div class="form-group">
                 <label for="remark">Remark</label>
                         <textarea name="remark" rows="5" class="form-control {{ $errors->has('remark') ? ' is-invalid' : '' }}" id="remark">{{ old('remark') ?? $customer->remark}}</textarea>
                      @if ($errors->has('remark'))

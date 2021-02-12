@@ -34,6 +34,7 @@ class CustomerController extends Controller
         ]);
         $customer->create($request->all());
         Session::flash('success', 'customer  registered successfully');
+        // return redirect()->route('customer.index');
         return redirect()->route('customer.index');
     }
 

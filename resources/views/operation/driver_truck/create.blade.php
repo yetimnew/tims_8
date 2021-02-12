@@ -34,7 +34,7 @@
 				id="driver_truck_create">
 				@csrf
 						<div class="form-group required">
-							<label class="control-label">truck_id Number</label>
+							<label class="control-label">Plate Number</label>
 
 							<select name="truck_id" id="truck_id"
 								class="form-control {{ $errors->has('truck_id') ? ' is-invalid' : '' }}"

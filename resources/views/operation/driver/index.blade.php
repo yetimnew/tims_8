@@ -39,6 +39,7 @@
 							<th class="m-1 b-1"> Name</th>
 							<th class="m-1 b-1"> birthdate</th>
 					        <th class="m-1 b-1">Telephone</th>
+					        <th class="m-1 b-1">Hired Date</th>
 
 							{{-- @can('driver edit') --}}
 							<th class="m-1 b-1" width="3%">Details</th>

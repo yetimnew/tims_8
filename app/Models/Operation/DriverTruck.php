@@ -34,11 +34,15 @@ class DriverTruck extends Pivot
 
     public function performances()
     {
-        return $this->belongsToMany('App\Performance');
+        return $this->belongsTo(Performance::class);
     }
-    public function drivers()
+    public function driver()
     {
-        return $this->belongsToMany('App\Driver');
+        return $this->belongsTo(Driver::class,'driver_id');
+    }
+    public function truck()
+    {
+        return $this->belongsTo(Truck::class,'truck_id');
     }
     public function user()
     {
@@ -57,4 +61,5 @@ class DriverTruck extends Pivot
         $formated = $diff->d . ' days ' . $diff->h . ' hours ' .  $diff->i . ' miniutes';
         return $formated;
     }
+
 }

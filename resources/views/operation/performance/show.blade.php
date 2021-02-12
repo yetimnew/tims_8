@@ -1,22 +1,21 @@
 @extends( 'master.app' )
-@section( 'title', 'TIMS | Performance show' )
+@section( 'title', 'TIMS | Performance show Fo Number ' . $performance->fo_number)
 
 @section('content')
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{route('dasboard')}}">Home</a>
-    </li>
-    <li class="breadcrumb-item active">Performance</li>
-    <li class="breadcrumb-item active">Show</li>
-</ol>
-
-
+<header class="page-header mb-4">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Performance</li>
+        </ol>
+    </div>
+  </header>
 <div class="col-md-12">
     <div class="card text-left">
         <div class="card-header">
             <div class="d-flex align-items-center">
-                <h2>Details of FO Number <span class="text-danger"> {{$performance->FOnumber}} </span> </h2>
+                <h2>Details of FO Number <span class="text-danger"> {{$performance->fo_number}} </span> </h2>
                 <div class="ml-auto">
-                    <a href="{{route('performace')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
+                    <a href="{{route('performance.index')}}" class="btn btn-outline-primary"> <i class="fa fa-backward mr-1"
                             aria-hidden="true"> Back</i> </a>
                 </div>
             </div>
@@ -27,7 +26,7 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Fo Number</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$performance->FOnumber}}</h4>
+                            <h4 class="col-form-label ">{{$performance->fo_number}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -35,8 +34,7 @@
                         <div class="col-lg-8">
                             @if ($performance->trip == 1)
                             <h4 class="col-form-label ">Yes </h4>
-                            @endif
-                            @if ($performance->trip == 0)
+                            @else
                             <h4 class="col-form-label ">No</h4>
                             @endif
                         </div>
@@ -46,8 +44,7 @@
                         <div class="col-lg-8">
                             @if ($performance->LoadType == 0)
                             <h4 class="col-form-label ">Return Load</h4>
-                            @endif
-                            @if ($performance->LoadType == 1)
+                            @else
                             <h4 class="col-form-label ">Main Load</h4>
                             @endif
                         </div>
@@ -69,33 +66,33 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Driver Id</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{($d->driverid)}}</h4>
+                            <h4 class="col-form-label ">{{($d->DriverId)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Driver Name</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{($d->name)}}</h4>
+                            <h4 class="col-form-label ">{{($d->Name)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Plate Number</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{($d->plate)}}</h4>
+                            <h4 class="col-form-label ">{{($d->Plate)}}</h4>
                         </div>
                     </div>
                     @endforeach
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Date Dispatch</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$performance->DateDispach}} ||
-                                {{$performance->DateDispach->diffForHumans()}}</h4>
+                            <h4 class="col-form-label ">{{$performance->date_dispatch}} ||
+                            </h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Origin Place</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0">{{$performance->orgion->name}}</h4>
+                            <h4 class="col-form-label m-0">{{$performance->origin->name}}</h4>
                         </div>
                     </div>
 
@@ -133,20 +130,20 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Distance with Cargo</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->DistanceWCargo,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->distance_with_cargo,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Distance without Cargo</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->DistanceWOCargo,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->distance_without_cargo,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Total Distance KM</label>
                         <div class="col-lg-8 m-0">
                             <h4 class="col-form-label m-0 ">
-                                {{number_format($performance->DistanceWCargo + $performance->DistanceWOCargo,2)}}</h4>
+                                {{number_format($performance->distance_with_cargo + $performance->distance_without_cargo,2)}}</h4>
                         </div>
                     </div>
 
@@ -154,25 +151,25 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Load by Tone</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->CargoVolumMT,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->tone,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Tone KM</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->tonkm,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->ton_km,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Fuel by Litter</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->fuelInLitter,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->fuelIn_litter,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Fuel by Birr</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->fuelInBirr,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->fuelIn_birr,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -184,20 +181,20 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Oprational Exp.</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->workOnGoing,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->operational_expense,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
-                        <label class="col-form-label col-lg-4 m-0">Other Exp.</label>
+                        <label class="col-form-label col-lg-4 m-0">other Exp.</label>
                         <div class="col-lg-8 m-0">
-                            <h4 class="col-form-label m-0 ">{{number_format($performance->other,2)}}</h4>
+                            <h4 class="col-form-label m-0 ">{{number_format($performance->other_expense,2)}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4 m-0">Total Exp.</label>
                         <div class="col-lg-8 m-0">
                             <h4 class="col-form-label m-0 ">
-                                {{number_format(($performance->workOnGoing + $performance->perdiem + $performance->fuelInBirr + $performance->other ), 2)}}
+                                {{number_format(($performance->operational_expense + $performance->perdiem + $performance->fuelIn_birr + $performance->other_expense ), 2)}}
                             </h4>
                         </div>
                     </div>
@@ -206,27 +203,25 @@
                         <label class="col-form-label col-lg-4 m-0">Revenue</label>
                         <div class="col-lg-8 m-0">
                             <h4 class="col-form-label m-0 ">
-                                {{number_format(($performance->operation->tariff * $performance->tonkm ), 2)}}</h4>
+                                {{number_format(($performance->operation->tariff * $performance->ton_km ), 2)}}</h4>
                         </div>
                     </div>
 
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Current Status</label>
                         <div class="col-lg-8">
-                            @if ($performance->is_returned == 0)
-                            <h4 class="col-form-label ">Not returned</h4>
-                            @endif
-                            @if ($performance->is_returned == 1)
+                            @if ($performance->is_returned)
                             <h4 class="col-form-label ">Returned</h4>
+                            @else
+                            <h4 class="col-form-label ">Not returned</h4>
                             @endif
                         </div>
                     </div>
-                    @if ($performance->is_returned == 1)
+                    @if ($performance->is_returned)
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Returned Date</label>
                         <div class="col-lg-8">
                             <h4 class="col-form-label m-0 ">{{$performance->returned_date}}</h4>
-
                         </div>
                     </div>
 
@@ -249,7 +244,7 @@
                             @if ($difinday < 1) <h4 class="col-form-label m-0 "> Returned Less than a day </h4>
                                 @else
                                 <h4 class="col-form-label m-0 ">
-                                    {{number_format(($performance->DistanceWOCargo + $performance->DistanceWCargo )/$difinday,2)}}
+                                    {{number_format(($performance->distance_without_cargo + $performance->distance_with_cargo )/$difinday,2)}}
                                     KM</h4>
                                 @endif
                         </div>
@@ -259,6 +254,12 @@
                         <label class="col-form-label col-lg-4 m-0">Created By</label>
                         <div class="col-lg-8 m-0">
                             <h4 class="col-form-label m-0 ">{{$performance->user->name}}</h4>
+                        </div>
+                    </div>
+                    <div class="form-group row m-0">
+                        <label class="col-form-label col-lg-4 m-0">Last Updated By</label>
+                        <div class="col-lg-8 m-0">
+                            <h4 class="col-form-label m-0 ">{{$performance->updatedby->name}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -282,21 +283,21 @@
                         </div>
                     </div>
                 </div>
-                @can('performance edit')
+                {{-- @can('performance edit') --}}
                 <div class='ml-1 p-1'>
-                    <a href="{{route('performace.edit',['id'=> $performance->id])}}" class="btn btn-info"> <i
+                    <a href="{{route('performance.edit',$performance->id)}}" class="btn btn-info"> <i
                             class="fa fa-edit"></i> Edit </a>
                 </div>
 
-                @endcan
+                {{-- @endcan
 
 
-                @can('performance delete')
+                @can('performance delete') --}}
                 <div class='m-1 p-1'>
                     <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$performance->id}})"
                         data-target="#DeleteModal" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
                 </div>
-                @endcan
+                {{-- @endcan --}}
             </div>
         </div>
     </div>
@@ -339,7 +340,7 @@
     function deleteData(id)
      {
          var id = id;
-         var url = '{{ route("performace.destroy", ":id") }}';
+         var url = '{{ route("performance.destroy", ":id") }}';
          url = url.replace(':id', id);
          $("#deleteForm").attr('action', url);
      }

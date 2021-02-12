@@ -135,7 +135,7 @@
         <div class="form-group required">
             <label class="control-label"> Triff per Ton KM</label>
             <div class="input-group">
-                <input name="tariff" type="text" id="tariff"
+                <input name="tariff" type="number" step="0" pattern="\d+"id="tariff"
                     class="form-control {{ $errors->has('tariff') ? ' is-invalid' : '' }}"
                     value="{{ old('tariff') ?? $operation->tariff}}" onfocusout="validateTariff()">
                 @if ($errors->has('tariff'))

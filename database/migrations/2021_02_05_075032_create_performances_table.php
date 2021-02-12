@@ -42,7 +42,10 @@ class CreatePerformancesTable extends Migration
             $table->boolean('status')->default(1);
             $table->boolean('is_returned')->default(0);
             $table->dateTime('returned_date')->nullable();
-            $table->bigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('restrict');
+            $table->unsignedBigInteger('updated_by');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('restrict');
             $table->softDeletes();
             $table->timestamps();
         });

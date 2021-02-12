@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Operation;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PerformanceCreateRequest;
+use App\Http\Requests\PerformanceUpdateRequest;
+use App\Models\Operation\Distance;
 use App\Models\Operation\Operation;
 use App\Models\Operation\Performance;
 use App\Models\Operation\Place;
 use App\Models\Operation\Truck;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
@@ -69,23 +74,19 @@ class PerformanceController extends Controller
         return view('operation.performance.index');
     }
 
-    public function create()
+    public function create(Performance $performance)
     {
-        $performance = new  Performance;
-        $operations =  Operation::active()->where('is_closed', '=', 1)->get();
+        // $performance = new  Performance;
+        $operations =  Operation::active()->where('is_closed', '=', 0)->get();
         $place = Place::with(['woreda'])->active()->orderBy('name')->get();
         $trucks = Truck::active()->get();
 
         $driver_truck = DB::table('driver_truck')
-            ->select(
-                'driver_truck.id',
-                'driver_truck.status',
-                'driver_truck.is_attached',
-                'drivers.name'
-            )
-            ->LEFTJOIN('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
-            ->where('driver_truck.is_attached', 1)
-            ->orderBy('drivers.name')
+            ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
+            ->join('trucks', 'trucks.id', '=', 'driver_truck.truck_id')
+            ->select('driver_truck.*', 'drivers.name as Name', 'drivers.driverid as DriverId', 'trucks.plate AS Plate')
+            ->where('driver_truck.status', '=', 1)
+            ->orderBy('driver_truck.updated_at', 'DESC')
             ->get();
         if ($place->count() < 2) {
             Session::flash('info', 'You must have two or more Place before attempting to create Performance');
@@ -110,75 +111,76 @@ class PerformanceController extends Controller
             ->with('place', $place);
     }
 
-    public function store(PerformanceCreateRequest $request)
+    public function store(PerformanceCreateRequest $request, Performance $performance)
     {
-        $available_tone = Operation::where('id', $request->operation)->sum('volume');
+        // dd($request->all());
+      $available_tone = Operation::where('id', $request->operation_id)->sum('volume');
 
-        $liffted_ton_erte = Performance::where('operation_id', $request->operation)->sum('CargoVolumMT');
-        $liffted_ton_os = Outsource_performance::where('operation_id', $request->operation)->sum('CargoVolumMT');
-        $total_uplifted =  $liffted_ton_erte +  $liffted_ton_os;
+        $lifted_ton_erte = Performance::where('operation_id', $request->operation)->sum('tone');
+        // $liffted_ton_os = Outsource_performance::where('operation_id', $request->operation)->sum('CargoVolumMT');
+        $lifted_ton_os = 0;
+        $total_uplifted =  $lifted_ton_erte +  $lifted_ton_os;
 
         if ($total_uplifted <  $available_tone) {
-            $performance = new Performance;
-            $performance->trip = $request->trip;
-            $performance->LoadType = $request->chinet;
-            $performance->FOnumber = $request->fo;
-            $performance->operation_id = $request->operation;
-            $performance->driver_truck_id = $request->truck;
-            $performance->DateDispach = $request->ddate;
-            $performance->orgion_id = $request->origion;
-            $performance->destination_id = $request->destination;
-            $performance->DistanceWCargo = $request->diswc;
-            $performance->DistanceWOCargo = $request->diswoc;
-            $performance->tonkm = $request->tonkm;
-            $performance->CargoVolumMT = $request->cargovol;
-            //  $performance->tonkm = (($request->diswc ) * ($request->cargovol)) ;
-            $performance->fuelInLitter = $request->fuell;
-            $performance->fuelInBirr = $request->fuelb;
-            $performance->perdiem = $request->perdiem;
-            $performance->workOnGoing = $request->wog;
-            $performance->other = $request->other;
-            $performance->comment = $request->comment;
-            $performance->user_id = Auth::user()->id;
+            // $performance::create($request->all());
+            $performance->trip= $request-> trip;
+            $performance->load_type= $request-> load_type;
+            $performance->fo_number= $request-> fo_number;
+            $performance->operation_id= $request-> operation_id;
+            $performance->driver_truck_id= $request-> driver_truck_id;
+            $performance->date_dispatch= $request-> date_dispatch;
+            $performance->origin_id= $request-> origin_id;
+            $performance->destination_id= $request-> destination_id;
+            $performance->distance_without_cargo= $request-> distance_without_cargo;
+            $performance->distance_with_cargo= $request-> distance_with_cargo;
+            $performance->tone= $request-> tone;
+            $performance->ton_km= $request-> ton_km;
+            $performance->fuelIn_litter= $request-> fuelIn_litter;
+            $performance->fuelIn_birr= $request-> fuelIn_birr;
+            $performance->perdiem= $request-> perdiem;
+            $performance->operational_expense= $request-> operational_expense;
+            $performance->other_expense= $request-> other_expense;
+            $performance->comment= $request-> comment;
+             $performance->status= 1;
+            $performance->is_returned= 0;
+            $performance->created_by = Auth::user()->id;
+            $performance->updated_by = Auth::user()->id;
 
             $performance->save();
+
             $unreturended = Performance::where('driver_truck_id', '=', $performance->driver_truck_id)->where('is_returned', '=', 0)->get();
             if ($unreturended->count() > 0) {
                 Session::flash('error', 'This Truck Or Driver is not returned yet. Do not forget to return');
-                return redirect()->route('performace');
+                return redirect()->route('performance.index');
             } else {
 
-                Session::flash('success', 'Performance  registerd successfuly');
-                return redirect()->route('performace');
+                Session::flash('success', 'Performance  registered successfully');
+                return redirect()->route('performance.index');
             }
 
-            auth()->user()->notify(new PerformanceCreated);
+            // auth()->user()->notify(new PerformanceCreated);
         } else {
             Session::flash('error', 'NOT REGISTERED This Operation is Full');
-            return redirect()->route('performace.create');
+            return redirect()->back();
         }
     }
 
-    public function show($id)
+    public function show(Performance $performance)
     {
-        $performance = Performance::with('destination')->findOrFail($id);
+        // $performance = Performance::with('destination')->findOrFail($id);
+        // dd($performance->origin->name);
         $start =  Carbon::parse($performance->DateDispach);
         $end  =  Carbon::parse($performance->returned_date);
         $difinday = $end->diffInDays($start);
         $diffinhour = $end->diffInHours($start);
         $operations = Operation::active()->get();
         $driver_detail =  DB::table('driver_truck')
-            ->select(
-                'driver_truck.id',
-                'driver_truck.driverid',
-                'driver_truck.plate',
-                'driver_truck.date_recived',
-                'driver_truck.status',
-                'drivers.name'
-            )
-            ->LEFTJOIN('drivers', 'drivers.driverid', '=', 'driver_truck.driverid')
-            ->where('driver_truck.id', '=', $performance->driver_truck_id)
-            ->get();
+        ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
+        ->join('trucks', 'trucks.id', '=', 'driver_truck.truck_id')
+        ->select('driver_truck.*', 'drivers.name as Name', 'drivers.driverid as DriverId', 'trucks.plate AS Plate')
+        ->where('driver_truck.status', '=', 1)
+        ->orderBy('driver_truck.updated_at', 'DESC')
+        ->get();
         // dd( $driver_detail);
         return view('operation.performance.show')
             ->with('performance', $performance)
@@ -188,26 +190,23 @@ class PerformanceController extends Controller
             ->with('driver_detail', $driver_detail);
     }
 
-    public function edit($id)
+    public function edit(Performance $performance)
     {
 
-        $performance = Performance::findOrFail($id);
+        // $performance = Performance::findOrFail($id);
+       dd($performance->is_trip);
+
         $operations =  Operation::active()->get();
         $place = Place::active()->get();
         $trucks = Truck::active()->get();
 
         $driver_truck = DB::table('driver_truck')
-            ->select(
-                'driver_truck.id',
-                'driver_truck.driverid',
-                'driver_truck.plate',
-                'driver_truck.status',
-                'driver_truck.is_attached',
-                'drivers.name'
-            )
-            ->LEFTJOIN('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
-            ->orderBy('drivers.name')
-            ->get();
+        ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
+        ->join('trucks', 'trucks.id', '=', 'driver_truck.truck_id')
+        ->select('driver_truck.*', 'drivers.name as Name', 'drivers.driverid as DriverId', 'trucks.plate AS Plate')
+        ->where('driver_truck.status', '=', 1)
+        ->orderBy('driver_truck.updated_at', 'DESC')
+        ->get();
 
         return view('operation.performance.edit')
             ->with('performance', $performance)
@@ -219,34 +218,37 @@ class PerformanceController extends Controller
 
     }
 
-    public function update(PerformanceUpdateRequest $request, $id)
+    public function update(PerformanceUpdateRequest $request, Performance $performance)
     {
 
+    $performance->trip= $request-> trip;
+    $performance->load_type= $request-> load_type;
+    $performance->fo_number= $request-> fo_number;
+    $performance->operation_id= $request-> operation_id;
+    $performance->driver_truck_id= $request-> driver_truck_id;
+    $performance->date_dispatch= $request-> date_dispatch;
+    $performance->origin_id= $request-> origin_id;
+    $performance->destination_id= $request-> destination_id;
+    $performance->distance_without_cargo= $request-> distance_without_cargo;
+    $performance->distance_with_cargo= $request-> distance_with_cargo;
+    $performance->tone= $request-> tone;
+    $performance->ton_km= $request-> ton_km;
+    $performance->fuelIn_litter= $request-> fuelIn_litter;
+    $performance->fuelIn_birr= $request-> fuelIn_birr;
+    $performance->perdiem= $request-> perdiem;
+    $performance->operational_expense= $request-> operational_expense;
+    $performance->other_expense= $request-> other_expense;
+    $performance->comment= $request-> comment;
+    $performance->status= 1;
+    $performance->is_returned=  $request-> is_returned;
+    $performance->returned_date=  $request-> returned_date;
+    $performance->created_by =   $performance->created_by;
+    $performance->updated_by = Auth::user()->id;
 
-        $performance = Performance::findOrFail($id);
-        $performance->trip = $request->trip;
-        $performance->LoadType = $request->chinet;
-        $performance->FOnumber = $request->fo;
-        $performance->operation_id = $request->operation;
-        $performance->driver_truck_id = $request->truck;
-        $performance->DateDispach = $request->ddate;
-        $performance->orgion_id = $request->origion;
-        $performance->destination_id = $request->destination;
-        $performance->DistanceWCargo = $request->diswc;
-        $performance->DistanceWOCargo = $request->diswoc;
-        $performance->tonkm = $request->tonkm;
-        $performance->CargoVolumMT = $request->cargovol;
-        $performance->fuelInLitter = $request->fuell;
-        $performance->fuelInBirr = $request->fuelb;
-        $performance->perdiem = $request->perdiem;
-        $performance->workOnGoing = $request->wog;
-        $performance->other = $request->other;
-        $performance->comment = $request->comment;
-        $performance->is_returned = $request->returned;
-        $performance->returned_date = $request->r_date;
+// dd(   $performance);
         $performance->save();
-        Session::flash('success', 'Fo  Number ' . $performance->FOnumber . ' updated successfuly');
-        return redirect()->route('performace.show', ['id' => $performance->id]);
+        Session::flash('success', 'FO  Number ' . $performance->fo_number . ' updated successfully');
+        return redirect()->route('performance.show', $performance->id);
     }
 
     public function destroy($id)
@@ -284,7 +286,6 @@ class PerformanceController extends Controller
     public function ajaxRequest()
 
     {
-
         return view('operation.performance.index');
     }
 
