@@ -16,7 +16,8 @@
               <p>{{Auth::user()->mobile}}</p>
             </div>
           </div>
-          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <!-- Sidebar Navidation Menus-->
+          <span class="heading">Operation</span>
           <ul class="list-unstyled">
             <li  class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
               <a href="{{ route('dashboard')}}"> <i class="icon-home"></i>Home </a>
@@ -69,29 +70,32 @@
                   <li  class="{{ request()->routeIs('distance.*') ? 'active' : '' }}">
                     <a href="{{ route('distance.index')}}" > <i class="icon-padnote"></i>Distance </a>
                   </li>
-
-
               </ul>
             </li>
-            <li>
-              <a href="login.html">
-                <i class="icon-interface-windows"></i>Login page
-              </a>
-            </li>
           </ul>
-          <span class="heading">Extras</span>
+          <span class="heading">Maintenance</span>
           <ul class="list-unstyled">
-            <li>
-              <a href="#"> <i class="icon-flask"></i>Demo </a>
-            </li>
-            <li>
-              <a href="#"> <i class="icon-screen"></i>Demo </a>
-            </li>
-            <li>
-              <a href="#"> <i class="icon-mail"></i>Demo </a>
-            </li>
-            <li>
-              <a href="#"> <i class="icon-picture"></i>Demo </a>
-            </li>
+            <li  class="{{ request()->routeIs('downtime.*') ? 'active' : '' }}">
+                <a href="{{ route('downtime.index')}}"> <i class="icon-grid"></i>Downtimes </a>
+              </li>
+            <li  class="{{ request()->routeIs('job_card_type.*') ? 'active' : '' }}">
+                <a href="{{ route('job_card_type.index')}}"> <i class="icon-grid"></i>Job Card Type </a>
+              </li>
+            <li  class="{{ request()->routeIs('job_system.*') ? 'active' : '' }}">
+                <a href="{{ route('job_system.index')}}"> <i class="icon-grid"></i>Job System</a>
+              </li>
+
+            <li  class="{{ request()->routeIs('job_type.*') ? 'active' : '' }}">
+                <a href="{{ route('job_type.index')}}"> <i class="icon-grid"></i>Job Type</a>
+              </li>
+            <li  class="{{ request()->routeIs('job_ident.*') ? 'active' : '' }}">
+                <a href="{{ route('job_ident.index')}}"> <i class="icon-screen"></i>Job ident</a>
+              </li>
+            <li  class="{{ request()->routeIs('workshop.*') ? 'active' : '' }}">
+                <a href="{{ route('workshop.index')}}"> <i class="icon-mail"></i>Workshop</a>
+              </li>
+            <li  class="{{ request()->routeIs('open_job_card.*') ? 'active' : '' }}">
+                <a href="{{ route('open_job_card.index')}}"> <i class="icon-picture"></i>Open Job Card</a>
+              </li>
           </ul>
         </nav>

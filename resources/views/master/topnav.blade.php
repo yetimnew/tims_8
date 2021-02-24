@@ -1,7 +1,7 @@
 <body>
-    <div class="page">
+    <div class="page" id="app">
       <!-- Main Navbar-->
-      <header class="header"  id="app">
+      <header class="header"  >
         <nav class="navbar">
           <!-- Search Box-->
           <div class="search-box">
@@ -44,83 +44,7 @@
                   <a id="search" href="#"><i class="icon-search"></i></a>
                 </li>
                 <!-- Notifications-->
-                <li class="nav-item dropdown">
-                  <a
-                    id="notifications"
-                    rel="nofollow"
-                    data-target="#"
-                    href="#"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    class="nav-link"
-                    ><i class="fa fa-bell-o"></i
-                    ><span class="badge bg-red badge-corner">12</span></a
-                  >
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li>
-                      <a rel="nofollow" href="#" class="dropdown-item">
-                        <div class="notification">
-                          <div class="notification-content">
-                            <i class="fa fa-envelope bg-green"></i>You have 6
-                            new messages
-                          </div>
-                          <div class="notification-time">
-                            <small>4 minutes ago</small>
-                          </div>
-                        </div></a
-                      >
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="#" class="dropdown-item">
-                        <div class="notification">
-                          <div class="notification-content">
-                            <i class="fa fa-twitter bg-blue"></i>You have 2
-                            followers
-                          </div>
-                          <div class="notification-time">
-                            <small>4 minutes ago</small>
-                          </div>
-                        </div></a
-                      >
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="#" class="dropdown-item">
-                        <div class="notification">
-                          <div class="notification-content">
-                            <i class="fa fa-upload bg-orange"></i>Server
-                            Rebooted
-                          </div>
-                          <div class="notification-time">
-                            <small>4 minutes ago</small>
-                          </div>
-                        </div></a
-                      >
-                    </li>
-                    <li>
-                      <a rel="nofollow" href="#" class="dropdown-item">
-                        <div class="notification">
-                          <div class="notification-content">
-                            <i class="fa fa-twitter bg-blue"></i>You have 2
-                            followers
-                          </div>
-                          <div class="notification-time">
-                            <small>10 minutes ago</small>
-                          </div>
-                        </div></a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        rel="nofollow"
-                        href="#"
-                        class="dropdown-item all-notifications text-center"
-                      >
-                        <strong>view all notifications </strong></a
-                      >
-                    </li>
-                  </ul>
-                </li>
+                <example-component></example-component>
                 <!-- Messages                        -->
                 <li class="nav-item dropdown">
                   <a
@@ -140,7 +64,7 @@
                       <a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile">
                           <img
-                            src="img/avatar-1.jpg"
+                            src="{{ asset ('img/avatar-1.jpg') }}"
                             alt="..."
                             class="img-fluid rounded-circle"
                           />
@@ -155,7 +79,7 @@
                       <a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile">
                           <img
-                            src="img/avatar-2.jpg"
+                            src="{{ asset ('img/avatar-2.jpg') }}"
                             alt="..."
                             class="img-fluid rounded-circle"
                           />
@@ -170,7 +94,7 @@
                       <a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile">
                           <img
-                            src="img/avatar-3.jpg"
+                            src="{{ asset ('img/avatar-3.jpg')}}"
                             alt="..."
                             class="img-fluid rounded-circle"
                           />

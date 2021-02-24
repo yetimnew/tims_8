@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\HRM;
+namespace App\Http\Controllers\Maintenance;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;

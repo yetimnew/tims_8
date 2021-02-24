@@ -64,6 +64,7 @@ class PlaceController extends Controller
 
     public function store(Request $request, Place $place)
     {
+        // dd($request->all());
         $this->validate($request, [
             'woreda_id' => 'required',
             'name' => 'required|unique:places',

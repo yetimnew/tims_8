@@ -25,13 +25,14 @@
 		</div>
 
 		<div class="card-body">
-			<form method="post" action="{{route('place.store')}}" class="form-horizontal" id="place_reg">
+			<form method="post" action="{{route('place.store')}}" class="form-horizontal" >
 				@csrf
 				@include('operation.place.form')
-				<div class="form-group required">
-					<button type="submit" class="btn btn-primary" name="save">Save</button>
-				</div>
-            </form>
-		</div>
-	</div>
+				<div class="form-group required pull-right">
+                    <button type="submit" class="btn btn-primary" name="save" >Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 @endsection

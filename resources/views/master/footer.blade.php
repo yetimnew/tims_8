@@ -28,9 +28,9 @@
 {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/popper.js/umd/popper.min.js') }}"></script> --}}
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+{{-- <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script> --}}
 <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
-<script src=" {{asset('js/charts-home.js')}}"></script>
+{{-- <script src=" {{asset('js/charts-home.js')}}"></script> --}}
 
 <script src="{{ asset('js/select2.min.js') }}"> </script>
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"> </script>
@@ -64,7 +64,8 @@
       @endif
 
 </script>
-@yield('javascript')
+@section('javascript')
+@endsection
 </body>
 
 </html>

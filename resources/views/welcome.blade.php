@@ -39,6 +39,7 @@
                                     <p><i class="fa fa-google"></i> &nbsp; yetimnew@gmail.com</p>
                                     <p><i class="fa fa-facebook"></i> &nbsp; https://www.facebook.com</p>
 
+
                                 </div>
                             </div>
 

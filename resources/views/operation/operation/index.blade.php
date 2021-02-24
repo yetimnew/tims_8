@@ -96,8 +96,6 @@
     </div>
 </div>
 
-
-
 @endsection
 @section('javascript')
 
@@ -108,15 +106,11 @@
 				"pageLength": 25,
 				// "scrollY": 100,
 				'columnDefs': [ {
-
-				// 'targets': [10,11,12], /* column index */
-
 				'orderable': false, /* true or false */
 
 				}]
 				});
 			} );
-
-
 </script>
+
 @endsection

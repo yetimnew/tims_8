@@ -4,9 +4,8 @@
 <!-- Side Navbar -->
 @include('master.sidenav')
 <div class="content-inner">
+
                 @yield('content')
 
     @include('master.footer')
-    @section('javascript')
-
-    @endsection
+    @yield('javascript')

@@ -4,9 +4,8 @@
     <div class="col-md-6">
         <div class="form-group mb-0 required">
             <label class="control-label" for="operationid">Requisition No/Operation Id</label>
-
             <div class="input-group">
-                <input name="operationid" type="text" id="operationid" autofocus
+                <input name="operationid" type="text" id="operationid"
                     class="form-control select {{ $errors->has('operationid') ? ' is-invalid' : '' }}"
                     value="{{old('operationid') ?? $operation->operationid}}" onfocusout="validateoperationid()">
                 @if ($errors->has('operationid'))
@@ -135,7 +134,7 @@
         <div class="form-group required">
             <label class="control-label"> Triff per Ton KM</label>
             <div class="input-group">
-                <input name="tariff" type="number" step="0" pattern="\d+"id="tariff"
+                <input name="tariff" type="text"  id="tariff"
                     class="form-control {{ $errors->has('tariff') ? ' is-invalid' : '' }}"
                     value="{{ old('tariff') ?? $operation->tariff}}" onfocusout="validateTariff()">
                 @if ($errors->has('tariff'))

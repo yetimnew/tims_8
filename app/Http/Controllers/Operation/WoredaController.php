@@ -54,9 +54,9 @@ class WoredaController extends Controller
         $regions = Region::all();
         $zones = Zone::with('region')->orderBy('name')->get();
         $woredas = Woreda::all();
-        if ($regions->count() == 0) {
+        if ($zones->count() == 0) {
             Session::flash('info', 'You must have some Region  before attempting to create Truck');
-            return redirect()->route('region.index');
+            return redirect()->route('zone.index');
         }
 
         return view('operation.woreda.create')

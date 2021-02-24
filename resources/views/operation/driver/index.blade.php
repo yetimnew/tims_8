@@ -18,14 +18,14 @@
 		<div class="card-header">
 			<div class="d-flex align-items-center">
 				<h2>All Drivers </h2>
-				{{-- @can('customer create') --}}
 
+                {{-- @can('customer create') --}}
 				<div class="ml-auto">
 					<a href="{{route('driver.create')}}" class="btn btn-outline-primary"><i
 							class="fafa-plus mr-1"></i>Add Driver</a>
-
 				</div>
 				{{-- @endcan --}}
+
 			</div>
 		</div>
 
@@ -58,15 +58,12 @@
 						@if ($drivers->count()> 0)
 						@foreach ($drivers as $driver)
 						<tr>
-
 							<td class='p-1'>{{++$no}}</td>
 							<td class='p-1'>{{$driver->driverid}}</td>
 							<td class='p-1'>{{$driver->name}}</td>
 							<td class='p-1 text-center'>{{$driver->birth_date}}</td>
                             <td class='p-1 text-center'>{{$driver->mobile}}</td>
 							<td class='p-1 text-center'>{{$driver->hired_date}}</td>
-
-                           </td>
 							{{-- @can('driver edit') --}}
 							<td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="Edit"><a
 									href="{{route('driver.show', $driver->id)}}"><i class="fa fa-edit"></i></a>
@@ -91,26 +88,18 @@
 
 		</div>
 	</div>
-
-
-	@endsection
-	@section('javascript')
-
-	<script>
-		$( document ).ready( function () {
-				$( '#drivers' ).DataTable( {
-
-				"pageLength": 25,
-				// "scrollY": 100,
-				'columnDefs': [ {
-
-				// 'targets': [11,12,13], /* column index */
-
-				'orderable': false, /* true or false */
-
-				}]
-				});
-
-			} );
-	</script>
-	@endsection
+</div>
+    @endsection
+    @section('javascript')
+    <script>
+        $( document ).ready( function () {
+            $( '#drivers' ).DataTable( {
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "pageLength": 10,
+                'columnDefs': [ {
+                'orderable': false, /* true or false */
+                    }]
+            } );
+        } );
+    </script>
+    @endsection

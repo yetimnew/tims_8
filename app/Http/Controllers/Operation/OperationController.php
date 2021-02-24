@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Operation;
 
+use App\Events\OperationCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OperationCreatedRequst;
 use App\Http\Requests\OperationUpdatedRequest;
 use App\Models\Operation\Customer;
 use App\Models\Operation\Operation;
+use App\Models\Operation\Performance;
 use App\Models\Operation\Place;
 use App\Models\Operation\Region;
 use Illuminate\Http\Request;
@@ -51,7 +53,6 @@ class OperationController extends Controller
     {
         // dd($request->all());
 
-        $operation = new Operation;
         $operation->operationid = $request->operationid;
         $operation->customer_id = $request->customer_id;
         $operation->start_date = $request->start_date;
@@ -64,6 +65,7 @@ class OperationController extends Controller
         $operation->updated_by = Auth::user()->id;
         $operation->save();
         // alert()->success('SuccessAlert','operation  registerd successfuly.');
+        event(new OperationCreatedEvent($operation));
         Session::flash('success', 'operation  registered successfully');
         return redirect()->route('operation.index');
     }
@@ -166,6 +168,7 @@ class OperationController extends Controller
         Session::flash('success', 'Operation updated successfully.');
         // alert()->success('SuccessAlert', 'operation updated successfully.');
         // Session::flash('success', 'operation updated successfuly' );
+        event(new OperationCreatedEvent($operation));
         return redirect()->route('operation.show' ,$operation->id );
     }
 
