@@ -7,9 +7,9 @@
             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
             </li>
             <li class="breadcrumb-item active">Customer Create</li>
-            </ol>
+        </ol>
     </div>
-  </header>
+</header>
 
 <div class="container">
     <div class="card">
@@ -35,7 +35,6 @@
 
                 <div class="form-group required pull-right">
                     <button type="submit" class="btn btn-primary" name="save">Save</button>
-
 
                 </div>
             </form>

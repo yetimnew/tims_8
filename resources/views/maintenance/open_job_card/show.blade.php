@@ -139,7 +139,7 @@
                     </div>
                     <div class='col-4 m-1 p-1'>
                         <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$ojc->id}})"
-                            data-target="#DeleteModal" class="btn btn-danger"><i class="fas fa-trash"> </i>
+                            data-target="#DeleteModal" class="btn btn-danger"><i class="fa fa-trash"> </i>
                             Delete</a>
                     </div>
                 </div>

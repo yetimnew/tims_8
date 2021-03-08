@@ -3,18 +3,18 @@
 
 @section( 'content' )
 
-    <header class="page-header mb-4">
-        <div class="container-fluid">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
-                </li>
-                <li class="breadcrumb-item active">Distance</li>
-            </ol>
-        </div>
-    </header>
+<header class="page-header mb-4">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item active">Distance</li>
+        </ol>
+    </div>
+</header>
 
-    <div class="container">
-      <div class="card text-left">
+<div class="container">
+    <div class="card text-left">
 
         <div class="card-header">
 

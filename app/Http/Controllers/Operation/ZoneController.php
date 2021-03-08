@@ -29,7 +29,7 @@ class ZoneController extends Controller
                 ->orderBy('zones.name')
                 ->get();
 
-            return DataTables::of($zones)
+ return DataTables::of($zones)
                 ->addColumn('details', function ($zones) {
                     $button = '<a href="' . route('zone.show', $zones->id) . '"> <i class="fa fa-edit"></a>';
                     return $button;

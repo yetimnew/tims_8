@@ -54,11 +54,11 @@
 
                             {{-- @can('driver edit') --}}
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
-                                <a href="{{route('downtime.edit', $downtime->id)}}"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('downtime.edit', $downtime->id)}}"><i class="fa fa-edit "></i></i></a>
                             </td>
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
                                 <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$downtime->id}})"
-                                    data-target="#DeleteModal"><i class="fas fa-trash red"></i>
+                                    data-target="#DeleteModal"><i class="fa fa-trash red"></i>
                                 </a>
                             </td>
                             {{-- @endcan --}}
@@ -94,7 +94,7 @@
                         @csrf
                         @method('DELETE')
                         <p class="text-center">Are You Sure Want To Delete ? Down time <span class="font-weight-bold">
-                             </span> </p>
+                            </span> </p>
                     </div>
                     <div class="modal-footer">
 

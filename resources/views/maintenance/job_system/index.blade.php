@@ -54,11 +54,12 @@
 
                             {{-- @can('driver edit') --}}
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
-                                <a href="{{route('job_system.edit', $jobsystem->id)}}"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('job_system.edit', $jobsystem->id)}}"><i
+                                        class="fa fa-edit "></i></i></a>
                             </td>
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
                                 <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$jobsystem->id}})"
-                                    data-target="#DeleteModal" class=""><i class="fas fa-trash red"></i>
+                                    data-target="#DeleteModal" class=""><i class="fa fa-trash red"></i>
                                 </a>
                             </td>
                             {{-- @endcan --}}
@@ -78,43 +79,43 @@
 
         </div>
     </div>
-    </div>
-    <!-- Modal -->
-    <div id="DeleteModal" class="modal fade text-danger" role="dialog">
-        <div class="modal-dialog ">
-            <!-- Modal content-->
-            <form action="" id="deleteForm" method="post">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                        <h4 class="modal-title text-center text-white">DELETE CONFIRMATION</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @csrf
-                        @method('DELETE')
-                        <p class="text-center">Are You Sure Want To Delete ? Down time <span class="font-weight-bold">
-                             </span> </p>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                        <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
-                            onclick="formSubmit()">Yes, Delete</button>
-
-                    </div>
+</div>
+<!-- Modal -->
+<div id="DeleteModal" class="modal fade text-danger" role="dialog">
+    <div class="modal-dialog ">
+        <!-- Modal content-->
+        <form action="" id="deleteForm" method="post">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title text-center text-white">DELETE CONFIRMATION</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
-        </div>
+                <div class="modal-body">
+                    @csrf
+                    @method('DELETE')
+                    <p class="text-center">Are You Sure Want To Delete ? Down time <span class="font-weight-bold">
+                        </span> </p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                    <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
+                        onclick="formSubmit()">Yes, Delete</button>
+
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
 
-    @endsection
-    @section('javascript')
+@endsection
+@section('javascript')
 
-    <script>
-        function deleteData(id){
+<script>
+    function deleteData(id){
          var id = id;
          var url = '{{ route("job_system.destroy", ":id") }}';
          url = url.replace(':id', id);
@@ -126,10 +127,10 @@
      {
          $("#deleteForm").submit();
      }
-    </script>
-    <script>
-        $(document).ready( function () {
+</script>
+<script>
+    $(document).ready( function () {
         $('#job_system').DataTable();
                 } );
-    </script>
-    @endsection
+</script>
+@endsection

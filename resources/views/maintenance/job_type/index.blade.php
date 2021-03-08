@@ -54,11 +54,11 @@
 
                             {{-- @can('driver edit') --}}
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
-                                <a href="{{route('job_type.edit', $jobsystem->id)}}"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('job_type.edit', $jobsystem->id)}}"><i class="fa fa-edit "></i></i></a>
                             </td>
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
                                 <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$jobsystem->id}})"
-                                    data-target="#DeleteModal" class=""><i class="fas fa-trash red"></i>
+                                    data-target="#DeleteModal" class=""><i class="fa fa-trash red"></i>
                                 </a>
                             </td>
                             {{-- @endcan --}}
@@ -94,7 +94,7 @@
                         @csrf
                         @method('DELETE')
                         <p class="text-center">Are You Sure Want To Delete ? Down time <span class="font-weight-bold">
-                                </span> </p>
+                            </span> </p>
                     </div>
                     <div class="modal-footer">
 
@@ -107,14 +107,14 @@
             </form>
         </div>
     </div>
-    </div>
+</div>
 
 
-    @endsection
-    @section('javascript')
+@endsection
+@section('javascript')
 
-    <script>
-        function deleteData(id){
+<script>
+    function deleteData(id){
          var id = id;
          var url = '{{ route("job_type.destroy", ":id") }}';
          url = url.replace(':id', id);
@@ -126,10 +126,10 @@
      {
          $("#deleteForm").submit();
      }
-    </script>
-    <script>
-        $(document).ready( function () {
+</script>
+<script>
+    $(document).ready( function () {
         $('#job_type').DataTable();
                 } );
-    </script>
-    @endsection
+</script>
+@endsection

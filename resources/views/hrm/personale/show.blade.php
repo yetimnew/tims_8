@@ -93,8 +93,7 @@
                 <div class="form-group">
                     <label class="control-label" for="hireddate">Hired Date</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate"
-                            class="form-control"
+                        <input name="hireddate" type="text" id="hireddate" class="form-control"
                             value="{{ $personale->hireddate}}" disabled>
 
                     </div>
@@ -103,7 +102,7 @@
                 <div class="form-group">
                     <label class="control-label" for="driver">Driver</label>
 
-                    <select name="driver" class="form-control form-control-sm" id="driver" >
+                    <select name="driver" class="form-control form-control-sm" id="driver">
                         @if ($personale->driver == 1)
                         <option class="dropup" value="1" selected disabled>Yes </option>
                         @endif
@@ -115,8 +114,7 @@
                 <div class="form-group">
                     <label class="control-label" for="hireddate">Pay Grade</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate"
-                            class="form-control"
+                        <input name="hireddate" type="text" id="hireddate" class="form-control"
                             value="{{ $personale->pay_grade->name}}" disabled>
 
                     </div>
@@ -124,8 +122,7 @@
                 <div class="form-group">
                     <label class="control-label" for="hireddate">Pay Grade Level</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate"
-                            class="form-control"
+                        <input name="hireddate" type="text" id="hireddate" class="form-control"
                             value="{{   $personale->pay_grade->pay_grade_levels }}" disabled>
 
 
@@ -136,24 +133,21 @@
                 <div class="form-group">
                     <label class="control-label" for="hireddate">Penssion Number</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate"
-                            class="form-control"
+                        <input name="hireddate" type="text" id="hireddate" class="form-control"
                             value="{{   $personale->penssionid }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="hireddate">TIN Number</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate"
-                            class="form-control"
+                        <input name="hireddate" type="text" id="hireddate" class="form-control"
                             value="{{   $personale->tin_no }}" disabled>
                     </div>
                 </div>
                 <div class="form-group  ">
                     <label class="control-label" for="department_id">Department Name</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate"
-                            class="form-control"
+                        <input name="hireddate" type="text" id="hireddate" class="form-control"
                             value="{{ $personale->department->name }}" disabled>
                     </div>
                 </div>
@@ -162,8 +156,7 @@
                     <label class="control-label" for="position_id">position_id Title</label>
                     <div class="input-group-sm">
                         <div class="input-group input-group-sm">
-                            <input name="hireddate" type="text" id="hireddate"
-                                class="form-control"
+                            <input name="hireddate" type="text" id="hireddate" class="form-control"
                                 value="{{ $personale->jobtitle->name }}" disabled>
                         </div>
                     </div>
@@ -324,7 +317,7 @@
                     @endif
                     <div class='col-4 '>
                         <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$personale->id}})"
-                            data-target="#DeleteModal" class="btn btn-danger btn-sm"><i class="fas fa-trash"> </i>
+                            data-target="#DeleteModal" class="btn btn-danger btn-sm"><i class="fa fa-trash"> </i>
                             Delete</a>
                     </div>
                 </div>
@@ -374,7 +367,8 @@
                         <td>{{$item->relationship_type}}</td>
                         <td>{{$item->date_of_birth}}</td>
                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
-                            <a href="{{route('employees_dependant.edit', $item->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('employees_dependant.edit', $item->id)}}"><i
+                                    class="fa fa-edit "></i></i></a>
                         </td>
                         <td class='p-1 text-center'>
                             <form method="POST" action="{{route('employees_dependant.destroy', $item->id)}}"
@@ -387,7 +381,7 @@
                             document.getElementById('deactivate1-form-{{$item->id}}').submit();
                                 }else{
                                     event.preventDefault();
-                                }"> <i class="fas fa-trash red"></i>
+                                }"> <i class="fa fa-trash red"></i>
 
                             </button>
                         </td>
@@ -447,7 +441,7 @@
                         <td>{{$ec->home_telephone}}</td>
                         <td>{{$ec->work_telephone}}</td>
                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
-                            <a href="{{route('emergence_contact.edit', $ec->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('emergence_contact.edit', $ec->id)}}"><i class="fa fa-edit "></i></i></a>
                         </td>
                         <td class='p-1 text-center'>
                             <form method="POST" action="{{route('emergence_contact.destroy', $ec->id)}}"
@@ -460,7 +454,7 @@
                             document.getElementById('deactivate-form-{{$ec->id}}').submit();
                                 }else{
                                     event.preventDefault();
-                                }"> <i class="fas fa-trash red"></i>
+                                }"> <i class="fa fa-trash red"></i>
 
                             </button>
                         </td>
@@ -520,7 +514,7 @@
                         <td>{{$ec->comment}}</td>
 
                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
-                            <a href="{{route('experience.edit', $ec->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('experience.edit', $ec->id)}}"><i class="fa fa-edit "></i></i></a>
                         </td>
                         <td class='p-1 text-center'>
                             <form method="POST" action="{{route('experience.destroy', $ec->id)}}"
@@ -533,7 +527,7 @@
                             document.getElementById('deactivate-form3-{{$ec->id}}').submit();
                                 }else{
                                     event.preventDefault();
-                                }"> <i class="fas fa-trash red"></i>
+                                }"> <i class="fa fa-trash red"></i>
 
                             </button>
                         </td>
@@ -598,7 +592,7 @@
                         <td>{{$education->end_date}}</td>
 
                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
-                            <a href="{{route('education.edit', $education->id)}}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('education.edit', $education->id)}}"><i class="fa fa-edit "></i></i></a>
                         </td>
                         <td class='p-1 text-center'>
                             <form method="POST" action="{{route('education.destroy', $education->id)}}"
@@ -611,7 +605,7 @@
                             document.getElementById('deactivate-form4-{{$education->id}}').submit();
                                 }else{
                                     event.preventDefault();
-                                }"> <i class="fas fa-trash red"></i>
+                                }"> <i class="fa fa-trash red"></i>
 
                             </button>
                         </td>
@@ -639,77 +633,77 @@
                     {{-- @can('customer create') --}}
                     {{-- <div class="ml-auto mr-2">
                         <a href="{{route('education.create', $personale->id)}}"
-                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
-                            Education</a>
+                    class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                    Education</a>
 
-                    </div> --}}
-                    {{-- @endcan --}}
-                </div>
+                </div> --}}
+                {{-- @endcan --}}
             </div>
+        </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th class="m-1 b-1">personale_id</th>
-                        <th class="m-1 b-1"> department_id</th>
-                        <th class="m-1 b-1"> jobtitle_id</th>
-                        <th class="m-1 b-1"> pay_grade_id</th>
-                        <th class="m-1 b-1"> pay_grade_level_id</th>
-                        <th class="m-1 b-1"> start_date</th>
-                        <th class="m-1 b-1"> comment</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($promotion ->count()> 0)
-                    <?php $no = 1 ?>
-                    @foreach ($promotion as $promo)
-                    <tr>
-                        <th scope="row">{{$no++}}</th>
-                        <td class='p-1'>{{$promo->personal->fullName}}</td>
-                        <td class='p-1'>{{$promo->department->name}}</td>
-                        <td class='p-1'>{{$promo->jobtitle->name}}</td>
-                        <td class='p-1'>{{$promo->paygrade->name}}</td>
-                        <td class='p-1'>{{$promo->paygradelevel->name}}</td>
-                        <td class='p-1'>{{$promo->start_date}}</td>
-                        <td class='p-1'>{{$promo->comment}}</td>
-                        @if ($promo->status == 0)
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th class="m-1 b-1">personale_id</th>
+                    <th class="m-1 b-1"> department_id</th>
+                    <th class="m-1 b-1"> jobtitle_id</th>
+                    <th class="m-1 b-1"> pay_grade_id</th>
+                    <th class="m-1 b-1"> pay_grade_level_id</th>
+                    <th class="m-1 b-1"> start_date</th>
+                    <th class="m-1 b-1"> comment</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if ($promotion ->count()> 0)
+                <?php $no = 1 ?>
+                @foreach ($promotion as $promo)
+                <tr>
+                    <th scope="row">{{$no++}}</th>
+                    <td class='p-1'>{{$promo->personal->fullName}}</td>
+                    <td class='p-1'>{{$promo->department->name}}</td>
+                    <td class='p-1'>{{$promo->jobtitle->name}}</td>
+                    <td class='p-1'>{{$promo->paygrade->name}}</td>
+                    <td class='p-1'>{{$promo->paygradelevel->name}}</td>
+                    <td class='p-1'>{{$promo->start_date}}</td>
+                    <td class='p-1'>{{$promo->comment}}</td>
+                    @if ($promo->status == 0)
 
-                        <td class='p-1'>Old</td>
-                        @else
-                        <td class='p-1'>New</td>
-                        @endif
+                    <td class='p-1'>Old</td>
+                    @else
+                    <td class='p-1'>New</td>
+                    @endif
 
-                        <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
-                            <a href="{{route('promotion.edit', $promo->id)}}"><i class="fas fa-edit"></i></a>
-                        </td>
-                        <td class='p-1 text-center'>
-                            <form method="POST" action="{{route('promotion.destroy', $promo->id)}}"
-                                id="deactivate-form4-{{$promo->id}}" style="display: none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            <button class="btn btn-sm" type="submit" onclick="if(confirm('Are you sure to delete  Experiance? if your answer is yes you don\'t restore it. ')){
+                    <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
+                        <a href="{{route('promotion.edit', $promo->id)}}"><i class="fa fa-edit "></i></i></a>
+                    </td>
+                    <td class='p-1 text-center'>
+                        <form method="POST" action="{{route('promotion.destroy', $promo->id)}}"
+                            id="deactivate-form4-{{$promo->id}}" style="display: none">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                        <button class="btn btn-sm" type="submit" onclick="if(confirm('Are you sure to delete  Experiance? if your answer is yes you don\'t restore it. ')){
                             event.preventDefault();
                             document.getElementById('deactivate-form4-{{$promo->id}}').submit();
                                 }else{
                                     event.preventDefault();
-                                }"> <i class="fas fa-trash red"></i>
+                                }"> <i class="fa fa-trash red"></i>
 
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                        <td class='m-1 p-1 text-center' colspan="12">No Data Avilable</td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
-        </div>
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+                @else
+                <tr>
+                    <td class='m-1 p-1 text-center' colspan="12">No Data Avilable</td>
+                </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
     </div>
 </section>
 
