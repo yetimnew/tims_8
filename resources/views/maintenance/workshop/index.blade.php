@@ -33,7 +33,6 @@
                             <th class="m-1 b-1" width="3%">No</th>
                             <th class="m-1 b-1">Name</th>
                             <th class="m-1 b-1"> Comments</th>
-                            <th class="m-1 b-1">Status</th>
                             {{-- @can('driver edit') --}}
                             <th class="m-1 b-1" width="3%">Edit</th>
                             <th class="m-1 b-1" width="3%">Delete</th>
@@ -44,13 +43,12 @@
                     </thead>
                     <tbody>
                         <?php $no = 0 ?>
-                        @if ($workshops->count()> 0)
-                        @foreach ($workshops as $workshop)
+                        {{-- @if ($workshops->count()> 0) --}}
+                        @forelse($workshops as $workshop)
                         <tr>
-                            <td class='p-1'>{{++$no}}</td>
+                            <td class='p-1'>{{$loop->iteration}}</td>
                             <td class='p-1'>{{$workshop->name}}</td>
                             <td class='p-1'>{{$workshop->comment}}</td>
-                            <td class='p-1'>{{$workshop->status}}</td>
 
                             {{-- @can('driver edit') --}}
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
@@ -63,12 +61,11 @@
                             </td>
                             {{-- @endcan --}}
                         </tr>
-                        @endforeach
-                        @else
+                        @empty
                         <tr>
-                            <td class='m-1 p-1 text-center' colspan="15">No Data Avilable</td>
+                            <td class='m-1 p-1 text-center' colspan="5">No Data Avilable</td>
                         </tr>
-                        @endif
+                        @endforelse
 
                     </tbody>
                 </table>

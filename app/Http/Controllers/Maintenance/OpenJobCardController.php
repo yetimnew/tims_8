@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Maintenance;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Maintenance\CreateOpenJobCardRequest;
+use App\Http\Requests\Maintenane\StoreOpenJobCard;
+use App\Models\HRM\Personale;
 use App\Models\Maintenance\JobCardType;
 use App\Models\Maintenance\JobIdent;
 use App\Models\Maintenance\JobSystem;
@@ -19,16 +22,7 @@ class OpenJobCardController extends Controller
     public function index()
     {
         $ojcs = OpenJobCard::orderBy('created_at', 'DESC')->get();
-        // $job_idnets = JobIdent::where('id', $ojcs->job_ident_id)->get();
-        // dd($ojcs);
-        // $jsondd = json_decode($ojcs->job_system_id);
-        // dd($jsondd);
-        // dd($ojcs->job_system_id);
-        // dd($ojcs->job_system_id);
-        // $job_system = JobSystem::whereIn('id',  $jsondd)->first();
-        // dd($job_system->name);
         return view('maintenance.open_job_card.index')
-            // ->with('job_idnets', $job_idnets)
             ->with('ojcs', $ojcs);
     }
 
@@ -56,7 +50,7 @@ class OpenJobCardController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CreateOpenJobCardRequest $request)
     {
         $ojc = new OpenJobCard();
         $json_job_system = json_encode($request->jobsystem);
@@ -84,8 +78,10 @@ class OpenJobCardController extends Controller
     public function show($id)
     {
         $ojc = OpenJobCard::findOrFail($id);
+        // dd($ojc->truck);
 
         $job_systems = JobSystem::whereIn('id', json_decode($ojc->job_system_id))->get();
+        //    dd($job_systems);
         $job_idents = JobIdent::whereIn('id', json_decode($ojc->job_ident_id))->get();
         // dd($job_system);
         return view('maintenance.open_job_card.show')

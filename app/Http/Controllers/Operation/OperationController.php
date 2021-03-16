@@ -32,8 +32,8 @@ class OperationController extends Controller
         $customers = Customer::all();
         if ($places->count() == 0) {
 
-            Session::flash('info', 'You must have some Region before attempting to create Operation');
-            return redirect()->route('region.create');
+            Session::flash('info', 'You must have some Place before attempting to create Operation');
+            return redirect()->route('place.create');
         }
 
         if ($customers->count() == 0) {

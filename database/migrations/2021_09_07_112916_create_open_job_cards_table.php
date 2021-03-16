@@ -15,21 +15,15 @@ class CreateOpenJobCardsTable extends Migration
     {
         Schema::create('open_job_cards', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_card_type_id')->index();
-            $table->foreign('job_card_type_id')->references('id')->on('job_card_types')->onDelete('restrict');
+            // $table->unsignedBigInteger('job_card_type_id')->index();
+            $table->foreignId('job_card_type_id')->nullable()->constrained();
             $table->string('Job_card_number')->uniqid();
             $table->dateTime('opening_date');
-            $table->unsignedBigInteger('workshop_id')->index();
-            $table->foreign('workshop_id')->references('id')->on('workshops')->onDelete('restrict');
-            $table->foreignId('truck_id')->constrained();
-            // $table->foreign('truck_id')->references('id')->on('trucks')->onDelete('restrict');
-            $table->unsignedBigInteger('customer_id')->index();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict');
-
+            $table->foreignId('workshop_id')->nullable()->constrained();
+            $table->foreignId('truck_id')->nullable()->constrained();
+            $table->foreignId('customer_id')->nullable()->constrained();
             $table->json('job_system_id');
-            // $table->foreign('job_system_id')->references('id')->on('job_systems')->onDelete('restrict');
             $table->json('job_ident_id');
-            // $table->foreign('job_ident_id')->references('id')->on('job_idents')->onDelete('restrict');
 
             $table->double('km_reading', 6, 2)->default(0.00);
             $table->dateTime('km_reading_date')->nullable();
@@ -41,9 +35,6 @@ class CreateOpenJobCardsTable extends Migration
             $table->bigInteger('receptionist_id')->nullable();
             $table->boolean('closed')->default(0);
             $table->text('comment')->nullable();
-
-
-
             $table->timestamps();
         });
     }

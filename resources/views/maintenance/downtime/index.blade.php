@@ -33,7 +33,6 @@
                             <th class="m-1 b-1" width="3%">No</th>
                             <th class="m-1 b-1">Name</th>
                             <th class="m-1 b-1"> Comments</th>
-                            <th class="m-1 b-1">Status</th>
                             {{-- @can('driver edit') --}}
                             <th class="m-1 b-1" width="3%">Edit</th>
                             <th class="m-1 b-1" width="3%">Delete</th>
@@ -50,7 +49,6 @@
                             <td class='p-1'>{{++$no}}</td>
                             <td class='p-1'>{{$downtime->name}}</td>
                             <td class='p-1'>{{$downtime->comment}}</td>
-                            <td class='p-1'>{{$downtime->status}}</td>
 
                             {{-- @can('driver edit') --}}
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">

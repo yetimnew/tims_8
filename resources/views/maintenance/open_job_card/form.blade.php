@@ -8,10 +8,17 @@
                     onfocusout="validatejob_card_type()">
                     <option class="dropup" value="" selected> Select One</option>
                     @foreach ($job_card_types as $job_card_type)
+                    @if (old('job_card_type') )
+                    <option class="dropup" value="{{$job_card_type->id}}"
+                        {{old('job_card_type') == $job_card_type->id ? 'selected' : ''}}>
+                        {{$job_card_type->name}}
+                    </option>
+                    @else
                     <option class="dropup" value="{{$job_card_type->id}}"
                         {{ $job_card_type->id == $ojc->job_card_type ? 'selected' : '' }}>
                         {{$job_card_type->name}}
                     </option>
+                    @endif
                     @endforeach
                 </select>
                 @if ($errors->has('job_card_type'))
@@ -29,11 +36,6 @@
                     class="form-control {{ $errors->has('Job_card_number') ? ' is-invalid' : '' }}" id="Job_card_number"
                     value="{{ old('Job_card_number' ) ?? $ojc->Job_card_number}}"
                     onfocusout="validateJob_card_number()">
-                <div class="input-group-append">
-                    <button type="button" id="toggle" class="input-group-text">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                    </button>
-                </div>
                 @if($errors->has('Job_card_number'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('Job_card_number') }}</strong>
@@ -71,10 +73,15 @@
                     <option class="dropup" value="" selected> Select One</option>
 
                     @foreach ($workshops as $workshop)
+                    @if (old('workshop_id') )
+                    <option class="dropup" value="{{$workshop->id}}"
+                        {{old('workshop_id') == $workshop->id ? 'selected' : ''}}> {{$workshop->name}} </option>
+                    @else
                     <option class="dropup" value="{{$workshop->id}}"
                         {{ $workshop->id == $ojc->workshop_id ? 'selected' : '' }}>
                         {{$workshop->name}}
                     </option>
+                    @endif
                     @endforeach
                 </select>
                 @if ($errors->has('workshop_id'))
@@ -155,7 +162,7 @@
                     value="{{ old('km_reading_date' ) ?? $ojc->km_reading_date}}"
                     onfocusout="validatekm_reading_date()">
                 <div class="input-group-append">
-                    <button type="button" id="toggle" class="input-group-text">
+                    <button type="button" id="toggle2" class="input-group-text">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -317,12 +324,19 @@
     format: "Y-m-d"
 
 });
+$('#toggle2').on('click', function(){
+                $("#km_reading_date").datetimepicker('toggle');
+            })
     $("#opening_date").datetimepicker({
     timepicker:true,
-
-    format: "Y-m-d"
+    dateFormat: "yy-mm-dd",
+    timeFormat:  "hh:mm:ss"
+    // format: "Y-m-d h:mm"
 
 });
+$('#toggle').on('click', function(){
+                $("#opening_date").datetimepicker('toggle');
+            })
 $('#jobsystem').select2({
     placeholder: "Select Origin Place",
     allowClear: true,

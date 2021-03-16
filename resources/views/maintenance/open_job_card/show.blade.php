@@ -43,7 +43,7 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Truck Plate</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label "> {{$ojc->truck->plate}}</h4>
+                            <h4 class="col-form-label "> {{$ojc->truck->plate ? $ojc->truck->plate : ''}}</h4>
                         </div>
                     </div>
                     <div class="form-group row m-0">
@@ -57,9 +57,13 @@
                         <div class="col-lg-8">
                             <h4 class="col-form-label ">
                                 <ol>
+                                    @if($job_systems->count() > 0)
                                     @foreach ($job_systems as $job_system)
                                     <li>{{$job_system->name}}</li>
                                     @endforeach
+                                    @else
+                                    <li>No Job System</li>
+                                    @endif
                                 </ol>
                             </h4>
                         </div>
@@ -69,9 +73,13 @@
                         <div class="col-lg-8">
                             <p class="col-form-label ">
                                 <ol>
+                                    @if($job_idents->count() > 0)
                                     @foreach ($job_idents as $job_ident)
                                     <li>{{$job_ident->name}}</li>
                                     @endforeach
+                                    @else
+                                    <li>No Job System</li>
+                                    @endif
                                 </ol>
                             </p>
                         </div>
@@ -93,32 +101,32 @@
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">Driver Name</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4>
+                            {{-- <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4> --}}
                         </div>
                     </div>
 
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">mechanic_id</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4>
+                            {{-- <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4> --}}
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">ass_mechanic_id</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4>
+                            {{-- <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4> --}}
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">opening_clerk_id</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4>
+                            {{-- <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4> --}}
                         </div>
                     </div>
                     <div class="form-group row m-0">
                         <label class="col-form-label col-lg-4">receptionist_id</label>
                         <div class="col-lg-8">
-                            <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4>
+                            {{-- <h4 class="col-form-label ">{{$ojc->driver->fullname}}</h4> --}}
                         </div>
                     </div>
 
@@ -174,14 +182,12 @@
 
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
 
-        @endsection
-        @section('javascript')
-        <script>
-            function deleteData(id){
+
+                    @endsection
+                    @section('javascript')
+                    <script>
+                        function deleteData(id){
          var id = id;
          var url = '{{ route("open_job_card.destroy", ":id") }}';
          url = url.replace(':id', id);
@@ -193,5 +199,5 @@
             {
                 $("#deleteForm").submit();
             }
-        </script>
-        @endsection
+                    </script>
+                    @endsection

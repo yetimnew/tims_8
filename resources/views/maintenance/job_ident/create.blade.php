@@ -9,14 +9,14 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
             </li>
-            <li class="breadcrumb-item active">Job Card Type Registration</li>
+            <li class="breadcrumb-item active">Job Ident Registration</li>
         </ol>
     </nav>
     <div class="card text-left">
         <div class="card-header">
 
             <div class="d-flex align-items-center">
-                <h2>Job Card Type </h2>
+                <h2>Job Ident </h2>
                 {{-- <!-- @can('driver create') --> --}}
                 <div class="ml-auto">
                     <a href="{{route('job_ident.index')}}" class="btn btn-outline-primary">

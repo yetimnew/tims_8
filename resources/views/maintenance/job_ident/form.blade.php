@@ -65,11 +65,10 @@
             <strong>{{ $errors->first('ass_mechanic_hours') }}</strong>
         </span>
         @endif
-        <span class="invalid-feedback" role="alert"></span>
     </div>
 
 </div>
-<div class="form-group row">
+<div class="form-group ">
     <label for="comment">Comment</label>
     <textarea name="comment" rows="5" class="form-control {{ $errors->has('comment') ? ' is-invalid' : '' }}"
         id="comment">{{ old('comment') ?? $jobident->comment}}</textarea>

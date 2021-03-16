@@ -25,11 +25,13 @@
                     <option class="dropup" value="" selected> Select One</option>
 
                     @foreach ($customers as $customer)
-                        @if (old('customer_id') )
-                          <option class="dropup"  value="{{$customer->id}}" {{old('customer_id') == $customer->id ? 'selected' : ''}}> {{$customer->name}} </option>
-                        @else
-                          <option value={{$customer->id}}  {{$customer->id == $operation->customer_id ? 'selected' : ''}}>{{ $customer->name }}</option>
-                        @endif
+                    @if (old('customer_id') )
+                    <option class="dropup" value="{{$customer->id}}"
+                        {{old('customer_id') == $customer->id ? 'selected' : ''}}> {{$customer->name}} </option>
+                    @else
+                    <option value={{$customer->id}} {{$customer->id == $operation->customer_id ? 'selected' : ''}}>
+                        {{ $customer->name }}</option>
+                    @endif
                     @endforeach
 
                 </select>
@@ -63,15 +65,18 @@
             <label class="control-label" for="place_id">Place Name</label>
             <div class="input-group">
 
-                <select name="place_id" id="place_id" class="form-control {{ $errors->has('place_id') ? ' is-invalid' : '' }}"
+                <select name="place_id" id="place_id"
+                    class="form-control {{ $errors->has('place_id') ? ' is-invalid' : '' }}"
                     onfocusout="validateplace_id()">
                     <option class="dropup" value="" selected> Select One</option>
                     @foreach ($places as $place)
-                        @if (old('place_id') )
-                        <option class="dropup"  value="{{$place->id}}" {{old('place_id') == $place->id ? 'selected' : ''}}> {{$place->name}} </option>
-                        @else
-                        <option value={{$place->id}}  {{$place->id == $operation->place_id ? 'selected' : ''}}>{{ $place->name }}</option>
-                        @endif
+                    @if (old('place_id') )
+                    <option class="dropup" value="{{$place->id}}" {{old('place_id') == $place->id ? 'selected' : ''}}>
+                        {{$place->name}} </option>
+                    @else
+                    <option value={{$place->id}} {{$place->id == $operation->place_id ? 'selected' : ''}}>
+                        {{ $place->name }}</option>
+                    @endif
                     @endforeach
 
                 </select>
@@ -104,7 +109,8 @@
         <div class="form-group mb-0 required">
             <label class="control-label" for="cargo_type">Cargo Type</label>
             <select name="cargo_type" class="form-control select" id="cargo_type"
-                class="form-control {{ $errors->has('cargo_type') ? ' is-invalid' : '' }}" onfocusout="validatecargo_type()">
+                class="form-control {{ $errors->has('cargo_type') ? ' is-invalid' : '' }}"
+                onfocusout="validatecargo_type()">
                 <option class="dropup" value="1" {{$operation->cargotype == 1 ? 'selected' : '' }}> Relief Cargo
                 </option>
                 <option class="dropup" value="0" {{$operation->cargotype == 0 ? 'selected' : '' }}> Commercial Cargo
@@ -121,7 +127,7 @@
         <div class="form-group required">
             <label class="control-label" for="tone">Tone KM</label>
             <div class="input-group">
-                <input  type="number" name="tone"  id="tone"
+                <input type="number" name="tone" id="tone"
                     class="form-control {{ $errors->has('tone') ? ' is-invalid' : '' }}"
                     value="{{ old('tone') ?? $operation->tone }}" onfocusout="validateTone()">
                 @if ($errors->has('tone'))
@@ -129,12 +135,12 @@
                     <strong>{{ $errors->first('tone') }}</strong>
                 </span>
                 @endif
-                </div>
+            </div>
         </div>
         <div class="form-group required">
             <label class="control-label"> Triff per Ton KM</label>
             <div class="input-group">
-                <input name="tariff" type="text"  id="tariff"
+                <input name="tariff" type="text" id="tariff"
                     class="form-control {{ $errors->has('tariff') ? ' is-invalid' : '' }}"
                     value="{{ old('tariff') ?? $operation->tariff}}" onfocusout="validateTariff()">
                 @if ($errors->has('tariff'))

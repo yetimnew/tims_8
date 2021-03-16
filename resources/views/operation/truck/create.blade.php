@@ -11,11 +11,11 @@
         </ol>
     </div>
 
-  </header>
+</header>
 
 
-    @include('master.error')
-    <div class="container">
+@include('master.error')
+<div class="container">
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
@@ -40,14 +40,12 @@
                         <i class="fafa-save"></i>
                         Save</button>
                 </div>
-
         </div>
-        <div class="card-footer">
-        </div>
-        </form>
+    </div>
 
-    </div>
-    </div>
-    </div>
+    </form>
+</div>
+</div>
+</div>
 
 @endsection

@@ -48,8 +48,7 @@
                         <tr>
                             <td class='p-1'>{{++$no}}</td>
                             <td class='p-1'>{{$ojc->Job_card_number}}</td>
-
-                            <td class='p-1'>{{$ojc->job_system_id}}</td>
+                            <td class='p-1'>{{$ojc->job_system_id }}</td>
                             <td class='p-1'>{{$ojc->job_ident_id}}</td>
 
                             {{-- @can('driver edit') --}}
@@ -74,44 +73,44 @@
 
         </div>
     </div>
-    </div>
-    <!-- Modal -->
-    <div id="DeleteModal" class="modal fade text-danger" role="dialog">
-        <div class="modal-dialog ">
-            <!-- Modal content-->
-            <form action="" id="deleteForm" method="post">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger">
-                        <h4 class="modal-title text-center text-white">DELETE CONFIRMATION</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @csrf
-                        @method('DELETE')
-                        <p class="text-center">Are You Sure Want To Delete ? Job Card <span class="font-weight-bold">
-                            </span> </p>
-
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                        <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
-                            onclick="formSubmit()">Yes, Delete</button>
-
-                    </div>
+</div>
+<!-- Modal -->
+<div id="DeleteModal" class="modal fade text-danger" role="dialog">
+    <div class="modal-dialog ">
+        <!-- Modal content-->
+        <form action="" id="deleteForm" method="post">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h4 class="modal-title text-center text-white">DELETE CONFIRMATION</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
-        </div>
+                <div class="modal-body">
+                    @csrf
+                    @method('DELETE')
+                    <p class="text-center">Are You Sure Want To Delete ? Job Card <span class="font-weight-bold">
+                        </span> </p>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                    <button type="submit" name="" class="btn btn-danger" data-dismiss="modal"
+                        onclick="formSubmit()">Yes, Delete</button>
+
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
 
-    @endsection
-    @section('javascript')
+@endsection
+@section('javascript')
 
-    <script>
-        function deleteData(id){
+<script>
+    function deleteData(id){
          var id = id;
          var url = '{{ route("workshop.destroy", ":id") }}';
          url = url.replace(':id', id);
@@ -123,10 +122,10 @@
      {
          $("#deleteForm").submit();
      }
-    </script>
-    <script>
-        $(document).ready( function () {
+</script>
+<script>
+    $(document).ready( function () {
         $('#workshop').DataTable();
                 } );
-    </script>
-    @endsection
+</script>
+@endsection
