@@ -4,16 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\Maintenance\DownTime;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DownTimeSeed extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
+        // DB::table('departments')->truncate();
         DownTime::create([
             'name'=>'(01) Lack of spare parts',
             'comment'=>'(01) Lack of spare parts',

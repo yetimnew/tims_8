@@ -9,52 +9,52 @@
             <li class="breadcrumb-item active">Woreda </li>
         </ol>
     </div>
-  </header>
+</header>
 
-  <div class="container">
-	<div class="card text-left col-md-12">
-		<div class="card-header">
-			<div class="d-flex align-items-center">
-				<h2>All regions </h2>
-				{{-- @can('customer create') --}}
+<div class="container">
+    <div class="card text-left col-md-12">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h2>All regions </h2>
+                {{-- @can('customer create') --}}
 
-				<div class="ml-auto">
-					<a href="{{route('woreda.create')}}" class="btn btn-outline-primary"><i
-							class="fafa-plus mr-1"></i>Add Woreda</a>
+                <div class="ml-auto">
+                    <a href="{{route('woreda.create')}}" class="btn btn-outline-primary"><i
+                            class="fafa-plus mr-1"></i>Add Woreda</a>
 
-				</div>
-			</div>
+                </div>
+            </div>
         </div>
 
-<div class="row col-12">
-    <div class="table-responsive text-nowrap">
-        <table class="table table-bordered table-sm table-striped" id="woreda_table">
-            <thead>
-                <tr>
-                    <th class="m-1 b-1">Number</th>
-                    <th>Woreda Name</th>
-                    <th>Zone</th>
-                    <th>Region</th>
-                    <th>Comment</th>
-                    <th>Details</th>
+        <div class="row col-12">
+            <div class="table-responsive text-nowrap">
+                <table class="table table-bordered table-sm table-striped" id="woreda_table">
+                    <thead>
+                        <tr>
+                            <th class="m-1 b-1">Number</th>
+                            <th>Woreda Name</th>
+                            <th>Zone</th>
+                            <th>Region</th>
+                            <th>Comment</th>
+                            <th>Details</th>
 
-                </tr>
-            </thead>
+                        </tr>
+                    </thead>
 
-        </table>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-</div>
-</div>
-        @endsection
-        @section('javascript')
+@endsection
+@section('javascript')
 
-        <script>
-            $( document ).ready( function () {
+<script>
+    $( document ).ready( function () {
                         $( '#woreda_table' ).DataTable({
                             processing: true,
                             serverSide: true,
-                            ajax: '{{ url('woreda') }}',
+                            ajax: '{{ url('operation/woreda') }}',
                             columns: [
                                         { data: 'id', name: 'id' },
                                         { data: 'woredaName', name: 'woredaName' },
@@ -70,5 +70,5 @@
                                     ],
                         });
                     } );
-        </script>
-        @endsection
+</script>
+@endsection

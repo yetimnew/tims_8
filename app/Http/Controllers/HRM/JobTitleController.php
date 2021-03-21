@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\HRM\Department;
-use App\HRM\JobTitle;
 use App\Http\Controllers\Controller;
+use App\Models\HRM\Department;
+use App\Models\HRM\JobTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 

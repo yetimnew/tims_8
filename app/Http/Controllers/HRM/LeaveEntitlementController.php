@@ -5,15 +5,15 @@ namespace App\Http\Controllers\HRM;
 use App\EthDate;
 use App\EthYear;
 use App\EthMonth;
-use App\HRM\Leave;
+
 use Illuminate\Http\Request;
-use App\HRM\LeaveEntitlement;
-use App\HRM\LeavePeriod;
-use App\HRM\LeaveType;
-use App\HRM\Personale;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Models\HRM\LeaveType;
+use App\Models\HRM\Personale;
+use App\Models\HRM\LeavePeriod;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\HRM\LeaveEntitlement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LeaveEntitlementController extends Controller

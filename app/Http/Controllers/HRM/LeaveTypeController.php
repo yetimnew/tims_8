@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\HRM\LeaveType;
+use Illuminate\Http\Request;
+use App\Models\HRM\LeaveType;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 
 class LeaveTypeController extends Controller
 {

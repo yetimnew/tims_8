@@ -1,6 +1,5 @@
 @extends( 'master.app' )
 @section( 'title', 'TIMS | Driver Registration' )
-
 @section( 'content' )
 
 <header class="page-header mb-4">
@@ -19,7 +18,7 @@
         <div class="card-header">
 
             <div class="d-flex align-items-center">
-                <h2>Distance egistration</h2>
+                <h2>Distance Registration</h2>
                 {{-- @can('driver create') --}}
                 <div class="ml-auto">
                     <a href="{{route('distance.index')}}" class="btn btn-outline-primary">
@@ -42,14 +41,12 @@
                 </div>
         </div>
 
+        <div class="card-footer">
+
+        </div>
+
+        </form>
     </div>
-</div>
-<div class="card-footer">
-
-</div>
-
-</form>
-</div>
 </div>
 
 @endsection

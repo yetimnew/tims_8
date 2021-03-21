@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -15,14 +16,14 @@ class RoleAndPermissionTableSeeder extends Seeder
 
         Role::create(['name' => 'user']);
 
-        $user = Factory(\App\User::class)->create();
+        $user =User::first();
 
         $user->assignRole('user');
 
         Role::create(['name' => 'admin']);
 
         /** @var \App\User $user */
-        $admin = factory(\App\User::class)->create([
+        $admin = User::create([
             'name' => 'Yetimesht Tadesse',
             'email' => 'yetimnew@gmail.com',
         ]);

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\HRM;
 
 use App\HRM\Department;
-use App\HRM\PayGrade;
 use App\Http\Controllers\Controller;
+use App\Models\HRM\PayGrade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 

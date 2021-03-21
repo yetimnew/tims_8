@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\HRM\EmployeesDependant;
-use App\HRM\Personale;
+
 use App\Http\Controllers\Controller;
+use App\Models\HRM\EmployeesDependant;
+use App\Models\HRM\Personale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -29,7 +30,7 @@ class EmployeesDependantsContactController extends Controller
     {
 
         // dd($id);
-        $employees_dependant = new EmployeesDependant;
+        $employees_dependant = new EmployeesDependant();
         $employee = Personale::findOrFail($id);
 
         return view('hrm.personale.dependants.create')

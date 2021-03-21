@@ -48,8 +48,7 @@
                     </thead>
                     <tbody>
                         <?php $no = 0 ?>
-                        @if ($customers->count()> 0)
-                        @foreach ($customers as $customer)
+                        @forelse ($customers as $customer)
                         <tr>
                             <td>{{++$no}}</td>
                             <td>{{$customer->name}}</td>
@@ -82,13 +81,12 @@
                             {{-- @endcan --}}
 
                         </tr>
-
-                        @endforeach
-                        @else
+                        @empty
                         <tr>
-                            <td class='m-1 p-1 text-center' colspan="12">No Data Avilable</td>
+                            <td class='m-1 p-1 text-center' colspan="4">No Data Avilable</td>
                         </tr>
-                        @endif
+                        @endforelse
+
 
                     </tbody>
                 </table>

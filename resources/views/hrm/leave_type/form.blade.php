@@ -1,5 +1,5 @@
 <div class="form-group 	required">
-    <label class="control-label">Branch Name</label>
+    <label class="control-label">Leave Type Name</label>
     <div class="input-group-sm">
         <input name="name" type="text" id="name"
             class="form-control  input-sm {{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -13,4 +13,3 @@
     </div>
 
 </div>
-

@@ -15,6 +15,7 @@ class ZoneController extends Controller
 {
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
 
             $zones =  DB::table('zones')

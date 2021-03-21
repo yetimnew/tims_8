@@ -1,61 +1,80 @@
 <?php
 
+use App\Http\Controllers\HRM\BranchesController;
 use App\Http\Controllers\HRM\DashboardController;
-use App\Http\Controllers\Maintenance\DownTimeController;
+use App\Http\Controllers\HRM\DepartementsController;
+use App\Http\Controllers\HRM\EmployeesPromotionController;
+use App\Http\Controllers\HRM\HolidayController;
+use App\Http\Controllers\HRM\JobTitleController;
+use App\Http\Controllers\HRM\LeaveController;
+use App\Http\Controllers\HRM\LeaveEntitlementController;
+use App\Http\Controllers\HRM\LeavePeriodController;
+use App\Http\Controllers\HRM\LeaveTypeController;
+use App\Http\Controllers\HRM\PayGradeController;
+use App\Http\Controllers\HRM\PayGradeLevelController;
 use App\Http\Controllers\Maintenance\JobCarTypeController;
 use App\Http\Controllers\Maintenance\JobIdentController;
 use App\Http\Controllers\Maintenance\JobSystemController;
 use App\Http\Controllers\Maintenance\JobTypeController;
 use App\Http\Controllers\Maintenance\OpenJobCardController;
 use App\Http\Controllers\HRM\PersonaleController;
+use App\Http\Controllers\HRM\WorkWeekController;
 use App\Http\Controllers\Maintenance\WorkshopController;
+use App\Http\Controllers\Operation\CustomerController;
+use App\Http\Controllers\Operation\DistanceController;
+use App\Http\Controllers\Operation\DriverController;
+use App\Http\Controllers\Operation\DriverTruckController;
+use App\Http\Controllers\Operation\OperationController;
+use App\Http\Controllers\Operation\PerformanceController;
+use App\Http\Controllers\Operation\PlaceController;
 use App\Http\Controllers\Operation\ProfileController;
+use App\Http\Controllers\Operation\RegionController;
+use App\Http\Controllers\Operation\TruckController;
+use App\Http\Controllers\Operation\TruckModelController;
+use App\Http\Controllers\Operation\WoredaController;
+use App\Http\Controllers\Operation\ZoneController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['middleware' => ['auth']], function () {
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/',  [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+    Route::get('/dashboard',  [DashboardController::class, 'index'])->name('dashboard');
+});
+Route::group(['middleware' => ['auth'], 'prefix' => 'operation'], function () {
+
+    Route::get('/',  [DashboardController::class, 'index'])->name('dashboard');
     // Route::get('/dashboard', function () { return view('dashboard');})->name('dashboard');
-    Route::get('/dashboard',  'App\Http\Controllers\Operation\DashboardController@index')->name('dashboard');
-    Route::get('/dashboard/operation',  'App\Http\Controllers\Operation\DashboardController@operation')->name('dashboard.operation');
+    Route::get('/dashboard',  [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/operation',  [DashboardController::class, 'operation'])->name('dashboard.operation');
 
     Route::get('/profile',                  [ProfileController::class,'index'])->name('profile');
     Route::post('/profile',                  [ProfileController::class,'update'])->name('profile.update');
-    Route::resource('truck_model', 'App\Http\Controllers\Operation\TruckModelController')->except('show');
-    Route::get('truck/{truck}/activate', 'App\Http\Controllers\Operation\TruckController@activate')->name('truck.activate');
-    Route::get('truck/{truck}/deactivate', 'App\Http\Controllers\Operation\TruckController@deactivate')->name('truck.deactivate');
-    Route::resource('truck', 'App\Http\Controllers\Operation\TruckController');
-    Route::get('driver/{driver}/activate', 'App\Http\Controllers\Operation\DriverController@activate')->name('driver.activate');
-    Route::get('driver/{driver}/deactivate', 'App\Http\Controllers\Operation\DriverController@deactivate')->name('driver.deactivate');
-    Route::resource('driver', 'App\Http\Controllers\Operation\DriverController');
-    Route::resource('region', 'App\Http\Controllers\Operation\RegionController');
-    Route::resource('zone', 'App\Http\Controllers\Operation\ZoneController');
-    Route::resource('woreda', 'App\Http\Controllers\Operation\WoredaController');
-    Route::resource('place', 'App\Http\Controllers\Operation\PlaceController');
-    Route::resource('customer', 'App\Http\Controllers\Operation\CustomerController');
-    Route::get('/operation/close/{operation}',     'App\Http\Controllers\Operation\OperationController@close')->name('operation.close');
-    Route::get('/operation/open/{operation}',      'App\Http\Controllers\Operation\OperationController@open')->name('operation.open');
-    Route::PATCH('/operation/update2/{operation}',   'App\Http\Controllers\Operation\OperationController@update2')->name('operation.update2');
-    Route::resource('operation', 'App\Http\Controllers\Operation\OperationController');
-    Route::get('/driver_truck/detach/{id}',  'App\Http\Controllers\Operation\DriverTruckController@detach')->name('driver_truck.detach');
-    Route::post('/driver_truck/update_dt/{id}',   'App\Http\Controllers\Operation\DriverTruckController@update_dt')->name('driver_truck.update_dt');
-    Route::resource('driver_truck', 'App\Http\Controllers\Operation\DriverTruckController');
-    Route::get('ajaxRequest', 'App\Http\Controllers\Operation\PerformanceController@ajaxRequest')->name('performace.distance');
-    Route::post('ajaxRequest', 'App\Http\Controllers\Operation\PerformanceController@ajaxRequestPost')->name('performace.distance');
-    Route::resource('performance', 'App\Http\Controllers\Operation\PerformanceController');
-    Route::resource('distance', 'App\Http\Controllers\Operation\DistanceController');
-
-    //Maintenace
-    // Route::resource('downtime', ' App\Http\Controllers\Maintenance\DownTimeController');
-    // Route::resource('job_card_type', ' App\Http\Controllers\Maintenance\JobCarTypeController');
-    // Route::resource('job_system', ' App\Http\Controllers\Maintenance\JobSystemController');
-    // Route::resource('job_type', ' App\Http\Controllers\Maintenance\JobTypeController');
-    // Route::resource('job_ident', ' App\Http\Controllers\Maintenance\JobIdentController');
-    // Route::resource('workshop', ' App\Http\Controllers\Maintenance\WorkshopController');
-    // Route::post('open_job_card/append', ' App\Http\Controllers\Maintenance\OpenJobCardController@jobIdent')->name('open_job_card.append');
-    // Route::resource('open_job_card', ' App\Http\Controllers\Maintenance\OpenJobCardController');
+    Route::resource('truck_model', TruckModelController::class);
+    Route::get('truck/{truck}/activate', [TruckController::class, 'activate'])->name('truck.activate');
+    Route::get('truck/{truck}/deactivate', [TruckController::class, 'deactivate'])->name('truck.deactivate');
+    Route::resource('truck', TruckController::class);
+    Route::get('driver/{driver}/activate', [DriverController::class, 'activate'])->name('driver.activate');
+    Route::get('driver/{driver}/deactivate', [DriverController::class, 'deactivate'])->name('driver.deactivate');
+    Route::resource('driver', DriverController::class);
+    Route::resource('region', RegionController::class);
+    Route::resource('zone', ZoneController::class);
+    Route::resource('woreda', WoredaController::class);
+    Route::resource('place', PlaceController::class );
+    Route::resource('customer', CustomerController::class);
+    Route::get('/operation/close/{operation}',     [OperationController::class, 'close'])->name('operation.close');
+    Route::get('/operation/open/{operation}',      [OperationController::class, 'open'])->name('operation.open');
+    Route::PATCH('/operation/update2/{operation}',   [OperationController::class, 'update2'])->name('operation.update2');
+    Route::resource('operation', OperationController::class );
+    Route::get('/driver_truck/detach/{id}',  [DriverTruckController::class, 'detach'])->name('driver_truck.detach');
+    Route::post('/driver_truck/update_dt/{id}',   [DriverTruckController::class, 'update_dt'])->name('driver_truck.update_dt');
+    Route::resource('driver_truck', DriverTruckController::class);
+    Route::get('ajaxRequest', [PerformanceController::class, 'ajaxRequest'])->name('performace.distance');
+    Route::post('ajaxRequest', [PerformanceController::class, 'ajaxRequestPost'])->name('performace.distance');
+    Route::resource('performance', PerformanceController::class );
+    Route::resource('distance', DistanceController::class );
 });
 
     Route::group(['middleware' => ['auth'], 'prefix' => 'maintenance'], function () {
@@ -72,24 +91,24 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['auth'], 'prefix' => 'hrm'], function () {
         Route::get('/', [DashboardController::class,'index'])->name('hrm');
-        // Route::get('/personale/deactivate/{id}',                     [PersonalesController::class,'deactivate'])->name('personale.deactivate');
-        // Route::post('/personale/deactivate_store/{id}',                 [PersonalesController::class, 'deactivate_store'])->name('personale.deactivate_store');
-        // Route::post('/personale/activate/{id}',                  [PersonalesController::class,'activate'])->name('personale.activate');
-        // Route::get('/personale/{personale:firstname}/show/',                 [PersonalesController::class, 'show'])->name('personale.show');
-        // Route::post('personale/append',  [PersonalesController::class,'pay_grade_level'])->name('personale.append');
+        Route::get('/personale/deactivate/{id}',                     [PersonaleController::class,'deactivate'])->name('personale.deactivate');
+        Route::post('/personale/deactivate_store/{id}',                 [PersonaleController::class, 'deactivate_store'])->name('personale.deactivate_store');
+        Route::post('/personale/activate/{id}',                  [PersonaleController::class,'activate'])->name('personale.activate');
+        Route::get('/personale/{personale:firstname}/show/',                 [PersonaleController::class, 'show'])->name('personale.show');
+        Route::post('personale/append',  [PersonaleController::class,'pay_grade_level'])->name('personale.append');
         Route::resource('personale', PersonaleController::class);
-        // Route::resource('department', 'DepartementsController');
-        // Route::resource('branch', 'BranchesController');
-        // Route::resource('job_title', 'JobTitleController');
-        // Route::resource('pay_grade', 'PayGradeController');
-        // Route::resource('pay_grade_level', 'PayGradeLevelController');
-        // Route::resource('promotion', 'EmployeesPromotionController');
-        // Route::resource('leave_type', 'LeaveTypeController');
-        // Route::resource('holiday', 'HolidayController');
-        // Route::resource('work_week', 'WorkWeekController');
-        // Route::resource('leave_period', 'LeavePeriodController');
-        // Route::resource('leave_entitlement', 'LeaveEntitlementController');
-        // Route::resource('leave', 'LeaveController');
+        Route::resource('department', DepartementsController::class);
+        Route::resource('branch', BranchesController::class);
+        Route::resource('job_title', JobTitleController::class);
+        Route::resource('pay_grade', PayGradeController::class);
+        Route::resource('pay_grade_level', PayGradeLevelController::class);
+        Route::resource('promotion', EmployeesPromotionController::class);
+        Route::resource('leave_type', LeaveTypeController::class);
+        Route::resource('holiday', HolidayController::class);
+        Route::resource('work_week', WorkWeekController::class);
+        Route::resource('leave_period', LeavePeriodController::class);
+        Route::resource('leave_entitlement', LeaveEntitlementController::class);
+        Route::resource('leave', LeaveController::class);
         // Route::post('leave/append', 'LeaveController@list_of_leave')->name('leave.append');
         // Route::post('leave_entitlement/append', 'LeaveEntitlementController@list_of_leave')->name('leave_entitlement.append');
 

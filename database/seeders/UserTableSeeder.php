@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserTableSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('users')->truncate();
         $user = User::create([
             'name'=>'Yetimesht Tadesse',
             'email'=>'yetimnew@gmail.com',

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\HRM;
 
 use App\Http\Controllers\Controller;
 use App\Models\HRM\Branch;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class BranchesController extends Controller
@@ -27,7 +27,7 @@ class BranchesController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $data =  $this->validate($request, [
+       $this->validate($request, [
 
             'name' =>  'required|unique:branches,name',
             'city' =>  'required',

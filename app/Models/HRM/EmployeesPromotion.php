@@ -3,9 +3,12 @@
 namespace App\Models\HRM;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EmployeesPromotion extends Model
 {
+    use HasFactory;
+
 protected $fillable = [
     'personale_id',
      'department_id',

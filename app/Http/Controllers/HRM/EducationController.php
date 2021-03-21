@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\HRM\Education;
-use App\HRM\Personale;
+
 use App\Http\Controllers\Controller;
+use App\Models\HRM\Personale;
+use App\Models\Operation\Education;
 use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class EducationController extends Controller
     public function create($id)
     {
         $employee = Personale::where('id', $id)->first();
-        $education = new Education;
+        $education = new Education();
         return view('hrm.personale.education.create')
             ->with('education', $education)
             ->with('employee', $employee);

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\HRM;
 use App\Http\Controllers\Controller;
 use App\Models\HRM\PayGrade;
 use App\Models\HRM\PayGradeLevel;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PayGradeLevelController extends Controller
 {

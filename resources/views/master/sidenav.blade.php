@@ -89,6 +89,49 @@
             <li class="{{ request()->routeIs('open_job_card.*') ? 'active' : '' }}">
                 <a href="{{ route('open_job_card.index')}}"> <i class="icon-picture"></i>Open Job Card</a>
             </li>
+            <span class="heading">HRM</span>
+            <li class="{{ request()->routeIs('personale.*')  ? 'active' : ''}}"><a href="{{ route('personale.index')}}">
+                    <i class="fas fa-stopwatch" aria-hidden="true"></i> ሰራተኛ </a>
+            </li>
+            <li class="{{ request()->routeIs('department.*')  ? 'active' : ''}}"><a
+                    href="{{ route('department.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> የስራ ክፍል
+                </a>
+            </li>
+            <li class="{{ request()->routeIs('branch.*')  ? 'active' : ''}}"><a href="{{ route('branch.index')}}"> <i
+                        class="fas fa-stopwatch" aria-hidden="true"></i> ቅርንጫፍ</a></li>
+            <li class="{{ request()->routeIs('pay_grade.*')  ? 'active' : ''}}"><a href="{{ route('pay_grade.index')}}">
+                    <i class="fas fa-stopwatch" aria-hidden="true"></i>ደረጃ</a>
+            </li>
+            <li class="{{ request()->routeIs('pay_grade_level.*')  ? 'active' : ''}}"><a
+                    href="{{ route('pay_grade_level.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i>
+                    እርከን</a>
+            </li>
+            <li class="{{ request()->routeIs('job_title.*')  ? 'active' : ''}}"><a href="{{ route('job_title.index')}}">
+                    <i class="fas fa-stopwatch" aria-hidden="true"></i> የስራ መደብ</a>
+            </li>
+            <li class="{{ request()->routeIs('promotion.*')  ? 'active' : ''}}"><a href="{{ route('promotion.index')}}">
+                    <i class="fas fa-stopwatch" aria-hidden="true"></i> ዕድገት </a>
+            </li>
+            <li class="{{ request()->routeIs('leave_type.*')  ? 'active' : ''}}"><a
+                    href="{{ route('leave_type.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> የፍቃድ ዓይነት
+                </a>
+            </li>
+            <li class="{{ request()->routeIs('leave_period.*')  ? 'active' : ''}}"><a
+                    href="{{ route('leave_period.index')}}"> <i class="fas fa-stopwatch" aria-hidden="true"></i> በጀት ዓመት
+                </a>
+            <li class="{{ request()->routeIs('leave_entitlement.*')  ? 'active' : ''}}"><a
+                    href="{{ route('leave_entitlement.index')}}">
+                    <i class="fas fa-stopwatch" aria-hidden="true"></i>ፍቃድ
+                    መሙያ </a>
+            <li class="{{ request()->routeIs('leave.*')  ? 'active' : ''}}"><a href="{{ route('leave.index')}}"> <i
+                        class="fas fa-stopwatch" aria-hidden="true"></i>ፍቃድ </a>
+            <li class="{{ request()->routeIs('holiday.*')  ? 'active' : ''}}"><a href="{{ route('holiday.index')}}"> <i
+                        class="fas fa-stopwatch" aria-hidden="true"></i>በዓል </a>
+            </li>
+            <li class="{{ request()->routeIs('work_week.*')  ? 'active' : ''}}"><a href="{{ route('work_week.index')}}">
+                    <i class="fas fa-stopwatch" aria-hidden="true"></i> የሥራ ቀናት
+                </a>
+            </li>
         </ul>
 
     </nav>

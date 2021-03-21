@@ -3,18 +3,26 @@
 namespace App\Http\Controllers\HRM;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\EthDate;
+use App\Models\Admin\EthioMonth;
+use App\Models\Admin\EthioYear;
 use App\Models\HRM\Department;
+use App\Models\HRM\EmployeesDependant;
+use App\Models\HRM\EmployeesEmergencyContact;
+use App\Models\HRM\EmployeesPromotion;
 use App\Models\HRM\JobTitle;
 use App\Models\HRM\PayGrade;
 use App\Models\HRM\PayGradeLevel;
 use App\Models\HRM\Personale;
+use App\Models\HRM\WorkExperiance;
+use App\Models\Operation\Education;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PersonaleController extends Controller
 {
     public function index()
     {
-        // dd("index");
         $personales = Personale::with(['department', 'jobtitle'])->orderBy('created_at', 'DESC')->get();
         return view('hrm.personale.index')->with('personales', $personales);
     }
@@ -29,19 +37,19 @@ class PersonaleController extends Controller
         $positions = JobTitle::all();
         $pay_grades = PayGrade::orderBy('created_at', 'DESC')->get();
         $pay_grade_levels = PayGradeLevel::orderBy('created_at', 'DESC')->get();
-        // $eth_year = EthYear::all();
-        // $eth_month = EthMonth::all();
-        // $eth_date = EthDate::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
+        $eth_date = EthDate::all();
 
         return view('hrm.personale.create')
             ->with('departments', $departments)
             ->with('positions', $positions)
             ->with('pay_grades', $pay_grades)
             ->with('pay_grade_levels', $pay_grade_levels)
-            ->with('personale', $personale);
-            // ->with('eth_year', $eth_year)
-            // ->with('eth_month', $eth_month)
-            // ->with('eth_date', $eth_date);
+            ->with('personale', $personale)
+            ->with('eth_year', $eth_year)
+            ->with('eth_month', $eth_month)
+            ->with('eth_date', $eth_date);
     }
 
 

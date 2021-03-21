@@ -7,10 +7,10 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
             </li>
-        	<li class="breadcrumb-item active">Distance</li>
+            <li class="breadcrumb-item active">Distance</li>
         </ol>
     </div>
-  </header>
+</header>
 
 <div class="col-md-12">
     <div class="card text-left col-md-12">
@@ -20,7 +20,8 @@
                 {{-- @can('distance create') --}}
                 <div class="ml-auto">
 
-                    <a href="{{route('distance.create')}}" class="btn btn-outline-primary"><i class="fafa-plus mr-1"></i>Add Distance</a>
+                    <a href="{{route('distance.create')}}" class="btn btn-outline-primary"><i
+                            class="fafa-plus mr-1"></i>Add Distance</a>
                 </div>
                 {{-- @endcan --}}
             </div>
@@ -58,7 +59,7 @@
         $('#distances').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ url("distance") }}',
+            ajax: '{{ url("operation/distance") }}',
             columns: [{
                     data: 'id',
                     name: 'id'

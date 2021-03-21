@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\EthDate;
-use App\EthMonth;
-use App\EthYear;
-use App\HRM\LeavePeriod;
-use App\Http\Controllers\Controller;
 use Exception;
+use App\EthDate;
+use App\EthYear;
+use App\EthMonth;
 use Illuminate\Http\Request;
+use App\Models\HRM\LeavePeriod;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class LeavePeriodController extends Controller

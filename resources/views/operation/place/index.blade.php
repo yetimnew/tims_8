@@ -1,6 +1,6 @@
 @extends( 'master.app' )
 @section( 'title', 'TIMS | Place ' )
- @section('content')
+@section('content')
 <header class="page-header mb-4">
     <div class="container-fluid">
         <ol class="breadcrumb">
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item active">Operation Place</li>
         </ol>
     </div>
-  </header>
+</header>
 
 <div class="container">
     <div class="card col-md-12">
@@ -65,7 +65,7 @@
 				$( '#place' ).DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{{ url('place') }}',
+                    ajax: '{{ url('operation/place') }}',
                     columns: [
                                 { data: 'id', name: 'id' },
                                 { data: 'regionsaName', name: 'regionsaName' },

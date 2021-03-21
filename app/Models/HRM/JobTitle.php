@@ -3,9 +3,12 @@
 namespace App\Models\HRM;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class JobTitle extends Model
 {
+    use HasFactory;
+
     protected $table = 'jobtitles';
     protected $fillable = [
         'id',
@@ -17,14 +20,14 @@ class JobTitle extends Model
     ];
     public function personales()
     {
-        return $this->hasMany('App\HRM\Personale');
+        return $this->hasMany(Personale::class);
     }
     public function department()
     {
-        return $this->belongsTo('App\HRM\Department');
+        return $this->belongsTo(Department::class);
     }
     // public function personales()
-    // {
-    //     return $this->hasMany('App\HRM\Personale');
+    // {p
+    //     return $this->hasMany(Personale::class);
     // }
 }

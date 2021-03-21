@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateDownTimesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('down_times', function (Blueprint $table) {

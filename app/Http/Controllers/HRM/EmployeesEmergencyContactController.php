@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\HRM\EmployeesEmergencyContact;
-use App\HRM\Personale;
 use App\Http\Controllers\Controller;
+use App\Models\HRM\EmployeesEmergencyContact;
+use App\Models\HRM\Personale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 

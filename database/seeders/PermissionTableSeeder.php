@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 
 class PermissionTableSeeder extends Seeder
@@ -14,6 +15,7 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('permissions')->truncate();
         $permissions = [
             //Truck
             'truck deactivate',
@@ -86,8 +88,6 @@ class PermissionTableSeeder extends Seeder
             'truck_driver delete',
             'truck_driver view',
             'truck_driver detach',
-
-
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

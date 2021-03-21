@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEthYearsTable extends Migration
+class CreateEthioYearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEthYearsTable extends Migration
      */
     public function up()
     {
-        Schema::create('eth_years', function (Blueprint $table) {
+        Schema::create('ethio_years', function (Blueprint $table) {
             $table->id();
             $table->string('number');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateEthYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eth_years');
+        Schema::dropIfExists('ethio_years');
     }
 }
