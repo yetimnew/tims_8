@@ -83,7 +83,7 @@
                 <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
-        @section('scripts')
+        @section('javascript')
         <script>
             $("#date_of_birth").datetimepicker({
             timepicker:false,

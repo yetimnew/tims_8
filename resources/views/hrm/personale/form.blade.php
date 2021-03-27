@@ -87,15 +87,16 @@
             <div class="col-md-4">
                 <div class="form-group required ">
                     <label class="control-label">Date</label>
-                    <select name="dddate" class="form-control {{ $errors->has('dddate') ? ' is-invalid' : '' }} select" id="dddate"
-                        onfocusout="validatedddate()">
+                    <select name="dddate" class="form-control {{ $errors->has('dddate') ? ' is-invalid' : '' }} select"
+                        id="dddate" onfocusout="validatedddate()">
                         <option class="dropup" value=""> Select One</option>
                         @foreach ($eth_date as $ey)
-                            <option class="dropup" value="{{$ey->number}}"   {{$ey->number == $personale->EthDate ? 'selected' : '' }}>
-                                {{$ey->number}}
-                            </option>
+                        <option class="dropup" value="{{$ey->number}}"
+                            {{$ey->number == $personale->EthDate ? 'selected' : '' }}>
+                            {{$ey->number}}
+                        </option>
                         @endforeach
-                  </select>
+                    </select>
                     @if ($errors->has('dddate'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('dddate') }}</strong>
@@ -106,117 +107,125 @@
                 </div>
             </div>
             <div class="col-md-4">
-            <div class="form-group required ">
-                <label class="control-label" for="ddmonth">Month</label>
-                <select name="ddmonth" class="form-control {{ $errors->has('ddmonth') ? ' is-invalid' : '' }} select" id="ddmonth"
-                    onfocusout="validateddmonth()">
-                    <option class="dropup" value=""> Select One</option>
-                    @foreach ($eth_month as $em)
-                    <option class="dropup" value="{{$em->id}}"   {{$em->number == $personale->EthMonth ? 'selected' : '' }}>
-                        {{$em->name}}
-                    </option>
-                    @endforeach
+                <div class="form-group required ">
+                    <label class="control-label" for="ddmonth">Month</label>
+                    <select name="ddmonth"
+                        class="form-control {{ $errors->has('ddmonth') ? ' is-invalid' : '' }} select" id="ddmonth"
+                        onfocusout="validateddmonth()">
+                        <option class="dropup" value=""> Select One</option>
+                        @foreach ($eth_month as $em)
+                        <option class="dropup" value="{{$em->id}}"
+                            {{$em->number == $personale->EthMonth ? 'selected' : '' }}>
+                            {{$em->name}}
+                        </option>
+                        @endforeach
 
-                </select>
-                @if ($errors->has('ddmonth'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('ddmonth') }}</strong>
-                </span>
-                @endif
+                    </select>
+                    @if ($errors->has('ddmonth'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('ddmonth') }}</strong>
+                    </span>
+                    @endif
 
-                <span class="invalid-feedback" role="alert"></span>
-            </div>
+                    <span class="invalid-feedback" role="alert"></span>
+                </div>
             </div>
             <div class="col-md-4">
-            <div class="form-group required ">
-            <label class="control-label" for="ddyear">Year</label>
-            <div class="input-group">
-                <select name="ddyear" class="form-control {{ $errors->has('ddyear') ? ' is-invalid' : '' }} select" id="ddyear"
-                    onfocusout="validatedddate()">
-                <option class="dropup" value=""> Select One</option>
-                @foreach ($eth_year as $eyear)
-                    <option class="dropup" value="{{$eyear->number}}"   {{$eyear->number == $personale->EthYear ? 'selected' : '' }}>
-                        {{$eyear->number}}
-                    </option>
-                @endforeach
-            </select>
-                   @if($errors->has('ddyear'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('ddyear') }}</strong>
-                </span>
-                @endif
-                <span class="invalid-feedback" role="alert"></span>
-            </div>
+                <div class="form-group required ">
+                    <label class="control-label" for="ddyear">Year</label>
+                    <div class="input-group">
+                        <select name="ddyear"
+                            class="form-control {{ $errors->has('ddyear') ? ' is-invalid' : '' }} select" id="ddyear"
+                            onfocusout="validatedddate()">
+                            <option class="dropup" value=""> Select One</option>
+                            @foreach ($eth_year as $eyear)
+                            <option class="dropup" value="{{$eyear->number}}"
+                                {{$eyear->number == $personale->EthYear ? 'selected' : '' }}>
+                                {{$eyear->number}}
+                            </option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('ddyear'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('ddyear') }}</strong>
+                        </span>
+                        @endif
+                        <span class="invalid-feedback" role="alert"></span>
+                    </div>
 
-        </div>
-        </div>
-    </div>
-    <h4>Hired Date</h4>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group required ">
-                <label class="control-label" for="hdate">Date</label>
-                <select name="hdate" class="form-control {{ $errors->has('hdate') ? ' is-invalid' : '' }} select" id="hdate"
-                    onfocusout="validatehdate()">
-                    <option class="dropup" value=""> Select One</option>
-                    @foreach ($eth_date as $ey)
-                    <option class="dropup" value="{{$ey->number}}"   {{$ey->number == $personale->EthHDate ? 'selected' : '' }}>
-                        {{$ey->number}}
-                    </option>
-                @endforeach
-                </select>
-                @if ($errors->has('hdate'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('hdate') }}</strong>
-                </span>
-                @endif
-
-                <span class="invalid-feedback" role="alert"></span>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-        <div class="form-group required ">
-            <label class="control-label" for="hmonth">Month</label>
-            <select name="hmonth" class="form-control {{ $errors->has('hmonth') ? ' is-invalid' : '' }} select" id="hmonth"
-                onfocusout="validatehmonth()">
-                @foreach ($eth_month as $em)
-                <option class="dropup" value="{{$em->id}}"   {{$em->number == $personale->EthHMonth ? 'selected' : '' }}>
-                    {{$em->name}}
-                </option>
-                @endforeach
+        <h4>Hired Date</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group required ">
+                    <label class="control-label" for="hdate">Date</label>
+                    <select name="hdate" class="form-control {{ $errors->has('hdate') ? ' is-invalid' : '' }} select"
+                        id="hdate" onfocusout="validatehdate()">
+                        <option class="dropup" value=""> Select One</option>
+                        @foreach ($eth_date as $ey)
+                        <option class="dropup" value="{{$ey->number}}"
+                            {{$ey->number == $personale->EthHDate ? 'selected' : '' }}>
+                            {{$ey->number}}
+                        </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('hdate'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('hdate') }}</strong>
+                    </span>
+                    @endif
 
-            </select>
-            @if ($errors->has('hmonth'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('hmonth') }}</strong>
-            </span>
-            @endif
-            <span class="invalid-feedback" role="alert"></span>
-        </div>
-        </div>
-        <div class="col-md-4">
-        <div class="form-group required ">
-        <label class="control-label" for="hyear">Year</label>
-        <div class="input-group">
+                    <span class="invalid-feedback" role="alert"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group required ">
+                    <label class="control-label" for="hmonth">Month</label>
+                    <select name="hmonth" class="form-control {{ $errors->has('hmonth') ? ' is-invalid' : '' }} select"
+                        id="hmonth" onfocusout="validatehmonth()">
+                        @foreach ($eth_month as $em)
+                        <option class="dropup" value="{{$em->id}}"
+                            {{$em->number == $personale->EthHMonth ? 'selected' : '' }}>
+                            {{$em->name}}
+                        </option>
+                        @endforeach
 
-            <select name="hyear" class="form-control {{ $errors->has('hyear') ? ' is-invalid' : '' }} select" id="hyear"
-                onfocusout="validatehdate()">
-                <option class="dropup" value=""> Select One</option>
-                @foreach ($eth_year as $eyear)
-                <option class="dropup" value="{{$eyear->number}}"   {{$eyear->number == $personale->EthHYear ? 'selected' : '' }}>
-                    {{$eyear->number}}
-                </option>
-            @endforeach
-            </select>
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('hyear') }}</strong>
-            </span>
-            <span class="invalid-feedback" role="alert"></span>
-        </div>
+                    </select>
+                    @if ($errors->has('hmonth'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('hmonth') }}</strong>
+                    </span>
+                    @endif
+                    <span class="invalid-feedback" role="alert"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group required ">
+                    <label class="control-label" for="hyear">Year</label>
+                    <div class="input-group">
 
-    </div>
-    </div>
-</div>
+                        <select name="hyear"
+                            class="form-control {{ $errors->has('hyear') ? ' is-invalid' : '' }} select" id="hyear"
+                            onfocusout="validatehdate()">
+                            <option class="dropup" value=""> Select One</option>
+                            @foreach ($eth_year as $eyear)
+                            <option class="dropup" value="{{$eyear->number}}"
+                                {{$eyear->number == $personale->EthHYear ? 'selected' : '' }}>
+                                {{$eyear->number}}
+                            </option>
+                            @endforeach
+                        </select>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('hyear') }}</strong>
+                        </span>
+                        <span class="invalid-feedback" role="alert"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <div class="form-group required">
             <label class="control-label" for="driver">Driver</label>
@@ -582,7 +591,7 @@
                 </div>
             </fieldset>
 
-            @section('scripts')
+            @section('javascript')
             <script>
                 $("#birthdate").datetimepicker({
             timepicker:false,

@@ -131,7 +131,7 @@
                 <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
-        @section('scripts')
+        @section('javascript')
         <script>
             $("#start_date").datetimepicker({
             timepicker:false,

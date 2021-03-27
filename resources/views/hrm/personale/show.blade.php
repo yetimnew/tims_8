@@ -21,7 +21,7 @@
                     <h4>Details Driver ID Number {{$personale->driverid}} </h4>
                     <div class="ml-auto">
                         <a href="{{route('personale.index')}}" class="btn btn-outline-primary"> <i
-                                class="fas fa-backward mr-1" aria-hidden="true"> Back</i> </a>
+                                class="fa fa-backward mr-1" aria-hidden="true"> Back</i> </a>
                     </div>
                 </div>
 
@@ -112,18 +112,18 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="hireddate">Pay Grade</label>
+                    <label class="control-label" for="pay_grade_id">Pay Grade</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate" class="form-control"
+                        <input name="pay_grade_id" type="text" id="pay_grade_id" class="form-control"
                             value="{{ $personale->pay_grade->name}}" disabled>
 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="hireddate">Pay Grade Level</label>
+                    <label class="control-label" for="pay_grade_level_id">Pay Grade Level</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate" class="form-control"
-                            value="{{   $personale->pay_grade->pay_grade_levels }}" disabled>
+                        <input name="pay_grade_level_id" type="text" id="pay_grade_level_id" class="form-control"
+                            value="{{   $personale->pay_grade->pay_grade_levels->name }}" disabled>
 
 
                     </div>
@@ -131,23 +131,23 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="form-group">
-                    <label class="control-label" for="hireddate">Penssion Number</label>
+                    <label class="control-label" for="penssionid">Penssion Number</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate" class="form-control"
+                        <input name="penssionid" type="text" id="penssionid" class="form-control"
                             value="{{   $personale->penssionid }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="hireddate">TIN Number</label>
+                    <label class="control-label" for="tin_number">TIN Number</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate" class="form-control"
+                        <input name="tin_number" type="text" id="tin_number" class="form-control"
                             value="{{   $personale->tin_no }}" disabled>
                     </div>
                 </div>
                 <div class="form-group  ">
                     <label class="control-label" for="department_id">Department Name</label>
                     <div class="input-group input-group-sm">
-                        <input name="hireddate" type="text" id="hireddate" class="form-control"
+                        <input name="department_id" type="text" id="department_id" class="form-control"
                             value="{{ $personale->department->name }}" disabled>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                     <label class="control-label" for="position_id">position_id Title</label>
                     <div class="input-group-sm">
                         <div class="input-group input-group-sm">
-                            <input name="hireddate" type="text" id="hireddate" class="form-control"
+                            <input name="position_id" type="text" id="position_id" class="form-control"
                                 value="{{ $personale->jobtitle->name }}" disabled>
                         </div>
                     </div>
@@ -290,7 +290,7 @@
                 <div class="row">
                     <div class='col-4'>
                         <a href="{{route('personale.edit',$personale->id)}}" class="btn btn-info btn-sm btn-block"> <i
-                                class="fas fa-edit"></i> Edit </a>
+                                class="fa fa-edit"></i> Edit </a>
                     </div>
                     @if ($personale->status == 0)
                     <div class="col-4">
@@ -300,7 +300,7 @@
                             @method('POST')
                             <div>
                                 <button type="submit" class="btn btn-primary  btn-sm btn-block" name="save"><i
-                                        class="fas fa-signal"> </i>
+                                        class="fa fa-signal"> </i>
                                     Activate</button>
                             </div>
                         </form>
@@ -337,7 +337,7 @@
                     {{-- @can('customer create') --}}
                     <div class="ml-auto mr-2">
                         <a href="{{route('employees_dependant.create', $personale->id)}}"
-                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add Dependants</a>
+                            class="btn btn-outline-primary btn-sm"><i class="fa fa-plus mr-1"></i>Add Dependants</a>
                     </div>
                     {{-- @endcan --}}
                 </div>
@@ -408,7 +408,7 @@
 
                     <div class="ml-auto mr-2">
                         <a href="{{route('emergence_contact.create', $personale->id)}}"
-                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add Emergency
+                            class="btn btn-outline-primary btn-sm"><i class="fa fa-plus mr-1"></i>Add Emergency
                             contact</a>
 
                     </div>
@@ -480,7 +480,7 @@
 
                     <div class="ml-auto mr-2">
                         <a href="{{route('experience.create', $personale->id)}}"
-                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                            class="btn btn-outline-primary btn-sm"><i class="fa fa-plus mr-1"></i>Add
                             Experiance</a>
 
                     </div>
@@ -554,7 +554,7 @@
 
                     <div class="ml-auto mr-2">
                         <a href="{{route('education.create', $personale->id)}}"
-                            class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                            class="btn btn-outline-primary btn-sm"><i class="fa fa-plus mr-1"></i>Add
                             Education</a>
 
                     </div>
@@ -633,7 +633,7 @@
                     {{-- @can('customer create') --}}
                     {{-- <div class="ml-auto mr-2">
                         <a href="{{route('education.create', $personale->id)}}"
-                    class="btn btn-outline-primary btn-sm"><i class="fas fa-plus mr-1"></i>Add
+                    class="btn btn-outline-primary btn-sm"><i class="fa fa-plus mr-1"></i>Add
                     Education</a>
 
                 </div> --}}
@@ -741,7 +741,7 @@
 </div>
 
 @endsection
-@section('scripts')
+@section('javascript')
 <script>
     function deleteData(id){
          var id = id;

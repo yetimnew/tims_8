@@ -2,8 +2,10 @@
 
 namespace App\Models\HRM;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\HRM\PayGrade;
+use App\Models\HRM\Department;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Personale extends Model
 {
@@ -88,19 +90,19 @@ public function scopeDriver($query)
 }
 public function department()
 {
-    return $this->belongsTo('App\HRM\Department');
+    return $this->belongsTo(Department::class);
 }
 public function pay_grade()
 {
-    return $this->belongsTo('App\HRM\PayGrade');
+    return $this->belongsTo(PayGrade::class);
 }
 public function jobtitle()
 {
-    return $this->belongsTo('App\HRM\JobTitle');
+    return $this->belongsTo(JobTitle::class);
 }
 public function promotions()
 {
-    return $this->hasMany('App\HRM\EmployeesPromotion');
+    return $this->hasMany(EmployeesPromotion::class);
 }
 public function getNameAttribute($value)
 {

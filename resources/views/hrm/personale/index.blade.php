@@ -25,7 +25,7 @@
 
                         <div class="ml-auto">
                             <a href="{{route('personale.create')}}" class="btn btn-outline-primary btn-sm"><i
-                                    class="fas fa-plus mr-1"></i>Add Employees</a>
+                                    class="fa fa-plus mr-1"></i>Add Employees</a>
 
                         </div>
                         {{-- @endcan --}}
@@ -44,7 +44,6 @@
                                     <th class="m-1 b-1"> Department</th>
                                     <th class="m-1 b-1">Job Title</th>
                                     <th class="m-1 b-1">HireDate</th>
-                                    <th class="m-1 b-1">Status</th>
                                     {{-- @can('driver edit') --}}
                                     <th class="m-1 b-1" width="3%">details</th>
                                     {{-- @endcan --}}
@@ -59,18 +58,16 @@
                                 <tr>
                                     <td class='p-1'>{{++$no}}</td>
                                     <td class='p-1'><img src="/images/thumbnail/{{ $personale->image }}" alt=""
-                                            class="rounded-circle" width="40" height="40"></td>
+                                            class="rounded-circle" width="30" height="30"></td>
                                     <td class='p-1'>{{$personale->driverid}}</td>
                                     <td class='p-1'>{{$personale->fullname}}</td>
                                     <td class='p-1'>{{$personale->department->name}}</td>
                                     <td class='p-1'>{{$personale->jobtitle->name }}</td>
                                     <td class='p-1'>{{$personale->hireddate}}</td>
-                                    <td class='p-1'>{{$personale->status}}</td>
                                     {{-- @can('driver edit') --}}
                                     <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
                                         title="details">
-                                        <a href="{{route('personale.show', $personale)}}"><i
-                                                class="fas fa-edit"></i></a>
+                                        <a href="{{route('personale.show', $personale)}}"><i class="fa fa-edit"></i></a>
                                     </td>
                                     {{-- @endcan --}}
                                 </tr>
@@ -96,7 +93,7 @@
 
 
 @endsection
-@section('scripts')
+@section('javascript')
 <script>
     $(document).ready( function () {
         $('#personales').DataTable();

@@ -32,8 +32,8 @@
                     </div>
                     <div class="card-body">
 
-                        <form method="post" action="{{route('leave_type.update',$leave_type->id)}}" class="form-horizontal"
-                            id="driver_reg" novalidate>
+                        <form method="post" action="{{route('leave_type.update',$leave_type->id)}}"
+                            class="form-horizontal" id="driver_reg" novalidate>
                             @csrf
                             @method('PATCH')
                             @include('hrm.leave_type.form')
@@ -46,7 +46,7 @@
 
                                 <div class="form-group ml-auto">
                                     <button type="submit" class="btn btn-primary btn-sm" name="save"> <i
-                                            class="fas fa-save mr-1" aria-hidden="true"></i>Save Update</button>
+                                            class="fa fa-save mr-1" aria-hidden="true"></i>Save Update</button>
 
                                 </div>
                             </div>

@@ -25,8 +25,9 @@
                             {{-- @can('customer create') --}}
 
                             <div class="ml-auto">
-                                <a href="{{route('leave_entitlement.create')}}" class="btn btn-outline-primary btn-sm"><i
-                                        class="fas fa-plus mr-1"></i>Add Leave Entitlment</a>
+                                <a href="{{route('leave_entitlement.create')}}"
+                                    class="btn btn-outline-primary btn-sm"><i class="fa fa-plus mr-1"></i>Add Leave
+                                    Entitlment</a>
 
                             </div>
                             {{-- @endcan --}}
@@ -57,7 +58,8 @@
                                     @if ($leave_entitlements->count() > 0)
                                     @foreach ($leave_entitlements as $leave_entitlement)
                                     <tr>
-                                        <input type="hidden" class="deleted_value_id" value="{{$leave_entitlement->id}}">
+                                        <input type="hidden" class="deleted_value_id"
+                                            value="{{$leave_entitlement->id}}">
                                         <td class='p-1'>{{++$no}}</td>
                                         <td class='p-1'>{{$leave_entitlement->personal->fullname}}</td>
                                         <td class='p-1'>{{$leave_entitlement->no_of_days}}</td>
@@ -70,12 +72,12 @@
                                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
                                             title="edit">
                                             <a href="{{route('leave_entitlement.edit', $leave_entitlement->id)}}"><i
-                                                    class="fas fa-edit"></i></a>
+                                                    class="fa fa-edit"></i></a>
                                         </td>
                                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
                                             title="delete">
-                                            <button id="delete_leave_entitlement" class="delete_leave_entitlement red"> <i
-                                                    class="fas fa-trash" aria-hidden="true"></i></button>
+                                            <button id="delete_leave_entitlement" class="delete_leave_entitlement red">
+                                                <i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </td>
                                         {{-- @endcan --}}
                                     </tr>
@@ -101,7 +103,7 @@
 <!-- Modal -->
 
 @endsection
-@section('scripts')
+@section('javascript')
 <script type="application/javascript">
     $( document ).ready( function () {
                 $( '#personales' ).DataTable();

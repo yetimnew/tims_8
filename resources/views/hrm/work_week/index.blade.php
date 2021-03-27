@@ -36,18 +36,18 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->mon == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->mon == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->mon == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
                                     @endif
                                 </div>
 
@@ -57,19 +57,19 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->tue == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->tue == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->tue == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
-                                                  @endif
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
+                                    @endif
 
                                 </div>
 
@@ -79,18 +79,18 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->wed == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->wed == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->wed == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
                                     @endif
 
                                 </div>
@@ -101,18 +101,18 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->thu == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->thu == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->thu == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
 
                                     @endif
 
@@ -124,18 +124,18 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->fri == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->fri == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->fri == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
 
                                     @endif
 
@@ -147,19 +147,19 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->sat == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->sat == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->sat == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
-                                @endif
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
+                                    @endif
                                 </div>
 
                             </div>
@@ -168,27 +168,27 @@
                                 <div class="col-sm-9">
                                     @if ($work_week->sun == 0)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Non working date" disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Non working date" disabled>
                                     @endif
                                     @if ($work_week->sun == 4)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Half Day " disabled>
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Half Day " disabled>
                                     @endif
                                     @if ($work_week->sun == 8)
                                     <input name="driverid" type="text" id="driverid"
-                                    class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
-                                    value="Full Day " disabled>
-                                     @endif
+                                        class="form-control select {{ $errors->has('driverid') ? ' is-invalid' : '' }}"
+                                        value="Full Day " disabled>
+                                    @endif
 
                                 </div>
-                                    <div class="ml-auto mt-4">
-                                        <a class="btn btn-primary " href="{{route('work_week.edit', $work_week->id)}}"><i
-                                            class="fas fa-edit"></i> <span class="ml-1">Edit </a>
-                                    </div>
+                                <div class="ml-auto mt-4">
+                                    <a class="btn btn-primary " href="{{route('work_week.edit', $work_week->id)}}"><i
+                                            class="fa fa-edit"></i> <span class="ml-1">Edit </a>
+                                </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                     <div class="card-footer">
 
@@ -201,7 +201,7 @@
 <!-- Modal -->
 
 @endsection
-@section('scripts')
+@section('javascript')
 
 
 @endsection

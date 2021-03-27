@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\HRM\Personale;
-use App\HRM\WorkExperiance;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\HRM\Personale;
+use App\Models\HRM\WorkExperiance;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class WorkExperianceController extends Controller
 {
-    public function index()
-    {
-    }
 
 
     public function create($id)

@@ -18,7 +18,7 @@
 
                 <div class="ml-auto">
                     <a href="{{route('job_system.create')}}" class="btn btn-outline-primary"><i
-                            class="fas fa-plus mr-1"></i>Add Job System</a>
+                            class="fa fa-plus mr-1"></i>Add Job System</a>
 
                 </div>
                 {{-- @endcan --}}

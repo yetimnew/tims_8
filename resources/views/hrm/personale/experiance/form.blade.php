@@ -87,22 +87,3 @@
                 <span class="invalid-feedback" role="alert"></span>
             </div>
         </div>
-        @section('scripts')
-        <script>
-            $("#from_date").datetimepicker({
-            timepicker:false,
-            datepicker:true,
-            format: "Y-m-d"
-            // format: "YYYY-MM-DD H:mm a"
-
-        });
-            $("#to_date").datetimepicker({
-            timepicker:false,
-            datepicker:true,
-            format: "Y-m-d"
-            // format: "YYYY-MM-DD H:mm a"
-
-        });
-
-        </script>
-        @endsection

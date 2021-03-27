@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\EthDate;
-use App\EthMonth;
-use App\EthYear;
-use App\Http\Controllers\Controller;
-use App\Models\HRM\Holiday;
+
 use Exception;
+use App\Models\HRM\Holiday;
 use Illuminate\Http\Request;
+use App\Models\Admin\EthDate;
+use App\Models\Admin\EthioYear;
+use App\Models\Admin\EthioMonth;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class HolidayController extends Controller
@@ -23,8 +24,8 @@ class HolidayController extends Controller
     {
         $holiday = new Holiday;
         $holiday->date = '0000-00-00';
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
 
         return view('hrm.holiday.create')
@@ -69,8 +70,8 @@ class HolidayController extends Controller
     {
 
         $holiday = Holiday::findOrFail($id);
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
         return view('hrm.holiday.edit')
             ->with('holiday', $holiday)

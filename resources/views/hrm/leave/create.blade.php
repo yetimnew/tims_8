@@ -28,13 +28,13 @@
             <h1>Create Post</h1>
 
             @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @endif
 
             <form method="post" action="{{route('leave.store')}}" class="form-horizontal" id="driver_reg" novalidate>
@@ -47,13 +47,13 @@
                     </div>
                     {{-- @can('customer create') --}}
 
-                  <div class="form-group ml-auto">
-                        <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+                    <div class="form-group ml-auto">
+                        <button type="submit" class="btn btn-primary" name="save"> <i class="fa fa-save mr-1"
                                 aria-hidden="true"></i>Save</button>
                     </div>
                 </div>
-        </form>
-        {{-- <leave-component></leave-component> --}}
+            </form>
+            {{-- <leave-component></leave-component> --}}
         </div>
 
         <div class="card-footer">
@@ -61,9 +61,9 @@
                 @include('hrm.leave.append')
             </div>
 
-            @section('scripts')
+            @section('javascript')
             <script>
-            $('#personale_id').change(function(){
+                $('#personale_id').change(function(){
             $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

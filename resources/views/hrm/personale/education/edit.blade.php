@@ -50,6 +50,6 @@
 </div>
 
 @endsection
-@section('scripts')
+@section('javascript')
 
 @endsection

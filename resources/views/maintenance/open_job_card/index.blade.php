@@ -18,7 +18,7 @@
 
                 <div class="ml-auto">
                     <a href="{{route('open_job_card.create')}}" class="btn btn-outline-primary"><i
-                            class="fas fa-plus mr-1"></i>Open Job Card</a>
+                            class="fa fa-plus mr-1"></i>Open Job Card</a>
 
                 </div>
                 {{-- @endcan --}}
@@ -53,7 +53,7 @@
 
                             {{-- @can('driver edit') --}}
                             <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="details">
-                                <a href="{{route('open_job_card.show', $ojc->id)}}"><i class="fas fa-eye"></i></a>
+                                <a href="{{route('open_job_card.show', $ojc->id)}}"><i class="fa fa-eye"></i></a>
                             </td>
 
                             {{-- @endcan --}}

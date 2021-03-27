@@ -26,7 +26,7 @@
 
                             <div class="ml-auto">
                                 <a href="{{route('promotion.create')}}" class="btn btn-outline-primary btn-sm"><i
-                                        class="fas fa-plus mr-1"></i>Add promotion</a>
+                                        class="fa fa-plus mr-1"></i>Add promotion</a>
 
                             </div>
                             {{-- @endcan --}}
@@ -78,12 +78,12 @@
                                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
                                             title="edit">
                                             <a href="{{route('promotion.edit', $promotion->id)}}"><i
-                                                    class="fas fa-edit"></i></a>
+                                                    class="fa fa-edit"></i></a>
                                         </td>
                                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
                                             title="delete">
                                             <button id="delete_promotion" class="delete_promotion red"> <i
-                                                    class="fas fa-trash" aria-hidden="true"></i></button>
+                                                    class="fa fa-trash" aria-hidden="true"></i></button>
                                         </td>
                                         {{-- @endcan --}}
                                     </tr>
@@ -109,7 +109,7 @@
 <!-- Modal -->
 
 @endsection
-@section('scripts')
+@section('javascript')
 <script type="application/javascript">
     $( document ).ready( function () {
                 $( '#personales' ).DataTable();

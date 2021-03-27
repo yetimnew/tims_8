@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\EthDate;
-use App\EthYear;
-use App\EthMonth;
-
 use Illuminate\Http\Request;
+use App\Models\Admin\EthDate;
 use App\Models\HRM\LeaveType;
-use App\Models\HRM\Personale;
+use App\Models\Admin\EthioYear;
 use App\Models\HRM\LeavePeriod;
+use App\Models\Admin\EthioMonth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\HRM\LeaveEntitlement;
+use App\Models\HRM\Personale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -32,11 +31,9 @@ class LeaveEntitlementController extends Controller
             // DB::raw('SUM(leaves.length_days) as days_used_new'),
             DB::raw('SUM(leave_entitlements.no_of_days - leave_entitlements.days_used) as remaing_date'),
                    )
-        // ->where('personale_id', $personale_id)
         ->groupBy('personales.firstname')
         ->get();
-    //    $emp_details->toArray();
-        dd( $emp_details );
+
         return view('hrm.leave_entitlement.index')->with('leave_entitlements', $leave_entitlements);
     }
 
@@ -49,8 +46,8 @@ class LeaveEntitlementController extends Controller
         $leave_periods = LeavePeriod::all();
         $leave_entitlement->start_date = '0000-00-00';
         $leave_entitlement->end_date = '0000-00-00';
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
 
         return view('hrm.leave_entitlement.create')
@@ -119,8 +116,8 @@ class LeaveEntitlementController extends Controller
         $personals = Personale::all();
         $leave_types = LeaveType::all();
         $leave_periods = LeavePeriod::all();
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
         return view('hrm.leave_entitlement.edit')
             ->with('leave_entitlement', $leave_entitlement)

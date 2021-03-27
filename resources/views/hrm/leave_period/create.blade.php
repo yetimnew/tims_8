@@ -28,7 +28,8 @@
         </div>
         <div class="card-body">
 
-            <form method="post" action="{{route('leave_period.store')}}" class="form-horizontal" id="driver_reg" novalidate>
+            <form method="post" action="{{route('leave_period.store')}}" class="form-horizontal" id="driver_reg"
+                novalidate>
                 @csrf
                 @include('hrm.leave_period.form')
 
@@ -40,7 +41,7 @@
                     {{-- @can('customer create') --}}
 
                     <div class="form-group ml-auto">
-                        <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+                        <button type="submit" class="btn btn-primary" name="save"> <i class="fa fa-save mr-1"
                                 aria-hidden="true"></i>Save</button>
 
                     </div>

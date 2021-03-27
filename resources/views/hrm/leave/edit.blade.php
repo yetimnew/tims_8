@@ -20,7 +20,8 @@
                 <div class="card text-left col-md-12">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4>Personale Update <strong class="blue">{{$leave_entitlement->name}}</strong></h4>
+                            <h4>Personale Update <strong class="blue">{{$leave->id}}</strong>
+                            </h4>
                             {{-- @can('driver edit') --}}
                             <div class="ml-auto">
                                 <a href="{{route('leave_entitlement.index')}}" class="btn btn-outline-primary btn-sm">
@@ -31,8 +32,8 @@
 
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('leave_entitlement.update',$leave_entitlement->id)}}" class="form-horizontal"
-                            id="driver_reg" novalidate>
+                        <form method="post" action="{{route('leave_entitlement.update',$leave->id)}}"
+                            class="form-horizontal" id="driver_reg" novalidate>
                             @csrf
                             @method('PATCH')
                             @include('hrm.leave_entitlement.form')
@@ -45,7 +46,7 @@
 
                                 <div class="form-group ml-auto">
                                     <button type="submit" class="btn btn-primary btn-sm" name="save"> <i
-                                            class="fas fa-save mr-1" aria-hidden="true"></i>Save Update</button>
+                                            class="fa fa-save mr-1" aria-hidden="true"></i>Save Update</button>
 
                                 </div>
                             </div>

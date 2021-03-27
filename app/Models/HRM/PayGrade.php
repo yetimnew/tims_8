@@ -2,6 +2,8 @@
 
 namespace App\Models\HRM;
 
+use App\Models\HRM\Personale;
+use App\Models\HRM\PayGradeLevel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,10 +15,10 @@ class PayGrade extends Model
 
     public function pay_grade_levels()
     {
-        return $this->hasMany('App\HRM\PayGradeLevel');
+        return $this->hasOne(PayGradeLevel::class);
     }
     public function personals()
     {
-        return $this->hasMany('App\HRM\Personale');
+        return $this->hasMany(Personale::class);
     }
 }

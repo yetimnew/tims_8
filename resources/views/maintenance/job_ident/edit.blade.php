@@ -17,7 +17,7 @@
                 @can('driver edit')
                 <div class="ml-auto">
                     <a href="{{route('job_ident.index')}}" class="btn btn-outline-primary">
-                        <i class="fas fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
+                        <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
                 </div>
                 @endcan
             </div>
@@ -37,7 +37,7 @@
                     {{-- @can('customer create') --}}
 
                     <div class="form-group ml-auto">
-                        <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+                        <button type="submit" class="btn btn-primary" name="save"> <i class="fa fa-save mr-1"
                                 aria-hidden="true"></i>Save Updates</button>
 
                     </div>

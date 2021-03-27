@@ -34,8 +34,8 @@
                 <div class="form-group">
                     <label class="control-label" for="personale_id">Employee ID</label>
                     <div class="input-group input-group-sm">
-                        <input name="personale_id" type="text" id="personale_id" class="form-control"
-                            value="{{$employee->driverid}}" disabled>
+                        <input name="personale_id" type="text" class="form-control" value="{{$employee->driverid}}"
+                            disabled>
 
 
                     </div>
@@ -44,8 +44,8 @@
                 <div class="form-group">
                     <label class="control-label" for="personale_id">Employee Full Name</label>
                     <div class="input-group input-group-sm">
-                        <input name="personale_id" type="text" id="personale_id" class="form-control"
-                            value="{{$employee->fullname}}" disabled>
+                        <input name="personale_id" type="text" class="form-control" value="{{$employee->fullname}}"
+                            disabled>
 
 
                     </div>
@@ -62,7 +62,7 @@
         {{-- @can('customer create') --}}
 
         <div class="form-group ml-auto">
-            <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+            <button type="submit" class="btn btn-primary" name="save"> <i class="fa fa-save mr-1"
                     aria-hidden="true"></i>Save</button>
 
         </div>

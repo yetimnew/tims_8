@@ -45,7 +45,7 @@
 
                                 <div class="form-group ml-auto">
                                     <button type="submit" class="btn btn-primary btn-sm" name="save"> <i
-                                            class="fas fa-save mr-1" aria-hidden="true"></i>Save Update</button>
+                                            class="fa fa-save mr-1" aria-hidden="true"></i>Save Update</button>
 
                                 </div>
                             </div>

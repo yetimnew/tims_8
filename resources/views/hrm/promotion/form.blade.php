@@ -121,14 +121,13 @@
     </div>
 </div>
 <div class="form-group required">
-    <label class="control-label" for="start_date">Start  Date</label>
+    <label class="control-label" for="start_date">Start Date</label>
     <div class="input-group input-group-sm">
         <input name="start_date" type="text" id="start_date"
             class="form-control  {{ $errors->has('start_date') ? ' is-invalid' : '' }}"
             value="{{old('start_date') ?? $promotion->start_date}}" onfocusout="validatestart_date()">
         <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2"><i class="fa fa-calendar"
-                    aria-hidden="true"></i></span>
+            <span class="input-group-text" id="basic-addon2"><i class="fa fa-calendar" aria-hidden="true"></i></span>
         </div>
         @if ($errors->has('start_date'))
         <span class="invalid-feedback" role="alert">
@@ -143,8 +142,7 @@
     <label class="control-label">Comment</label>
 
     <div class="input-group">
-        <textarea name="comment" rows="5"
-            class="form-control {{ $errors->has('comment') ? ' is-invalid' : '' }}"
+        <textarea name="comment" rows="5" class="form-control {{ $errors->has('comment') ? ' is-invalid' : '' }}"
             id="comment">{{ old('comment') ?? $promotion->comment}}</textarea>
         @if ($errors->has('comment'))
         <span class="invalid-feedback" role="alert">
@@ -154,7 +152,7 @@
         <span class="invalid-feedback" role="alert"></span>
     </div>
 </div>
-@section('scripts')
+@section('javascript')
 <script>
     $("#start_date").datetimepicker({
 timepicker:false,
@@ -165,6 +163,3 @@ format: "Y-m-d"
 });
 </script>
 @endsection
-
-
-

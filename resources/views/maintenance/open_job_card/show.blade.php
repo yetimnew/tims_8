@@ -15,7 +15,7 @@
                 <h2>Details Driver ID Number {{$ojc->driverid}} </h2>
                 <div class="ml-auto">
                     <a href="{{route('open_job_card.index')}}" class="btn btn-outline-primary"> <i
-                            class="fas fa-backward mr-1" aria-hidden="true"> Back</i> </a>
+                            class="fa fa-backward mr-1" aria-hidden="true"> Back</i> </a>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
                 <div class="row">
                     <div class='col-3'>
                         <a href="{{route('open_job_card.edit',$ojc->id)}}" class="btn btn-info"> <i
-                                class="fas fa-edit"></i> Edit
+                                class="fa fa-edit"></i> Edit
                         </a>
                     </div>
                     <div class='col-4 m-1 p-1'>

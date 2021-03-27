@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\HRM;
 
 use App\Http\Controllers\Controller;
+use App\Models\HRM\Branch;
 use App\Models\HRM\WorkWeek;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -12,7 +13,7 @@ class WorkWeekController extends Controller
     public function index()
     {
         $work_week = WorkWeek::orderBy('created_at', 'DESC')->first();
-        dd( $work_week);
+        // dd( $work_week);
         return view('hrm.work_week.index')->with('work_week', $work_week);
     }
 

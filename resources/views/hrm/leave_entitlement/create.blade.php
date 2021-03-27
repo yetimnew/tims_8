@@ -28,7 +28,8 @@
         </div>
         <div class="card-body">
 
-            <form method="post" action="{{route('leave_entitlement.store')}}" class="form-horizontal" id="driver_reg" novalidate>
+            <form method="post" action="{{route('leave_entitlement.store')}}" class="form-horizontal" id="driver_reg"
+                novalidate>
                 @csrf
                 @include('hrm.leave_entitlement.form')
 
@@ -40,7 +41,7 @@
                     {{-- @can('customer create') --}}
 
                     <div class="form-group ml-auto">
-                        <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+                        <button type="submit" class="btn btn-primary" name="save"> <i class="fa fa-save mr-1"
                                 aria-hidden="true"></i>Save</button>
 
                     </div>
@@ -52,9 +53,9 @@
                 @include('hrm.leave_entitlement.append')
             </div>
 
-            @section('scripts')
+            @section('javascript')
             <script>
-            $('#personale_id').change(function(){
+                $('#personale_id').change(function(){
             $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

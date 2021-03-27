@@ -84,15 +84,9 @@
             </div>
 
         </div>
-        @section('scripts')
+        @section('javascript')
         <script>
-            $("#date_of_birth").datetimepicker({
-            timepicker:false,
-            datepicker:true,
-            format: "Y-m-d"
-            // format: "YYYY-MM-DD H:mm a"
-
-        });
+            $("#date_of_birth").datetimepicker();
 
         </script>
         @endsection

@@ -18,7 +18,7 @@
 
                 <div class="ml-auto">
                     <a href="{{route('downtime.create')}}" class="btn btn-outline-primary"><i
-                            class="fas fa-plus mr-1"></i>Add Down Time</a>
+                            class="fa fa-plus mr-1"></i>Add Down Time</a>
 
                 </div>
                 {{-- @endcan --}}

@@ -32,15 +32,12 @@
                 <td class='p-1'>{{$le->note}}</td>
 
                 {{-- @can('driver edit') --}}
-                <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
-                    title="edit">
-                    <a href="{{route('leave_entitlement.edit', $le->id)}}"><i
-                            class="fas fa-edit"></i></a>
+                <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
+                    <a href="{{route('leave_entitlement.edit', $le->id)}}"><i class="fa fa-edit"></i></a>
                 </td>
-                <td class='p-1 text-center' data-toggle="tooltip" data-placement="top"
-                    title="delete">
-                    <button id="delete_leave_entitlement" class="delete_leave_entitlement red"> <i
-                            class="fas fa-trash" aria-hidden="true"></i></button>
+                <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="delete">
+                    <button id="delete_leave_entitlement" class="delete_leave_entitlement red"> <i class="fa fa-trash"
+                            aria-hidden="true"></i></button>
                 </td>
                 {{-- @endcan --}}
             </tr>

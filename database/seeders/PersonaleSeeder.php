@@ -17,18 +17,37 @@ class PersonaleSeeder extends Seeder
     {
         // DB::table('personales')->truncate();
         Personale::create([
-            'driverid' => '123 ',
-            'firstname' => 'Zelalem',
-            'fathername' => 'Sibhat',
-            'gfathername' => 'ayatu',
-            'sex' => 1,
-            'birthdate' => '1980-8-8',
-            'driver' => 1,
-            'department_id' => 1,
-            'position_id' => 1,
-            'status' => 1,
 
-
+                'driverid' => '123 ',
+                'firstname' => 'Zelalem',
+                'fathername' => 'Sibhat',
+                'gfathername' => 'ayatu',
+                'sex' => 1,
+                'birthdate' => '1980-8-8',
+                'hireddate' => '2020-8-8',
+                'driver' => 1,
+                'penssionid'=>'123456',
+                'tin_no'=>'123456',
+                'zone'=>'12',
+                'woreda'=>'12',
+                'city'=>'Addis Abeba',
+                'sub_city'=>'Nfas Silklafto',
+                'kebele'=>'02',
+                'housenumber'=>'123',
+                'mobile'=>'0911111111',
+                'home_telephone'=>'0911111111',
+                'work_telephone'=>'0911111111',
+                'email'=>'test@test.com',
+                'department_id'=>'1',
+                'jobtitle_id'=>'1',
+                'pay_grade_id'=>'1',
+                'pay_grade_level_id'=>'1',
+                'employment_status'=>'1',
+                'marital_status'=>'Single',
+                'image'=>'',
+                'status'=>'1',
+                'comment'=>'Dummy Data'
         ]);
+
     }
 }

@@ -59,7 +59,7 @@
         {{-- @can('customer create') --}}
 
         <div class="form-group ml-auto">
-            <button type="submit" class="btn btn-primary" name="save"> <i class="fas fa-save mr-1"
+            <button type="submit" class="btn btn-primary" name="save"> <i class="fa fa-save mr-1"
                     aria-hidden="true"></i>Save</button>
 
         </div>
@@ -74,4 +74,23 @@
 </div>
 </div>
 
+@endsection
+@section('javascript')
+<script>
+    $("#from_date").datetimepicker({
+    timepicker:false,
+    datepicker:true,
+    format: "Y-m-d"
+    // format: "YYYY-MM-DD H:mm a"
+
+});
+    $("#to_date").datetimepicker({
+    timepicker:false,
+    datepicker:true,
+    format: "Y-m-d"
+    // format: "YYYY-MM-DD H:mm a"
+
+});
+
+</script>
 @endsection

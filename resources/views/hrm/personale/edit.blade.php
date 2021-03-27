@@ -4,7 +4,7 @@
 
 <div class="col-md-12">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a>
+        <li class="breadcrumb-item"><a href="{{route('hrm')}}">Home</a>
         </li>
         <li class="breadcrumb-item active">Personale Update</li>
     </ol>
@@ -30,7 +30,6 @@
                 @include('hrm.personale.form')
 
                 <div class="form-group d-flex  required">
-
                     <div class="ml-auto">
                         <button type="submit" class="btn btn-el btn-outline-primary ml-auto" name="save">
                             Save update</button>
@@ -49,6 +48,6 @@
 </div>
 
 @endsection
-@section('scripts')
+@section('javascript')
 
 @endsection

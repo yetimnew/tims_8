@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\Http\Controllers\Controller;
-use App\Models\Admin\EthDate;
-use App\Models\Admin\EthioMonth;
-use App\Models\Admin\EthioYear;
-use App\Models\HRM\Department;
-use App\Models\HRM\EmployeesDependant;
-use App\Models\HRM\EmployeesEmergencyContact;
-use App\Models\HRM\EmployeesPromotion;
+use Andegna\DateTimeFactory;
 use App\Models\HRM\JobTitle;
 use App\Models\HRM\PayGrade;
-use App\Models\HRM\PayGradeLevel;
-use App\Models\HRM\Personale;
-use App\Models\HRM\WorkExperiance;
-use App\Models\Operation\Education;
 use Illuminate\Http\Request;
+use App\Models\Admin\EthDate;
+use App\Models\HRM\Education;
+use App\Models\HRM\Personale;
+use App\Models\HRM\Department;
+use App\Models\Admin\EthioYear;
+use App\Models\Admin\EthioMonth;
+use App\Models\HRM\PayGradeLevel;
+use App\Models\HRM\WorkExperiance;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PersonaleCreateRequest;
+use App\Models\HRM\EmployeesDependant;
+use App\Models\HRM\EmployeesPromotion;
 use Illuminate\Support\Facades\Session;
+use App\Models\HRM\EmployeesEmergencyContact;
+use Exception;
 
 class PersonaleController extends Controller
 {
@@ -53,45 +56,15 @@ class PersonaleController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PersonaleCreateRequest $request)
     {
         // dd($request->all());
-        $this->validate($request, [
-            'driverid' =>  'required|unique:personales,driverid',
-            'firstname' =>  'required|min:2',
-            'fathername' =>  'required||min:2',
-            'gfathername' =>  'required||min:2',
-            'sex' => 'required',
-            'dddate' => 'required|min:1|max:30',
-            'ddmonth' =>  'required|min:1|max:12',
-            'ddyear' => 'required|numeric',
-            'hdate' =>  'required|min:1|max:30',
-            'hmonth' => 'required|min:1|max:12',
-            'hyear' =>  'required|numeric',
-            'driver' => 'required',
-            'pay_grade_id' => 'required',
-            'pay_grade_level_id' => 'required',
-            'penssionid' => '',
-            'tin_no' => 'integer',
-            'department_id' =>  'required',
-            'position_id' =>  'required',
-            'employment_status' =>  'required',
-            'marital_status' =>  'required',
-            'zone' =>  '',
-            'woreda' =>  '',
-            'city' =>  '',
-            'sub_city' =>  '',
-            'kebele' =>  '',
-            'housenumber' =>  '',
-            'mobile' =>  '',
-            'home_telephone' =>  '',
-            'work_telephone' =>  '',
-            'email' =>  '',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+        // $this->validate($request, [
+
+        // ]);
         try {
-            $ethio_birthdate = \Andegna\DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
-            $ethio_hiredate = \Andegna\DateTimeFactory::of($request->hyear,   $request->hmonth, $request->hdate);
+            $ethio_birthdate = DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
+            $ethio_hiredate = DateTimeFactory::of($request->hyear,   $request->hmonth, $request->hdate);
           } catch (Exception $e) {
                   Session::flash('error', 'Invalid date forma of birth date or hire date');
                   return redirect()->back();
@@ -172,15 +145,14 @@ class PersonaleController extends Controller
     public function edit($id)
     {
         $personale = Personale::findOrFail($id);
-        $personale = Personale::findOrFail($id);
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
-
         $departments = Department::all();
         $positions = JobTitle::all();
         $pay_grades = PayGrade::orderBy('created_at', 'DESC')->get();
         $pay_grade_levels = PayGradeLevel::orderBy('created_at', 'DESC')->get();
+        // dd($pay_grade_levels);
 
         return view('hrm.personale.edit')
             ->with('personale', $personale)
@@ -227,8 +199,8 @@ class PersonaleController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         try {
-            $ethio_birthdate = \Andegna\DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
-            $ethio_hiredate = \Andegna\DateTimeFactory::of($request->hyear,   $request->hmonth, $request->hdate);
+            $ethio_birthdate = DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
+            $ethio_hiredate = DateTimeFactory::of($request->hyear,   $request->hmonth, $request->hdate);
           } catch (Exception $e) {
                   Session::flash('error', 'Invalid date forma of birth date');
                   return redirect()->back();

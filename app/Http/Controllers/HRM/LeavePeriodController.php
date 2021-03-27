@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\HRM;
 
 use Exception;
-use App\EthDate;
-use App\EthYear;
-use App\EthMonth;
+
 use Illuminate\Http\Request;
+use App\Models\Admin\EthDate;
+use App\Models\Admin\EthioYear;
 use App\Models\HRM\LeavePeriod;
+use App\Models\Admin\EthioMonth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
@@ -25,8 +26,8 @@ class LeavePeriodController extends Controller
         $leave_period = new LeavePeriod;
         $leave_period->start_date = '0000-00-00';
         $leave_period->end_date = '0000-00-00';
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
         return view('hrm.leave_period.create')
             ->with('leave_period', $leave_period)
@@ -74,8 +75,8 @@ class LeavePeriodController extends Controller
     {
 
         $leave_period = LeavePeriod::findOrFail($id);
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
         return view('hrm.leave_period.edit')
             ->with('leave_period', $leave_period)

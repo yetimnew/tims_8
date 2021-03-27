@@ -2,6 +2,9 @@
 
 namespace App\Models\HRM;
 
+use App\Models\HRM\LeaveType;
+use App\Models\HRM\Personale;
+use App\Models\HRM\LeavePeriod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,14 +23,14 @@ class Leave extends Model
     ];
     public function personal()
     {
-        return $this->belongsTo('App\HRM\Personale','personale_id');
+        return $this->belongsTo(Personale::class,'personale_id');
     }
     public function leave_type()
     {
-        return $this->belongsTo('App\HRM\LeaveType','leave_type_id');
+        return $this->belongsTo(LeaveType::class,'leave_type_id');
     }
     public function leave_period()
     {
-        return $this->belongsTo('App\HRM\LeavePeriod','leave_period_id');
+        return $this->belongsTo(LeavePeriod::class,'leave_period_id');
     }
 }

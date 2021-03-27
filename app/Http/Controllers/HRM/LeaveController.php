@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers\HRM;
 
-use App\EthDate;
-use App\EthMonth;
-use App\EthYear;
-use App\Models\HRM\Holiday;
+use Exception;
+use Carbon\Carbon;
 use App\Models\HRM\Leave;
-use App\Models\HRM\LeaveEntitlement;
-use App\Models\HRM\LeavePeriod;
+use App\Models\HRM\Holiday;
+use Illuminate\Http\Request;
 use App\Models\HRM\LeaveType;
 use App\Models\HRM\Personale;
-use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Models\Admin\EthioYear;
 // use DateTime;
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\HRM\LeavePeriod;
+use App\Models\Admin\EthioMonth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Admin\EthDate;
+use App\Models\HRM\LeaveEntitlement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LeaveController extends Controller
 {
     public function index()
     {
-        $leaves = Leave::all();
+        $leaves = Leave::with(['leave_type','personal'])->get();
 
         return view('hrm.leave.index')
         ->with('leaves', $leaves);
@@ -52,8 +52,8 @@ class LeaveController extends Controller
         // $emp_details = "";
         $leave->start_date = '0000-00-00';
         $leave->end_date = '0000-00-00';
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
 
         return view('hrm.leave.create')
@@ -171,12 +171,14 @@ if(  $days < $emp_details[0]->remaing_date ){
     }
     public function edit($id)
     {
+        // dd($id);
         $leave = Leave::findOrFail($id);
+        // dd($leave);
         $personals = Personale::all();
         $leave_types = LeaveType::all();
         $leave_periods = LeavePeriod::all();
-        $eth_year = EthYear::all();
-        $eth_month = EthMonth::all();
+        $eth_year = EthioYear::all();
+        $eth_month = EthioMonth::all();
         $eth_date = EthDate::all();
         return view('hrm.leave.edit')
             ->with('leave', $leave)
