@@ -80,7 +80,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'operation'], function () {
     Route::resource('performance', PerformanceController::class );
     Route::resource('distance', DistanceController::class );
 });
-
     Route::group(['middleware' => ['auth'], 'prefix' => 'maintenance'], function () {
         Route::resource('/', 'App\Http\Controllers\Maintenance\DashboardController');
         Route::resource('downtime', 'App\Http\Controllers\Maintenance\DownTimeController');

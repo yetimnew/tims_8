@@ -58,10 +58,7 @@ class PersonaleController extends Controller
 
     public function store(PersonaleCreateRequest $request)
     {
-        // dd($request->all());
-        // $this->validate($request, [
 
-        // ]);
         try {
             $ethio_birthdate = DateTimeFactory::of($request->ddyear,   $request->ddmonth, $request->dddate);
             $ethio_hiredate = DateTimeFactory::of($request->hyear,   $request->hmonth, $request->hdate);

@@ -19,7 +19,7 @@ class LeaveEntitlementController extends Controller
 {
     public function index()
     {
-        $leave_entitlements = LeaveEntitlement::all();
+        $leave_entitlements = LeaveEntitlement::with(['personal','leave_type','leave_period'])->get();
         $emp_details = DB::table('leave_entitlements')
         ->leftjoin('personales', 'personales.id', '=', 'leave_entitlements.personale_id')
         ->leftjoin('leaves', 'leaves.personale_id', '=', 'personales.id')

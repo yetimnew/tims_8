@@ -20,7 +20,7 @@ class OperationController extends Controller
 {
     public function index()
     {
-        $operations = Operation::active()->orderBy('updated_at', 'DESC')->get();
+        $operations = Operation::with(['customer','user','place','updatedby'])->active()->orderBy('updated_at', 'DESC')->get();
         return view('operation.operation.index')->with('operations', $operations);
     }
 
@@ -37,8 +37,6 @@ class OperationController extends Controller
         }
 
         if ($customers->count() == 0) {
-            // toast('You must have some Customer before attempting to create Operation','info')->autoClose(5000)->position('top-end');
-
             Session::flash('info', 'You must have some Customer before attempting to create Operation');
             return redirect()->route('customer.create');
         }
@@ -51,21 +49,25 @@ class OperationController extends Controller
 
     public function store(OperationCreatedRequst $request, Operation $operation)
     {
-        // dd($request->all());
-
-        $operation->operationid = $request->operationid;
-        $operation->customer_id = $request->customer_id;
-        $operation->start_date = $request->start_date;
-        $operation->place_id = $request->place_id;
-        $operation->volume = $request->volume;
-        $operation->cargo_type = $request->cargo_type;
-        $operation->tone = $request->tone;
-        $operation->tariff = $request->tariff;
-        $operation->created_by = Auth::user()->id;
-        $operation->updated_by = Auth::user()->id;
-        $operation->save();
+        // dd($request-> validated());
+        // // auth()->user()->operations()->create($request->validated());
+        // $operation->operationid = $request->operationid;
+        // $operation->customer_id = $request->customer_id;
+        // $operation->start_date = $request->start_date;
+        // $operation->place_id = $request->place_id;
+        // $operation->volume = $request->volume;
+        // $operation->cargo_type = $request->cargo_type;
+        // $operation->tone = $request->tone;
+        // $operation->tariff = $request->tariff;
+        // $operation->created_by = Auth::user()->id;
+        // $operation->updated_by = Auth::user()->id;
+        // $operation->save();
+        // auth()->user()->operations()->create( $request->all());
+        // $operation->create( $request->all());
         // alert()->success('SuccessAlert','operation  registerd successfuly.');
-        event(new OperationCreatedEvent($operation));
+        // event(new OperationCreatedEvent($operation));
+        $operation->create($request->validated()
+    );
         Session::flash('success', 'operation  registered successfully');
         return redirect()->route('operation.index');
     }
@@ -154,21 +156,11 @@ class OperationController extends Controller
 
     public function update(OperationUpdatedRequest $request , Operation $operation)
     {
-
-        $operation->operationid = $request->operationid;
-        $operation->customer_id = $request->customer_id;
-        $operation->start_date = $request->start_date;
-        $operation->place_id = $request->place_id;
-        $operation->volume = $request->volume;
-        $operation->cargo_type = $request->cargo_type;
-        $operation->tone = $request->tone;
-        $operation->tariff = $request->tariff;
-        $operation->updated_by = Auth::user()->id;
-        $operation->save();
+        $operation->create($request->validated());
         Session::flash('success', 'Operation updated successfully.');
         // alert()->success('SuccessAlert', 'operation updated successfully.');
         // Session::flash('success', 'operation updated successfuly' );
-        event(new OperationCreatedEvent($operation));
+        // event(new OperationCreatedEvent($operation));
         return redirect()->route('operation.show' ,$operation->id );
     }
 

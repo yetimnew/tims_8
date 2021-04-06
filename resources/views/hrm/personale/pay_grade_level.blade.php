@@ -10,7 +10,7 @@
             <option class="dropup" value="" selected disabled> Select One</option>
             @foreach ($pay_grade_levels as $pay_grade_level)
             <option class="dropup" value="{{$pay_grade_level->id}}"
-                {{ $pay_grade_level->id == $personale->pay_grade_level_id ? 'selected' : '' }}>
+                {{ $pay_grade_level->id == old('pay_grade_level_id',$personale->pay_grade_level_id) ? 'selected' : '' }}>
                 {{$pay_grade_level->name}}
             </option>
             @endforeach

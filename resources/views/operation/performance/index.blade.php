@@ -7,7 +7,7 @@
             <li class="breadcrumb-item active">Performance</li>
         </ol>
     </div>
-  </header>
+</header>
 {{-- {{dd($statuslist[0])}} --}}
 
 <div class="container">
@@ -64,7 +64,7 @@
                          order: [
                                 [0, 'desc']
                             ],
-                    ajax: '{{ url('performance') }}',
+                    ajax: '{{ url('/operation/performance') }}',
                     columns: [
                                 { data: 'id', name: 'id' },
                                 { data: 'fo', name: 'fo' },

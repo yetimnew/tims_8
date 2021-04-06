@@ -9,8 +9,7 @@
                 <th class="m-1 b-1"> የፍቃድ ዓይነት</th>
                 <th class="m-1 b-1"> በጀት ዓመት</th>
                 <th class="m-1 b-1"> ምርመራ</th>
-                <th class="m-1 b-1" width="3%">Edit</th>
-                <th class="m-1 b-1" width="3%">Delete</th>
+
                 {{-- @endcan --}}
 
 
@@ -31,15 +30,6 @@
                 <td class='p-1'>{{$le->leave_period->name}}</td>
                 <td class='p-1'>{{$le->note}}</td>
 
-                {{-- @can('driver edit') --}}
-                <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="edit">
-                    <a href="{{route('leave_entitlement.edit', $le->id)}}"><i class="fa fa-edit"></i></a>
-                </td>
-                <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="delete">
-                    <button id="delete_leave_entitlement" class="delete_leave_entitlement red"> <i class="fa fa-trash"
-                            aria-hidden="true"></i></button>
-                </td>
-                {{-- @endcan --}}
             </tr>
             @endforeach
             @else

@@ -7,7 +7,6 @@ use App\Http\Requests\TruckCreateRequest;
 use App\Http\Requests\TruckUpdateRequest;
 use App\Models\Operation\Truck;
 use App\Models\Operation\TruckModel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -54,7 +53,7 @@ class TruckController extends Controller
 
     public function update(TruckUpdateRequest $request,Truck $truck)
     {
-        dd($request->all());
+        // dd($request->all());
         $truck->update($request->all());
         Session::flash('success', 'Truck updated successfully');
         return redirect()->route('truck.show', $truck->id);

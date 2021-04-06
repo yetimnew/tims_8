@@ -9,7 +9,7 @@
             <li class="breadcrumb-item active">Driver And Truck Create</li>
         </ol>
     </div>
-  </header>
+</header>
 
 <div class="card col-md-12">
     <div class="card-header">
@@ -30,7 +30,6 @@
                 <thead>
                     <tr>
                         <th class="m-1 b-1">No</th>
-                        {{-- <th class="m-1 b-1">ID</th> --}}
                         <th class="m-1 b-1">Driver ID</th>
                         <th class="m-1 b-1">Driver Name</th>
                         <th class="m-1 b-1">Plate</th>
@@ -44,13 +43,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($driver_truck->count()> 0)
-                    {{-- {{dd($dts)}} --}}
                     <?php $no = 0;?>
-                    @foreach ($driver_truck as $dt)
+                    @forelse ($driver_truck as $dt)
                     <tr>
                         <td class='m-1 p-1'>{{++$no}}</td>
-                        {{-- <td class='m-1 p-1'>{{$dt->id}}</td> --}}
                         <td class='m-1 p-1'>{{$dt->DriverId}}</td>
                         <td class='m-1 p-1'>{{$dt->Name}}</td>
                         <td class='m-1 p-1'>{{$dt->Plate}}</td>
@@ -59,8 +55,7 @@
                         @if ($dt->is_attached == 1)
                         <td class='m-1 p-1'><span class="badge badge-primary">Attached</span></td>
                         @else
-                        <td class='m-1 p-1'><span class="badge badge-danger">Detached</span><span class="pull-right">
-                            </span> </td>
+                        <td class='m-1 p-1'><span class="badge badge-danger">Detached</span> </td>
                         @endif
                         {{-- @can('truck_driver view') --}}
                         <td class='p-1 text-center' data-toggle="tooltip" data-placement="top" title="show"><a
@@ -68,13 +63,12 @@
                         </td>
                         {{-- @endcan --}}
                     </tr>
-
-                    @endforeach
-                    @else
+                    @empty
                     <tr>
-                        <td class='m-1 p-1 text-center' colspan="9">No Data Avilable</td>
+                        <td class='m-1 p-1 text-center' colspan="8">No Data Avilable</td>
                     </tr>
-                    @endif
+                    @endforelse
+
 
                 </tbody>
             </table>

@@ -71,7 +71,6 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $employee_id =   Personale::where('id', $request->personale_id)->pluck('id')->first();
-
         $data = $request->validate([
             'personale_id' =>  'required|numeric',
             'leave_type_id_' =>  'required|numeric',
@@ -87,6 +86,7 @@ class LeaveController extends Controller
         }else{
             $auto_id=1;
         }
+
         $fdate = $request->start_date;
         $tdate = $request->end_date;
         $personale_id = $request->personale_id;
@@ -200,7 +200,6 @@ if(  $days < $emp_details[0]->remaing_date ){
             'days_used' => 'required|numeric',
             'note' => '',
             'leave_period_id_' => 'required|numeric'
-
         ]);
 
         $leave =   Leave::findOrFail($id);
@@ -226,40 +225,32 @@ if(  $days < $emp_details[0]->remaing_date ){
         $personale_id= $request->personale_id;
         if ($request->ajax()) {
             $leaves = LeaveEntitlement::where('personale_id', $personale_id)->get();
-            // dd($leaves);
             $emp_details = DB::table('leave_entitlements')
             ->leftjoin('personales', 'personales.id', '=', 'leave_entitlements.personale_id')
-            // ->leftjoin('leaves', 'personales.id', '=', 'leave_entitlements.personale_id')
             ->select(
                 'personales.firstname AS name',
-
                 DB::raw('SUM(leave_entitlements.no_of_days) as no_of_days'),
                 DB::raw('SUM(leave_entitlements.days_used) as days_used'),
-                // DB::raw('SUM(leaves.length_days) as days_used_new'),
                 DB::raw('SUM(leave_entitlements.no_of_days - leave_entitlements.days_used) as remaing_date'),
                        )
             ->where('personale_id', $personale_id)
             ->groupBy('personales.firstname')
             ->get();
-        //    $emp_details->toArray();
-            // dd( $emp_details );
-
               return view('hrm.leave.append')
                 ->with('emp_details', $emp_details)
                 ->with('leaves', $leaves);
         }
     }
+
     public function live_balance(Request $request)
     {
         $personale_id= $request->personale_id;
               $leaves = LeaveEntitlement::where('personale_id', $personale_id)->get();
-            // dd($leaves);
             $emp_details = DB::table('leave_entitlements')
-            ->leftjoin('personales', 'personales.id', '=', 'leave_entitlements.personale_id')
-            ->leftjoin('leaves', 'personales.id', '=', 'leave_entitlements.personale_id')
+            ->leftJoin('personales', 'personales.id', '=', 'leave_entitlements.personale_id')
+            ->leftJoin('leaves', 'personales.id', '=', 'leave_entitlements.personale_id')
             ->select(
                 'personales.firstname AS name',
-
                 DB::raw('SUM(leave_entitlements.no_of_days) as no_of_days'),
                 DB::raw('SUM(leave_entitlements.days_used) as days_used'),
                 DB::raw('SUM(leaves.length_days) as days_used_new'),
@@ -268,13 +259,9 @@ if(  $days < $emp_details[0]->remaing_date ){
             ->where('personale_id', $personale_id)
             ->groupBy('personales.firstname')
             ->get();
-        //    $emp_details->toArray();
-            // dd();
-
               return view('hrm.leave.append')
                 ->with('emp_details', $emp_details)
                 ->with('leaves', $leaves);
-
             }
         }
 

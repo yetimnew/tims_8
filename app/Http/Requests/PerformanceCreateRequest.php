@@ -43,6 +43,8 @@ class PerformanceCreateRequest extends FormRequest
             'operational_expense' => 'nullable|numeric',
             'other_expense' => 'nullable|numeric',
             'comment' => '',
+            'created_by' =>'required',
+            'updated_by' =>'required',
 
         ];
     }

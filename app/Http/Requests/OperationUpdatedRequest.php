@@ -32,6 +32,8 @@ class OperationUpdatedRequest extends FormRequest
             'cargo_type' => 'required',
             'tone' => 'required|regex:/^\d{1,13}(\.\d{1,4})?$/',
             'tariff' => 'required|regex:/^\d{1,13}(\.\d{1,4})?$/',
+            'created_by'=>'required',
+            'updated_by' =>'required',
         ];
     }
 }

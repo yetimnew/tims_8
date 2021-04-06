@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OperationCreatedRequst extends FormRequest
 {
@@ -32,6 +33,9 @@ class OperationCreatedRequst extends FormRequest
             'cargo_type' => 'required',
             'tone' => 'required|regex:/^\d{1,13}(\.\d{1,4})?$/',
             'tariff' => 'required|regex:/^\d{1,13}(\.\d{1,4})?$/',
+            'created_by' =>'required',
+            'updated_by' =>'required',
+
                 ];
     }
 }

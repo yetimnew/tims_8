@@ -9,9 +9,6 @@
                 <th class="m-1 b-1"> የፍቃድ ዓይነት</th>
                 <th class="m-1 b-1"> በጀት ዓመት</th>
                 <th class="m-1 b-1"> ምርመራ</th>
-
-
-
             </tr>
         </thead>
         <tbody>
@@ -29,27 +26,25 @@
                 <td class='p-1'>{{$le->leave_period->name}}</td>
                 <td class='p-1'>{{$le->note}}</td>
 
-             </tr>
+            </tr>
             @endforeach
-
             @else
-
             <tr>
                 <td class='m-1 p-1 text-center' colspan="15">No Data Avilable</td>
             </tr>
-            @endif
+            @endifp
 
         </tbody>
     </table>
     @if ($emp_details->count() > 0)
     {{-- {{dd( $emp_details[0]->name)}} --}}
     @foreach ($emp_details as $el)
-        <ul class="list-group">
-            <li class="list-group-item ">Avilable date = {{$el->no_of_days}}</li>
-            <li class="list-group-item ">Used date = {{$el->days_used}}</li>
-            <li class="list-group-item ">Used date = {{$el->days_used_new ?? ''}}</li>
-            <li class="list-group-item ">Remaining date = {{$el->remaing_date}}</li>
-        </ul>
+    <ul class="list-group">
+        <li class="list-group-item ">Avilable date = {{$el->no_of_days}}</li>
+        <li class="list-group-item ">Used date = {{$el->days_used}}</li>
+        <li class="list-group-item ">Used date = {{$el->days_used_new ?? ''}}</li>
+        <li class="list-group-item ">Remaining date = {{$el->remaing_date}}</li>
+    </ul>
     @endforeach
 
     @endif

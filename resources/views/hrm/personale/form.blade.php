@@ -92,7 +92,7 @@
                         <option class="dropup" value=""> Select One</option>
                         @foreach ($eth_date as $ey)
                         <option class="dropup" value="{{$ey->number}}"
-                            {{$ey->number == $personale->EthDate ? 'selected' : '' }}>
+                            {{$ey->number == old('dddate',$personale->EthDate) ? 'selected' : '' }}>
                             {{$ey->number}}
                         </option>
                         @endforeach
@@ -115,11 +115,10 @@
                         <option class="dropup" value=""> Select One</option>
                         @foreach ($eth_month as $em)
                         <option class="dropup" value="{{$em->id}}"
-                            {{$em->number == $personale->EthMonth ? 'selected' : '' }}>
+                            {{$em->number ==old('ddmonth', $personale->EthMonth) ? 'selected' : '' }}>
                             {{$em->name}}
                         </option>
                         @endforeach
-
                     </select>
                     @if ($errors->has('ddmonth'))
                     <span class="invalid-feedback" role="alert">
@@ -140,7 +139,7 @@
                             <option class="dropup" value=""> Select One</option>
                             @foreach ($eth_year as $eyear)
                             <option class="dropup" value="{{$eyear->number}}"
-                                {{$eyear->number == $personale->EthYear ? 'selected' : '' }}>
+                                {{$eyear->number ==old('ddyear', $personale->EthYear) ? 'selected' : '' }}>
                                 {{$eyear->number}}
                             </option>
                             @endforeach
@@ -166,7 +165,7 @@
                         <option class="dropup" value=""> Select One</option>
                         @foreach ($eth_date as $ey)
                         <option class="dropup" value="{{$ey->number}}"
-                            {{$ey->number == $personale->EthHDate ? 'selected' : '' }}>
+                            {{$ey->number == old('hdate', $personale->EthHDate) ? 'selected' : '' }}>
                             {{$ey->number}}
                         </option>
                         @endforeach
@@ -187,7 +186,7 @@
                         id="hmonth" onfocusout="validatehmonth()">
                         @foreach ($eth_month as $em)
                         <option class="dropup" value="{{$em->id}}"
-                            {{$em->number == $personale->EthHMonth ? 'selected' : '' }}>
+                            {{$em->number == old('hmonth',$personale->EthHMonth) ? 'selected' : '' }}>
                             {{$em->name}}
                         </option>
                         @endforeach
@@ -205,14 +204,13 @@
                 <div class="form-group required ">
                     <label class="control-label" for="hyear">Year</label>
                     <div class="input-group">
-
                         <select name="hyear"
                             class="form-control {{ $errors->has('hyear') ? ' is-invalid' : '' }} select" id="hyear"
                             onfocusout="validatehdate()">
                             <option class="dropup" value=""> Select One</option>
                             @foreach ($eth_year as $eyear)
                             <option class="dropup" value="{{$eyear->number}}"
-                                {{$eyear->number == $personale->EthHYear ? 'selected' : '' }}>
+                                {{$eyear->number == old('hyear', $personale->EthHYear) ? 'selected' : '' }}>
                                 {{$eyear->number}}
                             </option>
                             @endforeach
@@ -252,7 +250,7 @@
                     <option class="dropup" value="" selected disabled> Select One</option>
                     @foreach ($pay_grades as $pay_grade)
                     <option class="dropup" value="{{$pay_grade->id}}"
-                        {{ $pay_grade->id == $personale->pay_grade_id ? 'selected' : '' }}>
+                        {{ $pay_grade->id == old('pay_grade_id',$personale->pay_grade_id) ? 'selected' : '' }}>
                         {{$pay_grade->name}}
                     </option>
                     @endforeach
@@ -311,7 +309,7 @@
                         <option class="dropup" value="" selected disabled> Select One</option>
                         @foreach ($departments as $department)
                         <option class="dropup" value="{{$department->id}}"
-                            {{ $department->id == $personale->department_id ? 'selected' : '' }}>
+                            {{ $department->id == old('department_id',$personale->department_id)  ? 'selected' : '' }}>
                             {{$department->name}}
                         </option>
                         @endforeach
@@ -336,7 +334,7 @@
 
                         @foreach ($positions as $posistion)
                         <option class="dropup" value="{{$posistion->id}}"
-                            {{ $posistion->id == $personale->jobtitle_id ? 'selected' : '' }}>
+                            {{ $posistion->id == old('position_id',$personale->jobtitle_id) ? 'selected' : '' }}>
                             {{$posistion->name}}
                         </option>
                         @endforeach
@@ -371,11 +369,7 @@
                 @endif
                 <span class="invalid-feedback" role="alert"></span>
             </div>
-            <div class="form-group" id="employment_status_div" style="display: none">
-                <label for=""></label>
-                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Help text</small>
-            </div>
+
             <div class="form-group required">
                 <label class="control-label" for="marital_status">marital_status</label>
 
@@ -448,7 +442,6 @@
                         <input name="woreda" type="text" id="woreda"
                             class="form-control  {{ $errors->has('woreda') ? ' is-invalid' : '' }}"
                             value="{{old('woreda') ?? $personale->woreda}}" onfocusout="validateworeda()">
-
                         @if ($errors->has('woreda'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('woreda') }}</strong>

@@ -17,21 +17,17 @@
         </div>
 
         <div class="form-group mb-0 required">
-            <label class="control-label" for="customer_id">customer_id Name</label>
+            <label class="control-label" for="customer_id">Customer Name</label>
             <div class="input-group">
                 <select name="customer_id" id="customer_id"
                     class="form-control {{ $errors->has('customer_id') ? ' is-invalid' : '' }}"
                     onfocusout="validatecustomer_id()">
                     <option class="dropup" value="" selected> Select One</option>
-
                     @foreach ($customers as $customer)
-                    @if (old('customer_id') )
                     <option class="dropup" value="{{$customer->id}}"
-                        {{old('customer_id') == $customer->id ? 'selected' : ''}}> {{$customer->name}} </option>
-                    @else
-                    <option value={{$customer->id}} {{$customer->id == $operation->customer_id ? 'selected' : ''}}>
-                        {{ $customer->name }}</option>
-                    @endif
+                        {{$customer->id == old('customer_id' , $operation->customer_id) ? 'selected' : ''}}>
+                        {{$customer->name}}
+                    </option>
                     @endforeach
 
                 </select>
@@ -70,13 +66,10 @@
                     onfocusout="validateplace_id()">
                     <option class="dropup" value="" selected> Select One</option>
                     @foreach ($places as $place)
-                    @if (old('place_id') )
-                    <option class="dropup" value="{{$place->id}}" {{old('place_id') == $place->id ? 'selected' : ''}}>
+                    <option class="dropup" value="{{$place->id}}"
+                        {{$place->id==old('place_id', $operation->place_id) ? 'selected' : ''}}>
                         {{$place->name}} </option>
-                    @else
-                    <option value={{$place->id}} {{$place->id == $operation->place_id ? 'selected' : ''}}>
-                        {{ $place->name }}</option>
-                    @endif
+
                     @endforeach
 
                 </select>

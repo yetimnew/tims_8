@@ -76,10 +76,8 @@ class PerformanceController extends Controller
 
     public function create(Performance $performance)
     {
-        // $performance = new  Performance;
-        $operations =  Operation::active()->where('is_closed', '=', 0)->get();
+        $operations =  Operation::active()->where('is_closed',  0)->get();
         $place = Place::with(['woreda'])->active()->orderBy('name')->get();
-        $trucks = Truck::active()->get();
 
         $driver_truck = DB::table('driver_truck')
             ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
@@ -92,12 +90,10 @@ class PerformanceController extends Controller
             Session::flash('info', 'You must have two or more Place before attempting to create Performance');
             return redirect()->route('place.create');
         }
-
-        if ($trucks->count() == 0) {
+        if (Truck::active()->count() <= 0) {
             Session::flash('info', 'You must have some Truck  before attempting to create Performance');
             return redirect()->route('driver_truck.create');
         }
-
         if ($operations->count() == 0) {
             Session::flash('info', 'You must have some Operation  before attempting to create Performance');
             return redirect()->route('operation.create');
@@ -105,7 +101,7 @@ class PerformanceController extends Controller
 
         return view('operation.performance.create')
             ->with('operations', $operations)
-            ->with('trucks', $trucks)
+            // ->with('trucks', $trucks)
             ->with('performance', $performance)
             ->with('driver_truck', $driver_truck)
             ->with('place', $place);
@@ -113,52 +109,25 @@ class PerformanceController extends Controller
 
     public function store(PerformanceCreateRequest $request, Performance $performance)
     {
-        // dd($request->all());
-      $available_tone = Operation::where('id', $request->operation_id)->sum('volume');
-
+        // dd($request->validated());
+         $available_tone = Operation::where('id', $request->operation_id)->sum('volume');
         $lifted_ton_erte = Performance::where('operation_id', $request->operation)->sum('tone');
-        // $liffted_ton_os = Outsource_performance::where('operation_id', $request->operation)->sum('CargoVolumMT');
         $lifted_ton_os = 0;
         $total_uplifted =  $lifted_ton_erte +  $lifted_ton_os;
 
         if ($total_uplifted <  $available_tone) {
             // $performance::create($request->all());
-            $performance->trip= $request-> trip;
-            $performance->load_type= $request-> load_type;
-            $performance->fo_number= $request-> fo_number;
-            $performance->operation_id= $request-> operation_id;
-            $performance->driver_truck_id= $request-> driver_truck_id;
-            $performance->date_dispatch= $request-> date_dispatch;
-            $performance->origin_id= $request-> origin_id;
-            $performance->destination_id= $request-> destination_id;
-            $performance->distance_without_cargo= $request-> distance_without_cargo;
-            $performance->distance_with_cargo= $request-> distance_with_cargo;
-            $performance->tone= $request-> tone;
-            $performance->ton_km= $request-> ton_km;
-            $performance->fuelIn_litter= $request-> fuelIn_litter;
-            $performance->fuelIn_birr= $request-> fuelIn_birr;
-            $performance->perdiem= $request-> perdiem;
-            $performance->operational_expense= $request-> operational_expense;
-            $performance->other_expense= $request-> other_expense;
-            $performance->comment= $request-> comment;
-             $performance->status= 1;
-            $performance->is_returned= 0;
-            $performance->created_by = Auth::user()->id;
-            $performance->updated_by = Auth::user()->id;
-
-            $performance->save();
+            $performance->create($request->validated());
 
             $unreturended = Performance::where('driver_truck_id', '=', $performance->driver_truck_id)->where('is_returned', '=', 0)->get();
             if ($unreturended->count() > 0) {
                 Session::flash('error', 'This Truck Or Driver is not returned yet. Do not forget to return');
                 return redirect()->route('performance.index');
             } else {
-
                 Session::flash('success', 'Performance  registered successfully');
                 return redirect()->route('performance.index');
             }
 
-            // auth()->user()->notify(new PerformanceCreated);
         } else {
             Session::flash('error', 'NOT REGISTERED This Operation is Full');
             return redirect()->back();
@@ -192,10 +161,6 @@ class PerformanceController extends Controller
 
     public function edit(Performance $performance)
     {
-
-        // $performance = Performance::findOrFail($id);
-       dd($performance->is_trip);
-
         $operations =  Operation::active()->get();
         $place = Place::active()->get();
         $trucks = Truck::active()->get();
@@ -220,34 +185,8 @@ class PerformanceController extends Controller
 
     public function update(PerformanceUpdateRequest $request, Performance $performance)
     {
-
-    $performance->trip= $request-> trip;
-    $performance->load_type= $request-> load_type;
-    $performance->fo_number= $request-> fo_number;
-    $performance->operation_id= $request-> operation_id;
-    $performance->driver_truck_id= $request-> driver_truck_id;
-    $performance->date_dispatch= $request-> date_dispatch;
-    $performance->origin_id= $request-> origin_id;
-    $performance->destination_id= $request-> destination_id;
-    $performance->distance_without_cargo= $request-> distance_without_cargo;
-    $performance->distance_with_cargo= $request-> distance_with_cargo;
-    $performance->tone= $request-> tone;
-    $performance->ton_km= $request-> ton_km;
-    $performance->fuelIn_litter= $request-> fuelIn_litter;
-    $performance->fuelIn_birr= $request-> fuelIn_birr;
-    $performance->perdiem= $request-> perdiem;
-    $performance->operational_expense= $request-> operational_expense;
-    $performance->other_expense= $request-> other_expense;
-    $performance->comment= $request-> comment;
-    $performance->status= 1;
-    $performance->is_returned=  $request-> is_returned;
-    $performance->returned_date=  $request-> returned_date;
-    $performance->created_by =   $performance->created_by;
-    $performance->updated_by = Auth::user()->id;
-
-// dd(   $performance);
-        $performance->save();
-        Session::flash('success', 'FO  Number ' . $performance->fo_number . ' updated successfully');
+    $performance->update($request->validated());
+     Session::flash('success', 'FO  Number ' . $performance->fo_number . ' updated successfully');
         return redirect()->route('performance.show', $performance->id);
     }
 
@@ -256,7 +195,7 @@ class PerformanceController extends Controller
         $performance = Performance::findOrFail($id);
         $performance->delete();
         Session::flash('success', 'Performance deleted successfuly');
-        return redirect()->route('performace');
+        return redirect()->route('performance.index');
     }
     public function statusList()
     {
