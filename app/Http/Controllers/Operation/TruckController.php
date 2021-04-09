@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Operation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TruckCreateRequest;
 use App\Http\Requests\TruckUpdateRequest;
+use App\Models\Operation\Driver;
+use App\Models\Operation\DriverTruck;
 use App\Models\Operation\Truck;
 use App\Models\Operation\TruckModel;
 use Illuminate\Http\Request;
@@ -34,7 +36,7 @@ class TruckController extends Controller
 
     public function store(TruckCreateRequest $request)
     {
-        Truck::create($request->all());
+        Truck::create($request->validated());
         Session::flash('success', 'Truck  registered successfully');
         return redirect()->route('truck.index');
     }
@@ -54,34 +56,28 @@ class TruckController extends Controller
 
     public function update(TruckUpdateRequest $request,Truck $truck)
     {
-        dd($request->all());
-        $truck->update($request->all());
+        // dd($request->all());
+        $truck->update($request->validated());
         Session::flash('success', 'Truck updated successfully');
         return redirect()->route('truck.show', $truck->id);
     }
 
     public function destroy(Truck $truck)
     {
-        $truck->delete();
-        Session::flash('success', 'vehecle  deleted successfully');
-        return redirect()->route('truck.index');
-
-        // $truck = Truck::findOrFail($id);
-        // $plate =  $truck->plate;
-        // $td = DriverTuck::where('plate', '=', $plate)
-        //     ->where('status', '=', 1)
-        //     ->where('is_attached', '=', 1)
-        //     ->first();
-        // if ($td) {
-        //     $driver = Driver::where('driverid', '=', $td->driverid)->first();
-        //     Session::flash('error', 'Not deleted ! ' . $plate . ' is attached to driver ' . $driver->name);
-        //     return redirect()->back();
-        // } else {
-        //     $truck->status = 0;
-        //     $truck->save();
-        //     Session::flash('success', 'vehecle  deleted successfuly');
-        //     return redirect()->route('truck');
-        // }
+        // dd($truck);
+        $td = DriverTruck::where('truck_id', $truck->id)
+            ->where('status', '=', 1)
+            ->where('is_attached', '=', 1)
+            ->first();
+        if ($td) {
+            $driver = Driver::where('driverid', '=', $td->driverid)->first();
+            Session::flash('error', 'Not deleted ! ' . $plate . ' is attached to driver ' . $driver->name);
+            return redirect()->back();
+        } else {
+            $truck->delete();
+            Session::flash('success', 'vehecle  deleted successfully');
+            return redirect()->route('truck.index');
+        }
     }
     public function deactivate(Truck $truck)
     {

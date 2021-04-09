@@ -1,20 +1,20 @@
 @extends( 'master.app' )
-@section( 'title', 'TIMS | Truck Update Plate ' .  $truck->plate)
+@section( 'title', 'TIMS | Truck Update Plate ' . $truck->plate)
 @section( 'content' )
 
-    <header class="page-header mb-4">
-        <div class="container-fluid">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Trucks</a></li>
-                <li class="breadcrumb-item active">Truck Update</li>
-            </ol>
-        </div>
-      </header>
-    {{-- @include('master.error') --}}
-    {{-- @include('master.success') --}}
-    <div class="container">
+<header class="page-header mb-4">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item"><a href="#">Trucks</a></li>
+            <li class="breadcrumb-item active">Truck Update</li>
+        </ol>
+    </div>
+</header>
+{{-- @include('master.error') --}}
+{{-- @include('master.success') --}}
+<div class="container">
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="card-body">
-            <form  action="{{route('truck.update',$truck->id)}}" class="form-horizontal" id="truck_form" method="POST">
+            <form action="{{route('truck.update',$truck->id)}}" class="form-horizontal" id="truck_form" method="POST">
                 @method('PATCH')
                 @csrf
                 @include('operation.truck.form')
@@ -41,13 +41,14 @@
                 </div>
         </div>
 
+        </form>
 
     </div>
     <div class="card-footer">
         the footer
     </div>
 
-    </form>
+</div>
 </div>
 </div>
 

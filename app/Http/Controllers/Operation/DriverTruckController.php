@@ -17,9 +17,6 @@ class DriverTruckController extends Controller
 {
     public function index(DriverTruck $driver_truck)
     {
-    //     $dt = $driver_truck->first();
-    //    dd($dt->driver->name);
-
         $driver_truck = DB::table('driver_truck')
             ->join('drivers', 'drivers.id', '=', 'driver_truck.driver_id')
             ->join('trucks', 'trucks.id', '=', 'driver_truck.truck_id')
@@ -37,7 +34,6 @@ class DriverTruckController extends Controller
 
         $truckss = Truck::all();
         $dr = Driver::all();
-        // dd( $dr);
 
         if ($truckss->count() == 0) {
             Session::flash('info', 'You must have some Trukes  before attempting to create Truck');

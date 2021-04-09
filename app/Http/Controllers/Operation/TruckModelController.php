@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Operation;
 
+use Illuminate\Http\Request;
+use App\Models\Operation\Truck;
 use App\Http\Controllers\Controller;
 use App\Models\Operation\TruckModel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class TruckModelController extends Controller
 {
     public function index()
     {
-        $truck_models = TruckModel::get();
         return view('operation.truck_model.index')
-        ->with('truck_models', $truck_models);
+        ->with('truck_models', TruckModel::get());
     }
 
     public function create()
@@ -58,18 +58,16 @@ class TruckModelController extends Controller
 
     public function destroy(TruckModel $truck_model)
     {
-        // dd($truck_model);
-        // $truck = Truck::where('vehecletype_id', '=', $truck_model->id)->first();
-        // if (isset($truck)) {
-        //     Session::flash('error', 'unable to delete vehecle Model Assigned to Plate  ' . $truck->plate);
-        //     return redirect()->back();
-        // } else {
-        //     $vehecletype->delete();
-        //     Session::flash('success', 'vehecle Model  deleted successfuly');
-        //     return redirect()->back();
-        // }
-        $truck_model->delete();
-        Session::flash('success', 'Truck Model  deleted successfully');
+        // dd(Truck::first());
+        $truck = Truck::where('truck_model_id', '=', $truck_model->id)->first();
+        if (isset($truck)) {
+            Session::flash('error', 'unable to delete vehecle Model Assigned to Plate  ' . $truck->plate);
             return redirect()->back();
+        } else {
+            $truck_model->delete();
+            Session::flash('success', 'vehecle Model  deleted successfully');
+            return redirect()->back();
+        }
+
     }
 }

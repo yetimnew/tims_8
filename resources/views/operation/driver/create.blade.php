@@ -12,37 +12,35 @@
             <li class="breadcrumb-item active">Driver Registration</li>
         </ol>
     </div>
-  </header>
+</header>
 
 <div class="container">
-	<div class="card text-left">
-		<div class="card-header">
+    <div class="card text-left">
+        <div class="card-header">
 
-			<div class="d-flex align-items-center">
-				<h2>Driver Registration</h2>
-				{{-- @can('driver create') --}}
-				<div class="ml-auto">
-					<a href="{{route('driver.index')}}" class="btn btn-outline-primary">
-						<i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
+            <div class="d-flex align-items-center">
+                <h2>Driver Registration</h2>
+                {{-- @can('driver create') --}}
+                <div class="ml-auto">
+                    <a href="{{route('driver.index')}}" class="btn btn-outline-primary">
+                        <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
+                </div>
+                {{-- @endcan --}}
+            </div>
 
-
-				</div>
-				{{-- @endcan --}}
-			</div>
-
-		</div>
-		<div class="card-body">
+        </div>
+        <div class="card-body">
             {{-- @include('master.error') --}}
-			<form method="post" action="{{route('driver.store')}}" class="form-horizontal" id="driver_reg" novalidate>
-				@csrf
-				@include('operation.driver.form')
-				<div class="form-group required">
-					<button type="submit" class="btn btn-primary" name="save">Save</button>
+            <form method="post" action="{{route('driver.store')}}" id="driver_reg">
+                @csrf
+                @include('operation.driver.form')
+                <div class="form-group required pull-right mt-4">
+                    <button type="submit" class="btn btn-primary" name="save">Save</button>
 
-				</div>
-		</div>
+                </div>
+        </div>
 
-	</div>
+    </div>
 </div>
 <div class="card-footer">
 

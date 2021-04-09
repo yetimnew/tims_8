@@ -11,11 +11,11 @@
         </ol>
     </div>
 
-  </header>
+</header>
 
 
-    @include('master.error')
-    <div class="container">
+{{-- @include('master.error') --}}
+<div class="container">
     <div class="card">
         <div class="card-header">
             <div class="d-flex align-items-center">
@@ -24,15 +24,13 @@
                 <div class="ml-auto">
                     <a href="{{route('truck.index')}}" class="btn btn-outline-primary">
                         <i class="fa fa-caret-left mr-1" aria-hidden="true"></i>Back</a>
-
                 </div>
                 {{-- @endcan --}}
             </div>
-
         </div>
 
         <div class="card-body">
-            <form method="post" action="{{route('truck.store')}}" id="truck_reg_form" novalidate>
+            <form method="post" action="{{route('truck.store')}}" id="truck_reg_form">
                 @csrf
                 @include('operation.truck.form')
                 <div class="form-group required pull-right">
@@ -44,10 +42,11 @@
         </div>
         <div class="card-footer">
         </div>
-        </form>
 
     </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
+
 
 @endsection

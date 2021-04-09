@@ -26,9 +26,9 @@
             <li class="{{ request()->routeIs('driver.*') ? 'active' : '' }}">
                 <a href="{{ route('driver.index')}}"> <i class="fa fa-bar-chart"></i>Driver </a>
             </li>
-            <li class="{{ request()->routeIs('driver_truck.*') ? 'active' : '' }}">
-                <a href="{{ route('driver_truck.index')}}"> <i class="icon-padnote"></i>Driver Truck </a>
-            </li>
+            {{-- <li class="{{ request()->routeIs('driver_truck.*') ? 'active' : '' }}">
+            <a href="{{ route('driver_truck.index')}}"> <i class="icon-padnote"></i>Driver Truck </a>
+            </li> --}}
             <li class="{{ request()->routeIs('customer.*') ? 'active' : '' }}">
                 <a href="{{ route('customer.index')}}"> <i class="icon-padnote"></i>Customer </a>
             </li>
@@ -63,31 +63,6 @@
                         <a href="{{ route('distance.index')}}"> <i class="icon-padnote"></i>Distance </a>
                     </li>
                 </ul>
-            </li>
-        </ul>
-        <span class="heading">Maintenance</span>
-        <ul class="list-unstyled">
-            <li class="{{ request()->routeIs('downtime.*') ? 'active' : '' }}">
-                <a href="{{ route('downtime.index')}}"> <i class="icon-grid"></i>Downtimes </a>
-            </li>
-            <li class="{{ request()->routeIs('job_card_type.*') ? 'active' : '' }}">
-                <a href="{{ route('job_card_type.index')}}"> <i class="icon-grid"></i>Job Card Type </a>
-            </li>
-            <li class="{{ request()->routeIs('job_system.*') ? 'active' : '' }}">
-                <a href="{{ route('job_system.index')}}"> <i class="icon-grid"></i>Job System</a>
-            </li>
-
-            <li class="{{ request()->routeIs('job_type.*') ? 'active' : '' }}">
-                <a href="{{ route('job_type.index')}}"> <i class="icon-grid"></i>Job Type</a>
-            </li>
-            <li class="{{ request()->routeIs('job_ident.*') ? 'active' : '' }}">
-                <a href="{{ route('job_ident.index')}}"> <i class="icon-screen"></i>Job ident</a>
-            </li>
-            <li class="{{ request()->routeIs('workshop.*') ? 'active' : '' }}">
-                <a href="{{ route('workshop.index')}}"> <i class="icon-mail"></i>Workshop</a>
-            </li>
-            <li class="{{ request()->routeIs('open_job_card.*') ? 'active' : '' }}">
-                <a href="{{ route('open_job_card.index')}}"> <i class="icon-picture"></i>Open Job Card</a>
             </li>
         </ul>
 
